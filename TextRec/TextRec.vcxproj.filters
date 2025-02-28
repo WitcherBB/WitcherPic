@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="textRec">
+      <UniqueIdentifier>{323b65b4-abd4-42df-8fcb-ed4e5916f338}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{bb54ad5e-140e-4b53-bdb7-b9559b5bf465}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dist">
+      <UniqueIdentifier>{09dc7aa0-db7c-4afe-a1ba-25d8c23aad6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="textRec\cuda">
+      <UniqueIdentifier>{0a9bc146-be08-4a15-9615-7c48e9180cb7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="textRec.cppm">
+      <Filter>textRec</Filter>
+    </ClCompile>
+    <ClCompile Include="textRec.util.cppm">
+      <Filter>textRec</Filter>
+    </ClCompile>
+    <ClCompile Include="textRec.util.cpp">
+      <Filter>textRec</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="textRec_types.cpp">
+      <Filter>textRec</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="textRec_types.h">
+      <Filter>textRec</Filter>
+    </ClInclude>
+    <ClInclude Include="cudaTextRec.cuh">
+      <Filter>textRec\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="deviceLib.cuh">
+      <Filter>textRec\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resource\test.jpg">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="resource\hengfu.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="resource\icon.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="resource\jt1.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="resource\sd.jpg">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="resource\t1.jpg">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="resource\t2.jpg">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="dist\gray.bmp">
+      <Filter>dist</Filter>
+    </Image>
+    <Image Include="dist\binary.bmp">
+      <Filter>dist</Filter>
+    </Image>
+    <Image Include="dist\grayEnhanced.bmp">
+      <Filter>dist</Filter>
+    </Image>
+    <Image Include="resource\lena.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="dist\sharpen.bmp">
+      <Filter>dist</Filter>
+    </Image>
+    <Image Include="dist\rgbSharpen.bmp">
+      <Filter>dist</Filter>
+    </Image>
+    <Image Include="dist\rgbGauss.bmp">
+      <Filter>dist</Filter>
+    </Image>
+    <Image Include="resource\cp2.jpg">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="dist\origin.bmp">
+      <Filter>dist</Filter>
+    </Image>
+    <Image Include="resource\cp1.jpg">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="dist\canny.bmp">
+      <Filter>dist</Filter>
+    </Image>
+    <Image Include="dist\sobel.bmp">
+      <Filter>dist</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <CudaCompile Include="cudaTextRec.cu">
+      <Filter>textRec\cuda</Filter>
+    </CudaCompile>
+  </ItemGroup>
+</Project>

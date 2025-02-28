@@ -1,0 +1,15 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.41.34120\\include\\stdint.h",
+        "ProvidedModule": "",
+        "Includes": [
+            "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.41.34120\\include\\vcruntime.h",
+            "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.41.34120\\include\\sal.h",
+            "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.41.34120\\include\\concurrencysal.h",
+            "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.41.34120\\include\\vadefs.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

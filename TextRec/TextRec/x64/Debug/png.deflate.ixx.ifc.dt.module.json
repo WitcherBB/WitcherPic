@@ -1,0 +1,9 @@
+{
+    "Version": "1.1",
+    "Data": {
+        "Source": "d:\\home\\graduation project\\textrec\\textrec\\png.deflate.ixx",
+        "ProvidedModule": "png:deflate",
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

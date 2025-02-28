@@ -1,0 +1,28 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\home\\graduation project\\textrec\\textrec\\png.ixx",
+        "ProvidedModule": "png",
+        "Includes": [],
+        "ImportedModules": [
+            {
+                "Name": "png:deflate",
+                "BMI": "D:\\home\\Graduation project\\TextRec\\TextRec\\TextRec\\x64\\Debug\\png.deflate.ixx.ifc"
+            },
+            {
+                "Name": "std.compat",
+                "BMI": "D:\\home\\Graduation project\\TextRec\\TextRec\\TextRec\\x64\\Debug\\microsoft\\STL\\std.compat.ixx.ifc"
+            },
+            {
+                "Name": "std",
+                "BMI": "D:\\home\\Graduation project\\TextRec\\TextRec\\TextRec\\x64\\Debug\\microsoft\\STL\\std.ixx.ifc"
+            }
+        ],
+        "ImportedHeaderUnits": [
+            {
+                "Header": "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.41.34120\\include\\stdint.h",
+                "BMI": "D:\\home\\Graduation project\\TextRec\\TextRec\\TextRec\\x64\\Debug\\stdint.h_YQ5Z6HM3WB543YN6.ifc"
+            }
+        ]
+    }
+}

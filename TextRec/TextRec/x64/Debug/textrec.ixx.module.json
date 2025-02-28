@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "TextRec\\x64\\Debug\\textRec.ixx.obj",
+            "outputs": [
+                "D:\\home\\Graduation project\\TextRec\\TextRec\\TextRec\\x64\\Debug\\vc143.pdb",
+                "TextRec\\x64\\Debug\\",
+                "D:\\home\\Graduation project\\TextRec\\TextRec\\TextRec\\x64\\Debug\\textRec.ixx.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "textRec",
+                    "source-path": "d:\\home\\graduation project\\textrec\\textrec\\textrec.ixx",
+                    "is-interface": true
+                }
+            ],
+            "requires": [
+                {
+                    "logical-name": "textRec:util"
+                },
+                {
+                    "logical-name": "std.compat"
+                },
+                {
+                    "logical-name": "FreeImage.h",
+                    "source-path": "D:\\Cpp Include\\FreeImage\\Dist\\x64\\FreeImage.h",
+                    "lookup-method": "include-angle",
+                    "unique-on-source-path": true
+                }
+            ]
+        }
+    ]
+}

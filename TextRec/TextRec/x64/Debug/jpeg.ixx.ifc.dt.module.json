@@ -1,0 +1,14 @@
+{
+    "Version": "1.1",
+    "Data": {
+        "Source": "d:\\home\\graduation project\\textrec\\textrec\\jpeg.ixx",
+        "ProvidedModule": "jpeg",
+        "ImportedModules": [
+            "std.compat",
+            "wiioStream"
+        ],
+        "ImportedHeaderUnits": [
+            "D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\include\\stdint.h"
+        ]
+    }
+}

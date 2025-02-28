@@ -1,0 +1,15 @@
+{
+    "Version": "1.1",
+    "Data": {
+        "Source": "d:\\home\\graduation project\\textrec\\textrec\\textrec.cppm",
+        "ProvidedModule": "textRec",
+        "ImportedModules": [
+            "textRec:util",
+            "std.compat"
+        ],
+        "ImportedHeaderUnits": [
+            "D:\\Cpp Include\\FreeImage\\Dist\\x64\\FreeImage.h",
+            "D:\\home\\Graduation project\\TextRec\\TextRec\\textRec_types.h"
+        ]
+    }
+}

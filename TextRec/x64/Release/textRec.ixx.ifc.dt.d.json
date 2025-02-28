@@ -1,0 +1,36 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\home\\graduation project\\textrec\\textrec\\textrec.ixx",
+        "ProvidedModule": "textRec",
+        "Includes": [],
+        "ImportedModules": [
+            {
+                "Name": "textRec:util",
+                "BMI": "D:\\home\\Graduation project\\TextRec\\TextRec\\x64\\Release\\textRec.util.cppm.ifc.dt"
+            },
+            {
+                "Name": "std.compat",
+                "BMI": "D:\\home\\Graduation project\\TextRec\\TextRec\\x64\\Release\\microsoft\\STL\\std.compat.ixx.ifc.dt"
+            },
+            {
+                "Name": "std",
+                "BMI": "D:\\home\\Graduation project\\TextRec\\TextRec\\x64\\Release\\microsoft\\STL\\std.ixx.ifc.dt"
+            }
+        ],
+        "ImportedHeaderUnits": [
+            {
+                "Header": "d:\\cpp include\\eigen-3.4.0\\eigen\\dense",
+                "BMI": "D:\\home\\Graduation project\\TextRec\\TextRec\\x64\\Release\\Dense_40EDE59E0F647D11.ifc.dt"
+            },
+            {
+                "Header": "d:\\home\\graduation project\\textrec\\textrec\\textrec_types.h",
+                "BMI": "D:\\home\\Graduation project\\TextRec\\TextRec\\x64\\Release\\textRec_types.h_6701A7E3DE1DACA0.ifc.dt"
+            },
+            {
+                "Header": "d:\\cpp include\\freeimage\\dist\\x64\\freeimage.h",
+                "BMI": "D:\\home\\Graduation project\\TextRec\\TextRec\\x64\\Release\\FreeImage.h_2507AEC265C4DEEC.ifc.dt"
+            }
+        ]
+    }
+}

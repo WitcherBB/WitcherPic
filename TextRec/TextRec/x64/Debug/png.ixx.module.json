@@ -1,0 +1,38 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "TextRec\\x64\\Debug\\png.ixx.obj",
+            "outputs": [
+                "D:\\home\\Graduation project\\TextRec\\TextRec\\TextRec\\x64\\Debug\\vc143.pdb",
+                "TextRec\\x64\\Debug\\",
+                "D:\\home\\Graduation project\\TextRec\\TextRec\\TextRec\\x64\\Debug\\png.ixx.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "png",
+                    "source-path": "d:\\home\\graduation project\\textrec\\textrec\\png.ixx",
+                    "is-interface": true
+                }
+            ],
+            "requires": [
+                {
+                    "logical-name": "png:deflate"
+                },
+                {
+                    "logical-name": "std.compat"
+                },
+                {
+                    "logical-name": "wiioStream"
+                },
+                {
+                    "logical-name": "stdint.h",
+                    "source-path": "D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\include\\stdint.h",
+                    "lookup-method": "include-angle",
+                    "unique-on-source-path": true
+                }
+            ]
+        }
+    ]
+}

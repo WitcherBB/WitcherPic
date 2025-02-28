@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "TextRec\\x64\\Debug\\FreeImage.h_2OERS9771U0UWWG8.obj",
+            "outputs": [
+                "D:\\home\\Graduation project\\TextRec\\TextRec\\TextRec\\x64\\Debug\\vc143.pdb",
+                "TextRec\\x64\\Debug\\FreeImage.h_2OERS9771U0UWWG8.module.json",
+                "TextRec\\x64\\Debug\\FreeImage.h_2OERS9771U0UWWG8.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "D:\\Cpp Include\\FreeImage\\Dist\\x64\\FreeImage.h",
+                    "source-path": "d:\\cpp include\\freeimage\\dist\\x64\\freeimage.h",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
+}

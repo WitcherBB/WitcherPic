@@ -1,0 +1,42 @@
+﻿  Compiling CUDA source file tc.cu...
+  
+  D:\home\Graduation project\TextRec\TextRec>"D:\Program Files\CUDA\v12.6\bin\nvcc.exe" -gencode=arch=compute_52,code=\"sm_52,compute_52\" --use-local-env -ccbin "D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\bin\HostX64\x64" -x cu   -I"D:\Program Files\CUDA\v12.6\include" -I"D:\Program Files\CUDA\v12.6\include"  -G   --keep-dir TextRec\x64\Debug  -maxrregcount=0   --machine 64 --compile -cudart static  -g  -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -Xcompiler "/FdTextRec\x64\Debug\vc143.pdb" -o "D:\home\Graduation project\TextRec\TextRec\TextRec\x64\Debug\tc.cu.obj" "D:\home\Graduation project\TextRec\TextRec\tc.cu" 
+  tc.cu
+  tmpxft_00006124_00000000-7_tc.cudafe1.cpp
+  正在扫描源以查找模块依赖项...
+  textRec.util.ixx
+  正在编译...
+  textRec.util.ixx
+D:\home\Graduation project\TextRec\TextRec\textRec.util.ixx(101,24): warning C4244: “return”: 从“Eigen::Index”转换到“unsigned int”，可能丢失数据
+D:\home\Graduation project\TextRec\TextRec\textRec.util.ixx(105,24): warning C4244: “return”: 从“Eigen::Index”转换到“unsigned int”，可能丢失数据
+  textRec.ixx
+D:\home\Graduation project\TextRec\TextRec\textRec.util.ixx(72,24): warning C4244: “初始化”: 从“Eigen::Index”转换到“unsigned int”，可能丢失数据
+  (编译源文件“textRec.ixx”)
+      D:\home\Graduation project\TextRec\TextRec\textRec.util.ixx(72,24):
+      模板实例化上下文(最早的实例化上下文)为
+          D:\home\Graduation project\TextRec\TextRec\textRec.ixx(34,24):
+          查看对正在编译的函数 模板 实例化“witcher_pic::ImageMat witcher_pic::ImageMat::filter<float>(const Eigen::Matrix<float,-1,-1,0,-1,-1> &,unsigned int,unsigned int) const”的引用
+  
+D:\home\Graduation project\TextRec\TextRec\textRec.util.ixx(73,25): warning C4244: “初始化”: 从“Eigen::Index”转换到“unsigned int”，可能丢失数据
+  (编译源文件“textRec.ixx”)
+  
+D:\home\Graduation project\TextRec\TextRec\textRec.util.ixx(84,26): warning C4018: “<”: 有符号/无符号不匹配
+  (编译源文件“textRec.ixx”)
+  
+D:\home\Graduation project\TextRec\TextRec\textRec.util.ixx(85,27): warning C4018: “<”: 有符号/无符号不匹配
+  (编译源文件“textRec.ixx”)
+  
+  main.cpp
+  textRec.util.cpp
+D:\home\Graduation project\TextRec\TextRec\tc.cuh(2,1): warning C5244: “#include <cstdint>”(在模块“textRec”的 purview 中)出现错误。请考虑将该指令移到模块声明之前，或将文本包含内容替换为“import <cstdint>;”。
+  (编译源文件“textRec.util.cpp”)
+      D:\home\Graduation project\TextRec\TextRec\textRec.util.cpp(1,1):
+      参阅模块“textRec”声明
+  
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\cstdint(93,9): warning C4159: #pragma pack(pop,...): 将先前入栈的标识符“_CRT_PACKING” 弹出栈
+  (编译源文件“textRec.util.cpp”)
+  
+  正在生成代码...
+    正在创建库 D:\home\Graduation project\TextRec\TextRec\x64\Debug\TextRec.lib 和对象 D:\home\Graduation project\TextRec\TextRec\x64\Debug\TextRec.exp
+LINK : warning LNK4098: 默认库“LIBCMT”与其他库的使用冲突；请使用 /NODEFAULTLIB:library
+  TextRec.vcxproj -> D:\home\Graduation project\TextRec\TextRec\x64\Debug\TextRec.exe

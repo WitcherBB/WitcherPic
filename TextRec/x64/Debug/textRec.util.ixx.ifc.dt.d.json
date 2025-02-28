@@ -1,0 +1,24 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\home\\graduation project\\textrec\\textrec\\textrec.util.ixx",
+        "ProvidedModule": "textRec:util",
+        "Includes": [],
+        "ImportedModules": [
+            {
+                "Name": "std.compat",
+                "BMI": "D:\\home\\Graduation project\\TextRec\\TextRec\\x64\\Debug\\microsoft\\STL\\std.compat.ixx.ifc.dt"
+            },
+            {
+                "Name": "std",
+                "BMI": "D:\\home\\Graduation project\\TextRec\\TextRec\\x64\\Debug\\microsoft\\STL\\std.ixx.ifc.dt"
+            }
+        ],
+        "ImportedHeaderUnits": [
+            {
+                "Header": "d:\\cpp include\\eigen-3.4.0\\eigen\\dense",
+                "BMI": "D:\\home\\Graduation project\\TextRec\\TextRec\\x64\\Debug\\Dense_40EDE59E0F647D11.ifc.dt"
+            }
+        ]
+    }
+}

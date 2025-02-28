@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "x64\\Debug\\textRec_types.h_XWWB1H0G60T2T7T6.obj",
+            "outputs": [
+                "D:\\home\\Graduation project\\TextRec\\TextRec\\x64\\Debug\\vc143.pdb",
+                "x64\\Debug\\textRec_types.h_XWWB1H0G60T2T7T6.module.json",
+                "x64\\Debug\\textRec_types.h_XWWB1H0G60T2T7T6.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "D:\\home\\Graduation project\\TextRec\\TextRec\\textRec_types.h",
+                    "source-path": "d:\\home\\graduation project\\textrec\\textrec\\textrec_types.h",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
+}

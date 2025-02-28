@@ -1,0 +1,38 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "x64\\Release\\textRec.util.cppm.obj",
+            "outputs": [
+                "D:\\home\\Graduation project\\TextRec\\TextRec\\x64\\Release\\vc143.pdb",
+                "x64\\Release\\",
+                "D:\\home\\Graduation project\\TextRec\\TextRec\\x64\\Release\\textRec.util.cppm.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "textRec:util",
+                    "source-path": "d:\\home\\graduation project\\textrec\\textrec\\textrec.util.cppm",
+                    "is-interface": true
+                }
+            ],
+            "requires": [
+                {
+                    "logical-name": "std.compat"
+                },
+                {
+                    "logical-name": "Eigen/Dense",
+                    "source-path": "D:\\Cpp Include\\eigen-3.4.0\\Eigen\\Dense",
+                    "lookup-method": "include-angle",
+                    "unique-on-source-path": true
+                },
+                {
+                    "logical-name": "textRec_types.h",
+                    "source-path": "D:\\home\\Graduation project\\TextRec\\TextRec\\textRec_types.h",
+                    "lookup-method": "include-quote",
+                    "unique-on-source-path": true
+                }
+            ]
+        }
+    ]
+}

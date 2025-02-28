@@ -1,0 +1,13 @@
+{
+    "Version": "1.1",
+    "Data": {
+        "Source": "d:\\home\\graduation project\\textrec\\textrec\\textrec.util.ixx",
+        "ProvidedModule": "textRec:util",
+        "ImportedModules": [
+            "std.compat"
+        ],
+        "ImportedHeaderUnits": [
+            "D:\\Cpp Include\\eigen-3.4.0\\Eigen\\Dense"
+        ]
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "TextRec\\x64\\Debug\\png.deflate.ixx.obj",
+            "outputs": [
+                "D:\\home\\Graduation project\\TextRec\\TextRec\\TextRec\\x64\\Debug\\vc143.pdb",
+                "TextRec\\x64\\Debug\\",
+                "D:\\home\\Graduation project\\TextRec\\TextRec\\TextRec\\x64\\Debug\\png.deflate.ixx.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "png:deflate",
+                    "source-path": "d:\\home\\graduation project\\textrec\\textrec\\png.deflate.ixx",
+                    "is-interface": true
+                }
+            ],
+            "requires": []
+        }
+    ]
+}

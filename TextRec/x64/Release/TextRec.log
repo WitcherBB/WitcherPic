@@ -1,0 +1,63 @@
+﻿  正在扫描源以查找模块依赖项...
+  main.cpp
+D:\home\Graduation project\TextRec\TextRec\main.cpp(17,3): warning C5103: 粘贴“(”和“1”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(7,9):
+      在宏“CHECK_CMD”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(17,3): warning C5103: 粘贴“1”和“+”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(7,9):
+      在宏“CHECK_CMD”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(17,3): warning C5103: 粘贴“,”和“cmd”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(7,9):
+      在宏“CHECK_CMD”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(17,3): warning C5103: 粘贴“cmd”和“)”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(7,9):
+      在宏“CHECK_CMD”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(18,19): warning C5103: 粘贴“[”和“0”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(5,9):
+      在宏“FIXED_ARGC”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(18,19): warning C5103: 粘贴“0”和“+”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(5,9):
+      在宏“FIXED_ARGC”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(28,3): warning C5103: 粘贴“(”和“2”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(7,9):
+      在宏“CHECK_CMD”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(28,3): warning C5103: 粘贴“2”和“+”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(7,9):
+      在宏“CHECK_CMD”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(28,3): warning C5103: 粘贴“,”和“cmd”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(7,9):
+      在宏“CHECK_CMD”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(28,3): warning C5103: 粘贴“cmd”和“)”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(7,9):
+      在宏“CHECK_CMD”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(32,13): warning C5103: 粘贴“[”和“0”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(5,9):
+      在宏“FIXED_ARGC”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(32,13): warning C5103: 粘贴“0”和“+”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(5,9):
+      在宏“FIXED_ARGC”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(32,33): warning C5103: 粘贴“[”和“1”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(5,9):
+      在宏“FIXED_ARGC”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(32,33): warning C5103: 粘贴“1”和“+”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(5,9):
+      在宏“FIXED_ARGC”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(57,30): error C3861: “getEdgeInfo”: 找不到标识符
+D:\home\Graduation project\TextRec\TextRec\main.cpp(57,2): error C2661: “witcher_pic::saveImage”: 没有重载函数接受 1 个参数
+      D:\home\Graduation project\TextRec\TextRec\main.cpp(57,2):
+      尝试匹配参数列表“(const char [15])”时
+  

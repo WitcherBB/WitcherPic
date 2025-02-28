@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "TextRec\\x64\\Debug\\stdint.h_YQ5Z6HM3WB543YN6.obj",
+            "outputs": [
+                "D:\\home\\Graduation project\\TextRec\\TextRec\\TextRec\\x64\\Debug\\vc143.pdb",
+                "TextRec\\x64\\Debug\\stdint.h_YQ5Z6HM3WB543YN6.module.json",
+                "TextRec\\x64\\Debug\\stdint.h_YQ5Z6HM3WB543YN6.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\include\\stdint.h",
+                    "source-path": "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.41.34120\\include\\stdint.h",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
+}

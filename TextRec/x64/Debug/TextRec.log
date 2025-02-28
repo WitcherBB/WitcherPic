@@ -1,0 +1,125 @@
+﻿  Compiling CUDA source file cudaTextRec.cu...
+  
+  D:\home\Graduation project\TextRec\TextRec>"D:\Program Files\CUDA\v12.6\bin\nvcc.exe" -gencode=arch=compute_52,code=\"sm_52,compute_52\" --use-local-env -ccbin "D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\bin\HostX64\x64" -x cu   -I"D:\Program Files\CUDA\v12.6\include" -I"D:\Program Files\CUDA\v12.6\include"  -G   --keep-dir x64\Debug -use_fast_math -maxrregcount=0   --machine 64 --compile -cudart static -std c++20 -Xptxas=-v -g  -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -Xcompiler "/Fdx64\Debug\vc143.pdb" -o "D:\home\Graduation project\TextRec\TextRec\x64\Debug\cudaTextRec.cu.obj" "D:\home\Graduation project\TextRec\TextRec\cudaTextRec.cu" 
+  ptxas info    : 15 bytes gmem
+  ptxas info    : Function properties for _Z3absf
+      8 bytes stack frame, 4 bytes spill stores, 4 bytes spill loads
+  ptxas info    : Function properties for _Z5roundf
+      8 bytes stack frame, 4 bytes spill stores, 4 bytes spill loads
+  ptxas info    : Compiling entry function '_ZN11witcher_pic13cudaMatFilterEPhS0_PfNS_10FilterInfoE' for 'sm_52'
+  ptxas info    : Function properties for _ZN11witcher_pic13cudaMatFilterEPhS0_PfNS_10FilterInfoE
+      32 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+  ptxas info    : Used 48 registers, used 0 barriers, 32 bytes cumulative stack size, 372 bytes cmem[0]
+  ptxas info    : Compiling entry function '_ZN11witcher_pic13cudaGrayCountEPyPhy' for 'sm_52'
+  ptxas info    : Function properties for _ZN11witcher_pic13cudaGrayCountEPyPhy
+      0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+  ptxas info    : Used 20 registers, used 0 barriers, 16 bytes cumulative stack size, 344 bytes cmem[0]
+  ptxas info    : Compiling entry function '_ZN11witcher_pic16cudaMapGrayImageEPhS0_' for 'sm_52'
+  ptxas info    : Function properties for _ZN11witcher_pic16cudaMapGrayImageEPhS0_
+      0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+  ptxas info    : Used 9 registers, used 0 barriers, 336 bytes cmem[0]
+  ptxas info    : Compiling entry function '_ZN11witcher_pic20cudaTwoDimCrossCorreEPhPKhPKfjjjj' for 'sm_52'
+  ptxas info    : Function properties for _ZN11witcher_pic20cudaTwoDimCrossCorreEPhPKhPKfjjjj
+      0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+  ptxas info    : Used 38 registers, used 0 barriers, 8 bytes cumulative stack size, 360 bytes cmem[0]
+  ptxas info    : Compiling entry function '_ZN11witcher_pic15cudaAddWeightedEPhfPKhfhyb' for 'sm_52'
+  ptxas info    : Function properties for _ZN11witcher_pic15cudaAddWeightedEPhfPKhfhyb
+      0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+  ptxas info    : Used 28 registers, used 0 barriers, 361 bytes cmem[0]
+  ptxas info    : Compiling entry function '_ZN11witcher_pic14cudaInsertDataEPhPS0_yi' for 'sm_52'
+  ptxas info    : Function properties for _ZN11witcher_pic14cudaInsertDataEPhPS0_yi
+      0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+  ptxas info    : Used 13 registers, used 0 barriers, 348 bytes cmem[0]
+  ptxas info    : Compiling entry function '_ZN11witcher_pic16cudaGetAngleInfoEPiPKhS2_jj' for 'sm_52'
+  ptxas info    : Function properties for _ZN11witcher_pic16cudaGetAngleInfoEPiPKhS2_jj
+      0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+  ptxas info    : Used 22 registers, used 0 barriers, 8 bytes cumulative stack size, 352 bytes cmem[0]
+  ptxas info    : Compiling entry function '_ZN11witcher_pic21cudaNonMaxSuppressionEPhPKhPKijj' for 'sm_52'
+  ptxas info    : Function properties for _ZN11witcher_pic21cudaNonMaxSuppressionEPhPKhPKijj
+      80 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+  ptxas info    : Used 20 registers, used 0 barriers, 80 bytes cumulative stack size, 352 bytes cmem[0]
+  ptxas info    : Compiling entry function '_ZN11witcher_pic16cudaTwoThresholdEPhS0_hhjj' for 'sm_52'
+  ptxas info    : Function properties for _ZN11witcher_pic16cudaTwoThresholdEPhS0_hhjj
+      72 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+  ptxas info    : Used 21 registers, used 0 barriers, 72 bytes cumulative stack size, 348 bytes cmem[0]
+  ptxas info    : Compiling entry function '_ZN11witcher_pic8cudaTestEv' for 'sm_52'
+  ptxas info    : Function properties for _ZN11witcher_pic8cudaTestEv
+      8 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+  ptxas info    : Used 8 registers, used 0 barriers, 8 bytes cumulative stack size, 320 bytes cmem[0]
+  ptxas info    : Function properties for atanf
+      0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+  ptxas info    : Function properties for roundf
+      0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+  ptxas info    : Function properties for fabsf
+      0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+  ptxas info    : Function properties for fminf
+      0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+  ptxas info    : Function properties for fmaxf
+      0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+  ptxas info    : Function properties for sqrtf
+      0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+  ptxas info    : Function properties for __ullAtomicAdd
+      0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+  ptxas info    : Function properties for _ZN45_INTERNAL_c528ccde_14_cudaTextRec_cu_24e3ae059atomicAddEPyy
+      16 bytes stack frame, 16 bytes spill stores, 16 bytes spill loads
+  cudaTextRec.cu
+  tmpxft_00001a60_00000000-7_cudaTextRec.cudafe1.cpp
+  正在扫描源以查找模块依赖项...
+  main.cpp
+D:\home\Graduation project\TextRec\TextRec\main.cpp(17,3): warning C5103: 粘贴“(”和“1”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(7,9):
+      在宏“CHECK_CMD”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(17,3): warning C5103: 粘贴“1”和“+”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(7,9):
+      在宏“CHECK_CMD”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(17,3): warning C5103: 粘贴“,”和“cmd”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(7,9):
+      在宏“CHECK_CMD”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(17,3): warning C5103: 粘贴“cmd”和“)”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(7,9):
+      在宏“CHECK_CMD”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(18,19): warning C5103: 粘贴“[”和“0”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(5,9):
+      在宏“FIXED_ARGC”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(18,19): warning C5103: 粘贴“0”和“+”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(5,9):
+      在宏“FIXED_ARGC”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(28,3): warning C5103: 粘贴“(”和“2”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(7,9):
+      在宏“CHECK_CMD”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(28,3): warning C5103: 粘贴“2”和“+”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(7,9):
+      在宏“CHECK_CMD”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(28,3): warning C5103: 粘贴“,”和“cmd”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(7,9):
+      在宏“CHECK_CMD”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(28,3): warning C5103: 粘贴“cmd”和“)”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(7,9):
+      在宏“CHECK_CMD”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(32,13): warning C5103: 粘贴“[”和“0”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(5,9):
+      在宏“FIXED_ARGC”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(32,13): warning C5103: 粘贴“0”和“+”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(5,9):
+      在宏“FIXED_ARGC”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(32,33): warning C5103: 粘贴“[”和“1”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(5,9):
+      在宏“FIXED_ARGC”的扩展中
+  
+D:\home\Graduation project\TextRec\TextRec\main.cpp(32,33): warning C5103: 粘贴“1”和“+”不会产生有效的预处理标记
+      D:\home\Graduation project\TextRec\TextRec\main.h(5,9):
+      在宏“FIXED_ARGC”的扩展中
+  
+  TextRec.vcxproj -> D:\home\Graduation project\TextRec\x64\Debug\TextRec.exe

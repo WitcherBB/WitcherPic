@@ -1,0 +1,32 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "TextRec\\x64\\Debug\\textRec.util.ixx.obj",
+            "outputs": [
+                "D:\\home\\Graduation project\\TextRec\\TextRec\\TextRec\\x64\\Debug\\vc143.pdb",
+                "TextRec\\x64\\Debug\\",
+                "D:\\home\\Graduation project\\TextRec\\TextRec\\TextRec\\x64\\Debug\\textRec.util.ixx.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "textRec:util",
+                    "source-path": "d:\\home\\graduation project\\textrec\\textrec\\textrec.util.ixx",
+                    "is-interface": true
+                }
+            ],
+            "requires": [
+                {
+                    "logical-name": "std.compat"
+                },
+                {
+                    "logical-name": "Eigen/Dense",
+                    "source-path": "D:\\Cpp Include\\eigen-3.4.0\\Eigen\\Dense",
+                    "lookup-method": "include-angle",
+                    "unique-on-source-path": true
+                }
+            ]
+        }
+    ]
+}

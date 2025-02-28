@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "x64\\Debug\\Dense_AL8AGO7DL50I0QR8.obj",
+            "outputs": [
+                "D:\\home\\Graduation project\\TextRec\\TextRec\\x64\\Debug\\vc143.pdb",
+                "x64\\Debug\\Dense_AL8AGO7DL50I0QR8.module.json",
+                "x64\\Debug\\Dense_AL8AGO7DL50I0QR8.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "D:\\Cpp Include\\eigen-3.4.0\\Eigen\\Dense",
+                    "source-path": "d:\\cpp include\\eigen-3.4.0\\eigen\\dense",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
+}

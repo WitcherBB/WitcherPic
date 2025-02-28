@@ -1,0 +1,33 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\cpp include\\freeimage\\dist\\x64\\freeimage.h",
+        "ProvidedModule": "",
+        "Includes": [
+            "d:\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\wchar.h",
+            "d:\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\corecrt.h",
+            "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.41.34120\\include\\vcruntime.h",
+            "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.41.34120\\include\\sal.h",
+            "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.41.34120\\include\\concurrencysal.h",
+            "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.41.34120\\include\\vadefs.h",
+            "d:\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\corecrt_memcpy_s.h",
+            "d:\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\errno.h",
+            "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.41.34120\\include\\vcruntime_string.h",
+            "d:\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\corecrt_wconio.h",
+            "d:\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\corecrt_stdio_config.h",
+            "d:\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\corecrt_wctype.h",
+            "d:\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\corecrt_wdirect.h",
+            "d:\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\corecrt_wio.h",
+            "d:\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\corecrt_share.h",
+            "d:\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\corecrt_wprocess.h",
+            "d:\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\corecrt_wstdio.h",
+            "d:\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\corecrt_wstdlib.h",
+            "d:\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\corecrt_wstring.h",
+            "d:\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\corecrt_wtime.h",
+            "d:\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\sys\\stat.h",
+            "d:\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\sys\\types.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
