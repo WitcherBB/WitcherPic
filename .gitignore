@@ -34,3 +34,8 @@
 *.app
 
 /.vs/
+
+/TextRec/textRec - 副本.cpp
+/TextRec/textRec.util - 副本.cpp
+/TextRec/resource/
+/TextRec/dist/

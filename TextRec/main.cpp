@@ -1,6 +1,6 @@
 import std.compat;
 import textRec;
-import <FreeImage.h>;
+import "FreeImage.h";
 
 #include "main.h"
 #include <cstdio>
@@ -11,6 +11,7 @@ auto run(const char* pic_name) -> void;
 
 auto main(int ARGV, char* ARGC[]) -> int {
 	FreeImage_Initialise();
+	witcher_pic::init();
 	std::string cmd(ARGC[1]);
 	// ÃüÁîÅÐ¶Ï
 	if (cmd == "recg") {
@@ -53,7 +54,8 @@ auto run(const char* pic_name) -> void {
 	// gpuDeviceInfo();
 	Image& img = *loadImage(pic_name);
 	std::println("Í¼Æ¬´óÐ¡: {} * {}", img.width(), img.height());
-	
-	saveImage("dist/canny.bmp", img.toGray().canny(40, 70)->edge);
+
+	// saveImage("dist/bin.bmp", img.toGray());
+	saveImage("dist/canny.bmp", img.tiltCorrection());
 	std::println("{}", img.bpp());
 }

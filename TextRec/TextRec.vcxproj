@@ -19,14 +19,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -58,6 +56,7 @@
       <BuildStlModules>true</BuildStlModules>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard_C>stdclatest</LanguageStandard_C>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -68,7 +67,9 @@
       <TargetMachinePlatform>64</TargetMachinePlatform>
       <GenerateRelocatableDeviceCode>false</GenerateRelocatableDeviceCode>
       <FastMath>true</FastMath>
-      <AdditionalOptions>-std c++20 -Xptxas=-v %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-std c++20 -Xptxas=-v --extended-lambda %(AdditionalOptions)</AdditionalOptions>
+      <CudaRuntime>Shared</CudaRuntime>
+      <CodeGeneration>compute_75,sm_75</CodeGeneration>
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -82,6 +83,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableModules>true</EnableModules>
       <BuildStlModules>true</BuildStlModules>
+      <LanguageStandard_C>stdclatest</LanguageStandard_C>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -93,7 +95,9 @@
     <CudaCompile>
       <TargetMachinePlatform>64</TargetMachinePlatform>
       <FastMath>true</FastMath>
-      <AdditionalOptions>-std c++20 -Xptxas=-v %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-std c++20 -Xptxas=-v --extended-lambda %(AdditionalOptions)</AdditionalOptions>
+      <CudaRuntime>Shared</CudaRuntime>
+      <CodeGeneration>compute_75,sm_75</CodeGeneration>
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -113,6 +117,7 @@
     <ClInclude Include="textRec_types.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="dist\bin.bmp" />
     <Image Include="dist\binary.bmp" />
     <Image Include="dist\canny.bmp" />
     <Image Include="dist\gray.bmp" />
@@ -124,14 +129,14 @@
     <Image Include="dist\sobel.bmp" />
     <Image Include="resource\cp1.jpg" />
     <Image Include="resource\cp2.jpg" />
-    <Image Include="resource\hengfu.png" />
-    <Image Include="resource\icon.png" />
-    <Image Include="resource\jt1.png" />
+    <Image Include="resource\cp3.jpg" />
+    <Image Include="resource\cp4.jpg" />
+    <Image Include="resource\cp5.jpg" />
     <Image Include="resource\lena.png" />
-    <Image Include="resource\sd.jpg" />
-    <Image Include="resource\t1.jpg" />
-    <Image Include="resource\t2.jpg" />
-    <Image Include="resource\test.jpg" />
+    <Image Include="resource\real.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.gitignore" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

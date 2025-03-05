@@ -1,9 +1,22 @@
 {
-    "Version": "1.1",
-    "Data": {
-        "Source": "d:\\cpp include\\eigen-3.4.0\\eigen\\dense",
-        "ProvidedModule": "",
-        "ImportedModules": [],
-        "ImportedHeaderUnits": []
-    }
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "x64\\Release\\Dense.obj",
+            "outputs": [
+                "x64\\Release\\Dense_40EDE59E0F647D11.ifc.dt.module.json",
+                "x64\\Release\\Dense_40EDE59E0F647D11.ifc.dt.d.json",
+                "x64\\Release\\Dense.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "D:\\Cpp Include\\eigen-3.4.0\\Eigen\\Dense",
+                    "source-path": "d:\\cpp include\\eigen-3.4.0\\eigen\\dense",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
 }

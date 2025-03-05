@@ -1,9 +1,19 @@
 #include "cudaTextRec.cuh"
+#include <cuda/std/atomic>
+#include <thrust/count.h>
+#include <thrust/device_vector.h>
+#include <thrust/host_vector.h>
+#include <thrust/partition.h>
+#include <thrust/reduce.h>
+#include <thrust/execution_policy.h>
+#include <thrust/iterator/constant_iterator.h>
 #include "deviceLib.cuh"
 #include "textRec_types.h"
+#include "thrust/device_ptr.h"
 
 #include <cstdio>
-#include <functional>
+#include <exception>
+#include <numbers>
 
 #define CHECK_CUDA_ERR(errFunc, name) {\
 			cudaError_t err = ##errFunc##; \
@@ -11,6 +21,7 @@
 				printf("CUDA Error (%s): %s\n", ##name##, cudaGetErrorString(err)); \
 			}\
 		}
+#define CHECK_CUDA_LAST_ERR(name) CHECK_CUDA_ERR(cudaGetLastError(), name)
 
 namespace witcher_pic {
 	__global__ auto cudaMatFilter(uint8_t* result, uint8_t* source, float* model, FilterInfo info) -> void {
@@ -27,11 +38,8 @@ namespace witcher_pic {
 		case CONV:
 			for (auto rx = 0; rx < info.model_w; rx++) {
 				for (auto ry = 0; ry < info.model_h; ry++) {
-					const int xi = cx - info.rcx + rx;
-					const int yi = cy - info.rcy + ry;
-					if (xi < 0 || yi < 0 || xi >= info.source_w || yi >= info.source_h) {
-						continue;
-					}
+					const int xi = max(0, min(cx - info.rcx + rx, info.source_w - 1));
+					const int yi = max(0, min(cy - info.rcy + ry, info.source_h - 1));
 					color += model[ry * info.model_w + rx] * static_cast<float>(source[yi * info.source_w + xi]);
 				}
 			}
@@ -97,7 +105,8 @@ namespace witcher_pic {
 				(center_y - m_center + ry) * s_w + (center_x - m_center + rx)]);
 		}
 
-		target[center_y * s_w + center_x] = static_cast<uint8_t>(saturate(abs(color), 0.0F, 255.0F));
+		target[center_y * s_w + center_x] = static_cast<uint8_t>(__fmul_rz(
+			__saturatef(__fdividef(fabsf(color), 255.0F)), 255.0F));
 	}
 
 	__global__ auto cudaAddWeighted(uint8_t* target, float w1, const uint8_t* other, float w2, uint8_t r,
@@ -114,11 +123,10 @@ namespace witcher_pic {
 
 	__global__ auto cudaInsertData(uint8_t* result, uint8_t** data, size_t datasize, int count) -> void {
 		unsigned idx = blockIdx.x * blockDim.x + threadIdx.x;
-		if (idx >= datasize) {
-			return;
-		}
-		for (int i = 0; i < count; i++) {
-			result[idx * count + i] = data[i][idx];
+		if (idx < datasize) {
+			for (int i = 0; i < count; i++) {
+				result[idx * count + i] = data[i][idx];
+			}
 		}
 	}
 
@@ -135,7 +143,7 @@ namespace witcher_pic {
 		float x_val = xdata[idx];
 		float y_val = ydata[idx];
 
-		int angle = static_cast<int>(round(x_val == 0.0F ? 2 : atanf(y_val / x_val) / (PI_F / 4))) * 45;
+		int angle = static_cast<int>(rintf(x_val == 0.0F ? 2 : atanf(y_val / x_val) / (PI_F / 4))) * 45;
 		dir_data[idx] = angle == -90 ? 90 : (angle == -45 ? 135 : angle);
 	}
 
@@ -199,7 +207,7 @@ namespace witcher_pic {
 			target[c_idx] = 0;
 		} else {
 			int i = 0;
-			for (; i < 4; i++) {
+			for (; i < 8; i++) {
 				size_t idx = neibor[i].y * width + neibor[i].x;
 				if (neibor[i].x < 0 || neibor[i].x >= (int)width || neibor[i].y < 0 || neibor[i].y >= (int)height) {
 					continue;
@@ -215,11 +223,97 @@ namespace witcher_pic {
 		}
 	}
 
+	__global__ auto cudaHoughTransform(size_t* houghzoom, const uint8_t* source, unsigned width, unsigned height,
+	                                   unsigned houghsize, unsigned r_offset, double del_theta,
+	                                   double del_radius) -> void {
+		uint2 c_point{
+			blockIdx.x * blockDim.x + threadIdx.x,
+			blockIdx.y * blockDim.y + threadIdx.y
+		};
+		size_t idx = c_point.y * width + c_point.x;
+
+		if (c_point.x >= width || c_point.y >= height || !source[idx]) {
+			return;
+		}
+		const auto trans_func = [&](double theta) -> double {
+			return (double)c_point.x * cos(theta) + (double)c_point.y * sin(theta);
+		};
+
+		for (unsigned i = 0; i < houghsize; i++) {
+			double theta = i * del_theta;
+			double radius = trans_func(theta);
+			atomicAdd(&houghzoom[((int)floor(radius / del_radius) + (int)r_offset) * houghsize + i], 1);
+		}
+	}
+
+	__global__ auto cudaHoughPeak(size_t* peak, const size_t* houghzoom, unsigned houghsize) -> void {
+		extern __shared__ size_t s_data[];
+		unsigned tid = threadIdx.x;
+		unsigned idx = blockDim.x * blockIdx.x + threadIdx.x;
+		s_data[tid] = (idx < houghsize * houghsize) ? houghzoom[idx] : 0;
+		__syncthreads();
+
+		// for (unsigned i = 1; i <= blockDim.x / 2; i <<= 1) {
+		// 	if (!(tid % (i << 1))) {
+		// 		s_data[tid] = max(s_data[tid], s_data[tid + i]);
+		// 	}
+		// 	__syncthreads();
+		// }
+
+		// 2.
+		for (unsigned s = blockDim.x / 2; s > 0; s >>= 1) {
+			if (tid < s) {
+				s_data[tid] = max(s_data[tid], s_data[tid + s]);
+			}
+			__syncthreads();
+		}
+
+		if (tid == 0) {
+			atomicMax(peak, s_data[0]);
+		}
+	}
+
+	__global__ auto cudaHoughLineCount(size_t* count, const size_t* houghzoom, size_t peak,
+	                                   unsigned houghsize) -> void {
+		unsigned idx = blockDim.x * blockIdx.x + threadIdx.x;
+
+		if (idx < houghsize * houghsize && houghzoom[idx] == peak) {
+			atomicAdd(count, 1);
+		}
+	}
+
+	__global__ auto cudaHoughPeakLines(double* radius, double* thetas, const size_t* houghzoom,
+	                                   size_t linesize, size_t peak, unsigned houghsize, double del_theta,
+	                                   double del_radius, unsigned r_offset, size_t* index) -> void {
+		uint2 point{
+			blockDim.x * blockIdx.x + threadIdx.x,
+			blockDim.y * blockIdx.y + threadIdx.y,
+		};
+		unsigned idx = point.y * houghsize + point.x;
+
+		if (idx < houghsize * houghsize && houghzoom[idx] == peak) {
+			size_t old_index = atomicAdd(index, 1);
+			if (old_index < linesize) {
+#ifdef _DEBUG
+				printf("device: del_theta = %lf, del_radius = %lf, r_offset = %u\n", del_theta, del_radius, r_offset);
+				printf("device: theta = %u, radius = %u\n", point.x, point.y);
+#endif
+
+				thetas[old_index] = (double)point.x * del_theta;
+				radius[old_index] = ((double)point.y - (double)r_offset) * del_radius;
+			}
+		}
+	}
+
 #ifdef _DEBUG
 	__global__ auto cudaTest() -> void {
 		printf("x: %u, y: %u\n", threadIdx.x, threadIdx.y);
 	}
 #endif
+
+	auto deviceInit() -> void {
+		mutex::init();
+	}
 
 	auto hostDeviceInfo() -> void {
 		cudaDeviceProp prop;
@@ -257,7 +351,7 @@ namespace witcher_pic {
 		cudaFree(rD);
 		cudaFree(mD);
 
-		CHECK_CUDA_ERR(cudaGetLastError(), "filter")
+		CHECK_CUDA_LAST_ERR("filter")
 
 		return result;
 	}
@@ -282,7 +376,7 @@ namespace witcher_pic {
 			cudaFree(sD);
 			cudaFree(rD);
 
-		CHECK_CUDA_ERR(cudaGetLastError(), "grayCount")
+		CHECK_CUDA_LAST_ERR("grayCount")
 
 		return result;
 	}
@@ -300,7 +394,7 @@ namespace witcher_pic {
 
 		cudaFree(cu_sData);
 		cudaFree(cu_map);
-		CHECK_CUDA_ERR(cudaGetLastError(), "mapGrayImage")
+		CHECK_CUDA_LAST_ERR("mapGrayImage")
 	}
 
 	auto hostTwoDimCrossCorre(const uint8_t* source, const float* model, unsigned s_w, unsigned s_h, unsigned m_w,
@@ -328,7 +422,7 @@ namespace witcher_pic {
 		cudaFree(sD);
 		cudaFree(mD);
 		cudaFree(rD);
-		CHECK_CUDA_ERR(cudaGetLastError(), "twoDimCrossCorre")
+		CHECK_CUDA_LAST_ERR("twoDimCrossCorre")
 		return result;
 	}
 
@@ -346,7 +440,7 @@ namespace witcher_pic {
 
 		cudaFree(rD);
 		cudaFree(oD);
-		CHECK_CUDA_ERR(cudaGetLastError(), "addWeighted")
+		CHECK_CUDA_LAST_ERR("addWeighted")
 	}
 
 	auto hostInsertData(const uint8_t* const* data, size_t datasize, int count) -> uint8_t* {
@@ -360,29 +454,28 @@ namespace witcher_pic {
 		cudaMalloc(&cu_data, count * sizeof(uint8_t*));
 		cudaMalloc(&cu_result, result_size);
 		for (int i = 0; i < count; i++) {
-			uint8_t*& cu_data_i = copy[i];
-			cudaMalloc(&cu_data_i, datasize);
-			cudaMemcpy(cu_data_i, data[i], datasize, cudaMemcpyHostToDevice);
+			if (datasize == 0 || data[i] == nullptr) {
+				throw std::invalid_argument("Invalid datasize or data pointer.");
+			}
+			cudaMalloc(&copy[i], datasize);
+			cudaMemcpy(copy[i], data[i], datasize, cudaMemcpyHostToDevice);
 		}
-		cudaMemcpy(cu_data, copy, count * sizeof(uint8_t*), cudaMemcpyHostToDevice);
-		cudaMemcpy(cu_result, result, result_size, cudaMemcpyHostToDevice);
+		cudaMemcpy((void*)cu_data, (void*)copy, count * sizeof(uint8_t*), cudaMemcpyHostToDevice);
+		cudaMemset(cu_result, 0, result_size);
 
 		unsigned grid = static_cast<unsigned>((datasize + 1023) / 1024);
 		cudaInsertData<<<grid, 1024>>>(cu_result, cu_data, datasize, count);
-
+		cudaDeviceSynchronize();
 		cudaMemcpy(result, cu_result, result_size, cudaMemcpyDeviceToHost);
 
 		for (int i = 0; i < count; i++) {
-			cudaError_t err = cudaFree(copy[i]);
-			if (err != cudaSuccess) {
-				printf("CUDA Error (copyFree): %s\n", cudaGetErrorString(err));
-			}
+			CHECK_CUDA_ERR(cudaFree(copy[i]), "copyFree")
 		}
 		cudaFree(cu_result);
-		cudaFree(cu_data);
+		cudaFree((void*)cu_data);
 
 		delete[] copy;
-		CHECK_CUDA_ERR(cudaGetLastError(), "insertData")
+		CHECK_CUDA_LAST_ERR("insertData")
 		return result;
 	}
 
@@ -413,9 +506,9 @@ namespace witcher_pic {
 		dim3 block(32, 32);
 		dim3 grid((s_width + block.x - 1) / block.x, (s_height + block.y - 1) / block.y);
 		cudaTwoDimCrossCorre<<<grid, block>>>(cu_xdata, cu_source, cu_modelx, s_width, s_height, m_width,
-		                                              m_height);
+		                                      m_height);
 		cudaTwoDimCrossCorre<<<grid, block>>>(cu_ydata, cu_source, cu_modely, s_width, s_height, m_width,
-		                                              m_height);
+		                                      m_height);
 		cudaDeviceSynchronize();
 		cudaFree(cu_source);
 		cudaFree(cu_modelx);
@@ -434,8 +527,8 @@ namespace witcher_pic {
 
 		cudaFree(cu_dirdata);
 		cudaFree(cu_xdata);
-		
-		CHECK_CUDA_ERR(cudaGetLastError(), "sobelEdgeInfo")
+
+		CHECK_CUDA_LAST_ERR("sobelEdgeInfo")
 		return result;
 	}
 
@@ -459,7 +552,7 @@ namespace witcher_pic {
 		cudaFree(cu_source);
 		cudaFree(cu_result);
 		cudaFree(cu_dir);
-		CHECK_CUDA_ERR(cudaGetLastError(), "nonMaxSuppression")
+		CHECK_CUDA_LAST_ERR("nonMaxSuppression")
 		return result;
 	}
 
@@ -478,10 +571,112 @@ namespace witcher_pic {
 		cudaTwoThreshold<<<grid, block>>>(cu_result, cu_source, l_threshold, h_threshold, width, height);
 
 		cudaMemcpy(result, cu_result, size, cudaMemcpyDeviceToHost);
-		CHECK_CUDA_ERR(cudaGetLastError(), "twoThreshold1")
-			cudaFree(cu_source);
-			cudaFree(cu_result);
-		CHECK_CUDA_ERR(cudaGetLastError(), "twoThreshold2")
+		cudaFree(cu_source);
+		cudaFree(cu_result);
+		CHECK_CUDA_LAST_ERR("twoThreshold")
 		return result;
+	}
+
+	auto hostLineExtra(double** max_radius, double** max_thetas, size_t& line_size, const uint8_t* source,
+	                   unsigned width, unsigned height, unsigned houghsize) -> void {
+		// 如果houghsize是偶数，异常
+		houghsize = (houghsize % 2) ? houghsize : houghsize + 1;
+
+		const size_t s_size = width * height;
+		unsigned r_offset = (houghsize - 1) / 2;
+		double del_theta = PI / (double)houghsize;
+		double del_radius = sqrt((double)(width * width + height * height)) / (double)r_offset;
+
+#ifdef _DEBUG
+		printf("host: del_theta = %lf, del_radius = %lf\n", del_theta, del_radius);
+#endif
+
+		size_t* cu_houghzoom;
+		uint8_t* cu_source;
+		cudaMalloc(&cu_houghzoom, houghsize * houghsize * sizeof(size_t));
+		cudaMalloc(&cu_source, s_size);
+		cudaMemcpy(cu_source, source, s_size, cudaMemcpyHostToDevice);
+		cudaMemset(cu_houghzoom, 0, houghsize * houghsize * sizeof(size_t));
+		// 霍夫变换，得到霍夫空间矩阵
+		dim3 block(32, 32);
+		dim3 grid((width + block.x - 1) / block.x, (height + block.y - 1) / block.y);
+		unsigned blocksize = 1024;
+		unsigned gridsize = (houghsize * houghsize + blocksize - 1) / blocksize;
+		cudaHoughTransform<<<grid, block>>>(cu_houghzoom, cu_source, width, height, houghsize, r_offset, del_theta,
+		                                    del_radius);
+		cudaDeviceSynchronize();
+
+		// 计算霍夫空间投票数最多的点
+		thrust::device_ptr<size_t> hough_ptr(cu_houghzoom);
+		auto hough_last_ptr = hough_ptr + houghsize * houghsize;
+
+		double *cu_radius, *cu_thetas;
+		size_t* cu_index;
+
+		// // 1. 计算投票峰值
+		size_t peak = thrust::reduce(thrust::device, hough_ptr, hough_last_ptr, (size_t)0, thrust::maximum<size_t>());
+		// // 2. 计算等于峰值的点的数量
+		line_size = thrust::count(thrust::device, hough_ptr, hough_last_ptr, peak);
+		// 3. 根据峰值点的数量分配内存，获取峰值点的集合
+		size_t line_bytes = line_size * sizeof(double);
+		*max_radius = new double[line_size];
+		*max_thetas = new double[line_size];
+		cudaMalloc(&cu_radius, line_bytes);
+		cudaMalloc(&cu_thetas, line_bytes);
+		cudaMalloc(&cu_index, sizeof(size_t));
+		cudaMemset(cu_index, 0, sizeof(size_t));
+		grid = {(houghsize + block.x - 1) / block.x, (houghsize + block.y - 1) / block.y};
+		cudaHoughPeakLines<<<grid, block>>>(cu_radius, cu_thetas, cu_houghzoom, line_size, peak, houghsize,
+		                                    del_theta, del_radius, r_offset, cu_index);
+		cudaDeviceSynchronize();
+
+		CHECK_CUDA_ERR(cudaMemcpy(*max_radius, cu_radius, line_bytes, cudaMemcpyDeviceToHost), "radius cpy")
+		CHECK_CUDA_ERR(cudaMemcpy(*max_thetas, cu_thetas, line_bytes, cudaMemcpyDeviceToHost), "thetas cpy")
+
+			cudaFree(cu_radius);
+			cudaFree(cu_thetas);
+			cudaFree(cu_index);
+
+			cudaFree(cu_source);
+			cudaFree(cu_houghzoom);
+		CHECK_CUDA_LAST_ERR("lineExtra")
+	}
+
+	auto hostDrawLine(uint8_t* source, unsigned width, unsigned height, double radius, double theta,
+	                  uint8_t brightness, int thickness) -> void {
+		size_t size = width * height;
+		double costheta = cos(theta);
+		double sintheta = sin(theta);
+		double cottheta = costheta / sintheta;
+		int lower = thickness / 2;
+		int higher = thickness - lower - 1;
+
+		thrust::counting_iterator<size_t> idx_it;
+		thrust::device_vector<size_t> dv_idx_it(idx_it, idx_it + size);
+		// thrust::host_vector<uint8_t> hv_source(source, source + size);
+		thrust::device_vector<uint8_t> dv_source(size);
+		thrust::copy(source, source + size, dv_source.begin());
+
+		thrust::device_vector<bool> line_model(size);
+		thrust::transform(thrust::device, dv_idx_it.begin(), dv_idx_it.end(), line_model.begin(),
+		                  [width, theta, radius, lower, higher, sintheta, costheta, cottheta] __device__ (
+		                  const size_t& idx) ->
+		                  uint8_t {
+			                  int x = idx % width;
+			                  int y = idx / width;
+			                  if (theta <= PI / 4 || theta >= PI * 3 / 4) {
+				                  int cal_x = (int)round(-tan(theta) * y + radius / costheta);
+				                  return (x >= cal_x - lower) && (x <= cal_x + higher);
+			                  }
+			                  int cal_y = (int)round(-cottheta * x + radius / sintheta);
+			                  return (y >= cal_y - lower) && (y <= cal_y + higher);
+		                  });
+
+		thrust::transform_if(thrust::device, dv_source.begin(), dv_source.end(), line_model.begin(), dv_source.begin(),
+		                     [brightness] __device__ (const uint8_t&) -> uint8_t {
+			                     return brightness;
+		                     }, thrust::identity<bool>());
+
+		thrust::copy(dv_source.begin(), dv_source.end(), source);
 	}
 }

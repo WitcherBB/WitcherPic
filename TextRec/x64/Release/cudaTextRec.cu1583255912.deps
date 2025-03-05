@@ -16,6 +16,464 @@ D:\Program Files\CUDA\v12.6\include\crt\math_functions.hpp
 D:\Program Files\CUDA\v12.6\include\crt\sm_70_rt.h
 D:\Program Files\CUDA\v12.6\include\crt\sm_80_rt.h
 D:\Program Files\CUDA\v12.6\include\crt\sm_90_rt.h
+D:\Program Files\CUDA\v12.6\include\cub\agent\agent_for.cuh
+D:\Program Files\CUDA\v12.6\include\cub\agent\agent_merge_sort.cuh
+D:\Program Files\CUDA\v12.6\include\cub\agent\agent_radix_sort_downsweep.cuh
+D:\Program Files\CUDA\v12.6\include\cub\agent\agent_radix_sort_histogram.cuh
+D:\Program Files\CUDA\v12.6\include\cub\agent\agent_radix_sort_onesweep.cuh
+D:\Program Files\CUDA\v12.6\include\cub\agent\agent_radix_sort_upsweep.cuh
+D:\Program Files\CUDA\v12.6\include\cub\agent\agent_reduce.cuh
+D:\Program Files\CUDA\v12.6\include\cub\agent\agent_reduce_by_key.cuh
+D:\Program Files\CUDA\v12.6\include\cub\agent\agent_scan.cuh
+D:\Program Files\CUDA\v12.6\include\cub\agent\agent_scan_by_key.cuh
+D:\Program Files\CUDA\v12.6\include\cub\agent\agent_select_if.cuh
+D:\Program Files\CUDA\v12.6\include\cub\agent\agent_unique_by_key.cuh
+D:\Program Files\CUDA\v12.6\include\cub\agent\single_pass_scan_operators.cuh
+D:\Program Files\CUDA\v12.6\include\cub\block\block_discontinuity.cuh
+D:\Program Files\CUDA\v12.6\include\cub\block\block_exchange.cuh
+D:\Program Files\CUDA\v12.6\include\cub\block\block_load.cuh
+D:\Program Files\CUDA\v12.6\include\cub\block\block_merge_sort.cuh
+D:\Program Files\CUDA\v12.6\include\cub\block\block_radix_rank.cuh
+D:\Program Files\CUDA\v12.6\include\cub\block\block_radix_sort.cuh
+D:\Program Files\CUDA\v12.6\include\cub\block\block_raking_layout.cuh
+D:\Program Files\CUDA\v12.6\include\cub\block\block_reduce.cuh
+D:\Program Files\CUDA\v12.6\include\cub\block\block_scan.cuh
+D:\Program Files\CUDA\v12.6\include\cub\block\block_store.cuh
+D:\Program Files\CUDA\v12.6\include\cub\block\radix_rank_sort_operations.cuh
+D:\Program Files\CUDA\v12.6\include\cub\block\specializations\block_reduce_raking.cuh
+D:\Program Files\CUDA\v12.6\include\cub\block\specializations\block_reduce_raking_commutative_only.cuh
+D:\Program Files\CUDA\v12.6\include\cub\block\specializations\block_reduce_warp_reductions.cuh
+D:\Program Files\CUDA\v12.6\include\cub\block\specializations\block_scan_raking.cuh
+D:\Program Files\CUDA\v12.6\include\cub\block\specializations\block_scan_warp_scans.cuh
+D:\Program Files\CUDA\v12.6\include\cub\config.cuh
+D:\Program Files\CUDA\v12.6\include\cub\detail\choose_offset.cuh
+D:\Program Files\CUDA\v12.6\include\cub\detail\detect_cuda_runtime.cuh
+D:\Program Files\CUDA\v12.6\include\cub\detail\device_synchronize.cuh
+D:\Program Files\CUDA\v12.6\include\cub\detail\nvtx.cuh
+D:\Program Files\CUDA\v12.6\include\cub\detail\nvtx3.hpp
+D:\Program Files\CUDA\v12.6\include\cub\detail\strong_load.cuh
+D:\Program Files\CUDA\v12.6\include\cub\detail\strong_store.cuh
+D:\Program Files\CUDA\v12.6\include\cub\detail\type_traits.cuh
+D:\Program Files\CUDA\v12.6\include\cub\detail\uninitialized_copy.cuh
+D:\Program Files\CUDA\v12.6\include\cub\device\device_for.cuh
+D:\Program Files\CUDA\v12.6\include\cub\device\device_merge_sort.cuh
+D:\Program Files\CUDA\v12.6\include\cub\device\device_radix_sort.cuh
+D:\Program Files\CUDA\v12.6\include\cub\device\device_reduce.cuh
+D:\Program Files\CUDA\v12.6\include\cub\device\device_scan.cuh
+D:\Program Files\CUDA\v12.6\include\cub\device\device_select.cuh
+D:\Program Files\CUDA\v12.6\include\cub\device\dispatch\dispatch_for.cuh
+D:\Program Files\CUDA\v12.6\include\cub\device\dispatch\dispatch_merge_sort.cuh
+D:\Program Files\CUDA\v12.6\include\cub\device\dispatch\dispatch_radix_sort.cuh
+D:\Program Files\CUDA\v12.6\include\cub\device\dispatch\dispatch_reduce.cuh
+D:\Program Files\CUDA\v12.6\include\cub\device\dispatch\dispatch_reduce_by_key.cuh
+D:\Program Files\CUDA\v12.6\include\cub\device\dispatch\dispatch_scan.cuh
+D:\Program Files\CUDA\v12.6\include\cub\device\dispatch\dispatch_scan_by_key.cuh
+D:\Program Files\CUDA\v12.6\include\cub\device\dispatch\dispatch_select_if.cuh
+D:\Program Files\CUDA\v12.6\include\cub\device\dispatch\dispatch_unique_by_key.cuh
+D:\Program Files\CUDA\v12.6\include\cub\device\dispatch\tuning\tuning_for.cuh
+D:\Program Files\CUDA\v12.6\include\cub\device\dispatch\tuning\tuning_reduce_by_key.cuh
+D:\Program Files\CUDA\v12.6\include\cub\device\dispatch\tuning\tuning_scan.cuh
+D:\Program Files\CUDA\v12.6\include\cub\device\dispatch\tuning\tuning_scan_by_key.cuh
+D:\Program Files\CUDA\v12.6\include\cub\device\dispatch\tuning\tuning_select_if.cuh
+D:\Program Files\CUDA\v12.6\include\cub\device\dispatch\tuning\tuning_unique_by_key.cuh
+D:\Program Files\CUDA\v12.6\include\cub\grid\grid_even_share.cuh
+D:\Program Files\CUDA\v12.6\include\cub\grid\grid_mapping.cuh
+D:\Program Files\CUDA\v12.6\include\cub\grid\grid_queue.cuh
+D:\Program Files\CUDA\v12.6\include\cub\iterator\arg_index_input_iterator.cuh
+D:\Program Files\CUDA\v12.6\include\cub\iterator\cache_modified_input_iterator.cuh
+D:\Program Files\CUDA\v12.6\include\cub\iterator\constant_input_iterator.cuh
+D:\Program Files\CUDA\v12.6\include\cub\thread\thread_load.cuh
+D:\Program Files\CUDA\v12.6\include\cub\thread\thread_operators.cuh
+D:\Program Files\CUDA\v12.6\include\cub\thread\thread_reduce.cuh
+D:\Program Files\CUDA\v12.6\include\cub\thread\thread_scan.cuh
+D:\Program Files\CUDA\v12.6\include\cub\thread\thread_sort.cuh
+D:\Program Files\CUDA\v12.6\include\cub\thread\thread_store.cuh
+D:\Program Files\CUDA\v12.6\include\cub\util_arch.cuh
+D:\Program Files\CUDA\v12.6\include\cub\util_compiler.cuh
+D:\Program Files\CUDA\v12.6\include\cub\util_cpp_dialect.cuh
+D:\Program Files\CUDA\v12.6\include\cub\util_debug.cuh
+D:\Program Files\CUDA\v12.6\include\cub\util_deprecated.cuh
+D:\Program Files\CUDA\v12.6\include\cub\util_device.cuh
+D:\Program Files\CUDA\v12.6\include\cub\util_macro.cuh
+D:\Program Files\CUDA\v12.6\include\cub\util_math.cuh
+D:\Program Files\CUDA\v12.6\include\cub\util_namespace.cuh
+D:\Program Files\CUDA\v12.6\include\cub\util_ptx.cuh
+D:\Program Files\CUDA\v12.6\include\cub\util_temporary_storage.cuh
+D:\Program Files\CUDA\v12.6\include\cub\util_type.cuh
+D:\Program Files\CUDA\v12.6\include\cub\util_vsmem.cuh
+D:\Program Files\CUDA\v12.6\include\cub\version.cuh
+D:\Program Files\CUDA\v12.6\include\cub\warp\specializations\warp_exchange_shfl.cuh
+D:\Program Files\CUDA\v12.6\include\cub\warp\specializations\warp_exchange_smem.cuh
+D:\Program Files\CUDA\v12.6\include\cub\warp\specializations\warp_reduce_shfl.cuh
+D:\Program Files\CUDA\v12.6\include\cub\warp\specializations\warp_reduce_smem.cuh
+D:\Program Files\CUDA\v12.6\include\cub\warp\specializations\warp_scan_shfl.cuh
+D:\Program Files\CUDA\v12.6\include\cub\warp\specializations\warp_scan_smem.cuh
+D:\Program Files\CUDA\v12.6\include\cub\warp\warp_exchange.cuh
+D:\Program Files\CUDA\v12.6\include\cub\warp\warp_reduce.cuh
+D:\Program Files\CUDA\v12.6\include\cub\warp\warp_scan.cuh
+D:\Program Files\CUDA\v12.6\include\cuda\discard_memory
+D:\Program Files\CUDA\v12.6\include\cuda\std\atomic
+D:\Program Files\CUDA\v12.6\include\cuda\std\cassert
+D:\Program Files\CUDA\v12.6\include\cuda\std\chrono
+D:\Program Files\CUDA\v12.6\include\cuda\std\climits
+D:\Program Files\CUDA\v12.6\include\cuda\std\concepts
+D:\Program Files\CUDA\v12.6\include\cuda\std\cstddef
+D:\Program Files\CUDA\v12.6\include\cuda\std\cstdint
+D:\Program Files\CUDA\v12.6\include\cuda\std\cstdlib
+D:\Program Files\CUDA\v12.6\include\cuda\std\ctime
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\cassert
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\chrono
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\climits
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\concepts
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\cstddef
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\cstdint
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\cstdlib
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\cstring
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\ctime
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\functional
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\initializer_list
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\iosfwd
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\iterator
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\limits
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\new
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\optional
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\ratio
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\support\win32\limits_msvc_win32.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\tuple
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\type_traits
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\utility
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\version
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\__assert
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\__availability
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\__config
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\__debug
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\__functional_base
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\__threading_support
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\libcxx\include\__verbose_abort
+D:\Program Files\CUDA\v12.6\include\cuda\std\detail\__config
+D:\Program Files\CUDA\v12.6\include\cuda\std\functional
+D:\Program Files\CUDA\v12.6\include\cuda\std\initializer_list
+D:\Program Files\CUDA\v12.6\include\cuda\std\iterator
+D:\Program Files\CUDA\v12.6\include\cuda\std\limits
+D:\Program Files\CUDA\v12.6\include\cuda\std\optional
+D:\Program Files\CUDA\v12.6\include\cuda\std\ratio
+D:\Program Files\CUDA\v12.6\include\cuda\std\tuple
+D:\Program Files\CUDA\v12.6\include\cuda\std\type_traits
+D:\Program Files\CUDA\v12.6\include\cuda\std\utility
+D:\Program Files\CUDA\v12.6\include\cuda\std\version
+D:\Program Files\CUDA\v12.6\include\cuda\std\__algorithm\comp.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__algorithm\iter_swap.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__algorithm\search.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__algorithm\unwrap_iter.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__atomic\api\common.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__atomic\api\owned.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__atomic\api\reference.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__atomic\functions.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__atomic\functions\cuda_ptx_derived.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__atomic\functions\cuda_ptx_generated.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__atomic\functions\host.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__atomic\order.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__atomic\platform.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__atomic\platform\msvc_to_builtins.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__atomic\scopes.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__atomic\types.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__atomic\types\base.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__atomic\types\common.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__atomic\types\locked.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__atomic\types\reference.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__atomic\types\small.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__atomic\wait\notify_wait.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__atomic\wait\polling.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__cccl\attributes.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__cccl\compiler.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__cccl\diagnostic.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__cccl\dialect.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__cccl\execution_space.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__cccl\extended_floating_point.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__cccl\ptx_isa.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__cccl\sequence_access.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__cccl\system_header.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__cccl\version.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__cccl\visibility.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\all_of.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\arithmetic.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\assignable.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\boolean_testable.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\class_or_enum.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\common_reference_with.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\common_with.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\constructible.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\convertible_to.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\copyable.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\derived_from.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\destructible.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\different_from.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\equality_comparable.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\invocable.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\movable.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\predicate.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\regular.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\relation.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\same_as.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\semiregular.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\swappable.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\totally_ordered.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\_One_of.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__concepts\__concept_macros.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__cuda\chrono.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__cuda\climits_prelude.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__cuda\cstddef_prelude.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__cuda\cstdint_prelude.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__exception\terminate.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\binary_function.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\binary_negate.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\bind.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\binder1st.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\binder2nd.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\bind_back.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\bind_front.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\compose.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\default_searcher.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\function.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\hash.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\identity.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\invoke.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\is_transparent.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\mem_fn.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\mem_fun_ref.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\not_fn.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\operations.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\perfect_forward.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\pointer_to_binary_function.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\pointer_to_unary_function.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\ranges_operations.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\reference_wrapper.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\unary_function.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\unary_negate.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\unwrap_ref.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__functional\weak_result_type.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__fwd\array.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__fwd\get.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__fwd\hash.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__fwd\memory_resource.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__fwd\pair.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__fwd\string.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__fwd\subrange.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__fwd\tuple.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\access.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\advance.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\back_insert_iterator.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\bounded_iter.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\concepts.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\data.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\default_sentinel.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\distance.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\empty.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\erase_if_container.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\front_insert_iterator.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\incrementable_traits.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\indirectly_comparable.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\insert_iterator.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\istreambuf_iterator.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\istream_iterator.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\iterator.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\iterator_traits.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\iter_move.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\iter_swap.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\mergeable.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\move_iterator.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\move_sentinel.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\next.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\ostreambuf_iterator.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\ostream_iterator.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\permutable.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\prev.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\projected.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\readable_traits.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\reverse_access.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\reverse_iterator.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\size.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\sortable.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\unreachable_sentinel.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__iterator\wrap_iter.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__memory\addressof.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__memory\allocator_arg_t.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__memory\allocator_destructor.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__memory\allocator_traits.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__memory\builtin_new_allocator.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__memory\compressed_pair.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__memory\construct_at.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__memory\pointer_traits.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__memory\unique_ptr.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__memory\uses_allocator.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__memory\voidify.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__new\allocate.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__new\bad_alloc.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__new\launder.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__new_
+D:\Program Files\CUDA\v12.6\include\cuda\std\__ranges\access.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__ranges\concepts.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__ranges\data.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__ranges\enable_borrowed_range.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__ranges\enable_view.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__ranges\size.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__tuple_dir\apply_cv.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__tuple_dir\make_tuple_types.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__tuple_dir\sfinae_helpers.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__tuple_dir\structured_bindings.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__tuple_dir\tuple_element.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__tuple_dir\tuple_indices.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__tuple_dir\tuple_like.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__tuple_dir\tuple_like_ext.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__tuple_dir\tuple_size.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__tuple_dir\tuple_types.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__tuple_dir\vector_types.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\add_const.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\add_cv.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\add_lvalue_reference.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\add_pointer.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\add_rvalue_reference.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\add_volatile.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\aligned_storage.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\aligned_union.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\alignment_of.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\apply_cv.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\can_extract_key.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\common_reference.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\common_type.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\conditional.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\conjunction.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\copy_cv.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\copy_cvref.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\decay.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\dependent_type.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\disjunction.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\enable_if.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\extent.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\has_unique_object_representation.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\has_virtual_destructor.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\integral_constant.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_abstract.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_aggregate.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_allocator.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_arithmetic.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_array.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_assignable.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_base_of.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_bounded_array.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_callable.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_char_like_type.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_class.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_compound.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_const.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_constant_evaluated.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_constructible.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_convertible.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_copy_assignable.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_copy_constructible.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_core_convertible.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_default_constructible.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_destructible.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_empty.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_enum.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_final.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_floating_point.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_function.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_fundamental.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_implicitly_default_constructible.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_integral.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_literal_type.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_member_function_pointer.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_member_object_pointer.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_member_pointer.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_move_assignable.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_move_constructible.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_nothrow_assignable.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_nothrow_constructible.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_nothrow_convertible.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_nothrow_copy_assignable.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_nothrow_copy_constructible.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_nothrow_default_constructible.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_nothrow_destructible.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_nothrow_move_assignable.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_nothrow_move_constructible.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_null_pointer.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_object.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_pod.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_pointer.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_polymorphic.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_primary_template.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_reference.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_referenceable.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_reference_wrapper.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_same.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_scalar.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_scoped_enum.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_signed.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_signed_integer.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_standard_layout.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_swappable.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_trivial.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_trivially_assignable.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_trivially_constructible.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_trivially_copyable.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_trivially_copy_assignable.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_trivially_copy_constructible.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_trivially_default_constructible.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_trivially_destructible.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_trivially_move_assignable.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_trivially_move_constructible.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_unbounded_array.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_union.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_unsigned.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_unsigned_integer.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_valid_expansion.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_void.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\is_volatile.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\lazy.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\make_32_64_or_128_bit.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\make_const_lvalue_ref.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\make_signed.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\make_unsigned.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\maybe_const.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\nat.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\negation.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\promote.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\rank.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\remove_all_extents.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\remove_const.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\remove_const_ref.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\remove_cv.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\remove_cvref.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\remove_extent.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\remove_pointer.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\remove_reference.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\remove_volatile.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\result_of.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\type_identity.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\type_list.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\underlying_type.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__type_traits\void_t.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__utility\as_const.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__utility\auto_cast.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__utility\cmp.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__utility\convert_to_integral.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__utility\declval.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__utility\exchange.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__utility\forward.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__utility\forward_like.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__utility\integer_sequence.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__utility\in_place.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__utility\move.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__utility\pair.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__utility\piecewise_construct.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__utility\priority_tag.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__utility\rel_ops.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__utility\swap.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__utility\to_underlying.h
+D:\Program Files\CUDA\v12.6\include\cuda\std\__utility\unreachable.h
+D:\Program Files\CUDA\v12.6\include\cuda\version
+D:\Program Files\CUDA\v12.6\include\cuda\__cccl_config
 D:\Program Files\CUDA\v12.6\include\cuda_device_runtime_api.h
 D:\Program Files\CUDA\v12.6\include\cuda_runtime.h
 D:\Program Files\CUDA\v12.6\include\cuda_runtime_api.h
@@ -25,6 +483,17 @@ D:\Program Files\CUDA\v12.6\include\device_types.h
 D:\Program Files\CUDA\v12.6\include\driver_functions.h
 D:\Program Files\CUDA\v12.6\include\driver_types.h
 D:\Program Files\CUDA\v12.6\include\library_types.h
+D:\Program Files\CUDA\v12.6\include\nvtx3\nvToolsExt.h
+D:\Program Files\CUDA\v12.6\include\nvtx3\nvtxDetail\nvtxImpl.h
+D:\Program Files\CUDA\v12.6\include\nvtx3\nvtxDetail\nvtxImplCore.h
+D:\Program Files\CUDA\v12.6\include\nvtx3\nvtxDetail\nvtxInit.h
+D:\Program Files\CUDA\v12.6\include\nvtx3\nvtxDetail\nvtxInitDecls.h
+D:\Program Files\CUDA\v12.6\include\nvtx3\nvtxDetail\nvtxInitDefs.h
+D:\Program Files\CUDA\v12.6\include\nvtx3\nvtxDetail\nvtxLinkOnce.h
+D:\Program Files\CUDA\v12.6\include\nvtx3\nvtxDetail\nvtxTypes.h
+D:\Program Files\CUDA\v12.6\include\nv\detail\__preprocessor
+D:\Program Files\CUDA\v12.6\include\nv\detail\__target_macros
+D:\Program Files\CUDA\v12.6\include\nv\target
 D:\Program Files\CUDA\v12.6\include\sm_20_atomic_functions.h
 D:\Program Files\CUDA\v12.6\include\sm_20_intrinsics.h
 D:\Program Files\CUDA\v12.6\include\sm_30_intrinsics.h
@@ -38,51 +507,621 @@ D:\Program Files\CUDA\v12.6\include\surface_indirect_functions.h
 D:\Program Files\CUDA\v12.6\include\surface_types.h
 D:\Program Files\CUDA\v12.6\include\texture_indirect_functions.h
 D:\Program Files\CUDA\v12.6\include\texture_types.h
+D:\Program Files\CUDA\v12.6\include\thrust\advance.h
+D:\Program Files\CUDA\v12.6\include\thrust\copy.h
+D:\Program Files\CUDA\v12.6\include\thrust\count.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\advance.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\alignment.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\allocator\allocator_traits.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\allocator\allocator_traits.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\allocator\copy_construct_range.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\allocator\copy_construct_range.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\allocator\default_construct_range.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\allocator\default_construct_range.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\allocator\destroy_range.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\allocator\destroy_range.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\allocator\fill_construct_range.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\allocator\fill_construct_range.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\allocator\no_throw_allocator.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\allocator\tagged_allocator.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\allocator\tagged_allocator.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\allocator\temporary_allocator.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\allocator\temporary_allocator.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\allocator_aware_execution_policy.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\config.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\config\compiler.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\config\config.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\config\cpp_compatibility.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\config\cpp_dialect.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\config\debug.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\config\deprecated.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\config\device_system.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\config\global_workarounds.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\config\host_system.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\config\memory_resource.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\config\namespace.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\config\simple_defines.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\contiguous_storage.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\contiguous_storage.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\copy.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\copy.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\copy_if.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\copy_if.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\count.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\count.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\cpp11_required.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\cstdint.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\dependencies_aware_execution_policy.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\device_ptr.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\distance.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\equal.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\execute_with_allocator.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\execute_with_allocator_fwd.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\execute_with_dependencies.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\execution_policy.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\extrema.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\fill.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\find.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\for_each.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\function.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\functional.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\functional\actor.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\functional\actor.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\functional\argument.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\functional\composite.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\functional\operators.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\functional\operators\arithmetic_operators.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\functional\operators\assignment_operator.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\functional\operators\bitwise_operators.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\functional\operators\compound_assignment_operators.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\functional\operators\logical_operators.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\functional\operators\operator_adaptors.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\functional\operators\relational_operators.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\functional\placeholder.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\functional\value.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\generate.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\get_iterator_value.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\integer_math.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\integer_traits.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\internal_functional.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\malloc_and_free.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\malloc_and_free_fwd.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\memory_wrapper.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\merge.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\minmax.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\mismatch.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\mpl\math.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\numeric_traits.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\overlapped_copy.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\partition.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\pointer.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\pointer.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\preprocessor.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\raw_pointer_cast.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\raw_reference_cast.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\reduce.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\reference.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\reference_forward_declaration.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\remove.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\replace.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\reverse.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\scan.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\scatter.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\seq.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\sequence.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\sort.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\static_assert.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\swap.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\swap.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\swap_ranges.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\tabulate.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\temporary_array.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\temporary_array.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\temporary_buffer.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\transform.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\transform_reduce.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\trivial_sequence.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\tuple_meta_transform.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\tuple_transform.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\type_deduction.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\type_traits.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\type_traits\function_traits.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\type_traits\has_member_function.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\type_traits\has_nested_type.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\type_traits\is_call_possible.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\type_traits\is_metafunction_defined.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\type_traits\iterator\is_output_iterator.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\type_traits\minimum_type.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\type_traits\pointer_traits.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\type_traits\result_of_adaptable_function.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\uninitialized_fill.inl
+D:\Program Files\CUDA\v12.6\include\thrust\detail\use_default.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\vector_base.h
+D:\Program Files\CUDA\v12.6\include\thrust\detail\vector_base.inl
+D:\Program Files\CUDA\v12.6\include\thrust\device_allocator.h
+D:\Program Files\CUDA\v12.6\include\thrust\device_ptr.h
+D:\Program Files\CUDA\v12.6\include\thrust\device_reference.h
+D:\Program Files\CUDA\v12.6\include\thrust\device_vector.h
+D:\Program Files\CUDA\v12.6\include\thrust\distance.h
+D:\Program Files\CUDA\v12.6\include\thrust\equal.h
+D:\Program Files\CUDA\v12.6\include\thrust\execution_policy.h
+D:\Program Files\CUDA\v12.6\include\thrust\extrema.h
+D:\Program Files\CUDA\v12.6\include\thrust\fill.h
+D:\Program Files\CUDA\v12.6\include\thrust\find.h
+D:\Program Files\CUDA\v12.6\include\thrust\for_each.h
+D:\Program Files\CUDA\v12.6\include\thrust\functional.h
+D:\Program Files\CUDA\v12.6\include\thrust\generate.h
+D:\Program Files\CUDA\v12.6\include\thrust\host_vector.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\constant_iterator.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\counting_iterator.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\any_assign.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\any_system_tag.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\constant_iterator_base.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\counting_iterator.inl
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\device_system_tag.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\distance_from_result.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\host_system_tag.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\is_iterator_category.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\iterator_adaptor_base.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\iterator_category_to_system.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\iterator_category_to_traversal.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\iterator_category_with_system_and_traversal.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\iterator_facade_category.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\iterator_traits.inl
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\iterator_traversal_tags.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\minimum_category.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\minimum_system.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\normal_iterator.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\permutation_iterator_base.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\reverse_iterator.inl
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\reverse_iterator_base.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\tagged_iterator.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\transform_iterator.inl
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\tuple_of_iterator_references.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\universal_categories.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\zip_iterator.inl
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\detail\zip_iterator_base.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\iterator_adaptor.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\iterator_categories.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\iterator_facade.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\iterator_traits.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\permutation_iterator.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\reverse_iterator.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\transform_iterator.h
+D:\Program Files\CUDA\v12.6\include\thrust\iterator\zip_iterator.h
+D:\Program Files\CUDA\v12.6\include\thrust\memory.h
+D:\Program Files\CUDA\v12.6\include\thrust\merge.h
+D:\Program Files\CUDA\v12.6\include\thrust\mismatch.h
+D:\Program Files\CUDA\v12.6\include\thrust\mr\allocator.h
+D:\Program Files\CUDA\v12.6\include\thrust\mr\device_memory_resource.h
+D:\Program Files\CUDA\v12.6\include\thrust\mr\fancy_pointer_resource.h
+D:\Program Files\CUDA\v12.6\include\thrust\mr\host_memory_resource.h
+D:\Program Files\CUDA\v12.6\include\thrust\mr\memory_resource.h
+D:\Program Files\CUDA\v12.6\include\thrust\mr\new.h
+D:\Program Files\CUDA\v12.6\include\thrust\mr\polymorphic_adaptor.h
+D:\Program Files\CUDA\v12.6\include\thrust\mr\validator.h
+D:\Program Files\CUDA\v12.6\include\thrust\pair.h
+D:\Program Files\CUDA\v12.6\include\thrust\partition.h
+D:\Program Files\CUDA\v12.6\include\thrust\reduce.h
+D:\Program Files\CUDA\v12.6\include\thrust\remove.h
+D:\Program Files\CUDA\v12.6\include\thrust\replace.h
+D:\Program Files\CUDA\v12.6\include\thrust\reverse.h
+D:\Program Files\CUDA\v12.6\include\thrust\scan.h
+D:\Program Files\CUDA\v12.6\include\thrust\scatter.h
+D:\Program Files\CUDA\v12.6\include\thrust\sequence.h
+D:\Program Files\CUDA\v12.6\include\thrust\sort.h
+D:\Program Files\CUDA\v12.6\include\thrust\swap.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\adjacent_difference.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\assign_value.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\binary_search.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\copy.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\copy_if.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\count.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\equal.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\execution_policy.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\extrema.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\fill.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\find.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\for_each.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\gather.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\generate.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\get_value.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\inner_product.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\iter_swap.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\logical.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\malloc_and_free.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\merge.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\mismatch.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\par.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\partition.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\reduce.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\reduce_by_key.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\remove.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\replace.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\reverse.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\scan.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\scan_by_key.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\scatter.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\sequence.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\set_operations.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\sort.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\swap_ranges.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\tabulate.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\temporary_buffer.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\transform.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\transform_reduce.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\transform_scan.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\uninitialized_copy.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\uninitialized_fill.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\unique.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\detail\unique_by_key.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\execution_policy.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\memory_resource.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cpp\pointer.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\config.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\assign_value.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\cdp_dispatch.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\copy.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\copy_if.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\core\agent_launcher.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\core\alignment.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\core\triple_chevron_launch.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\core\util.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\count.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\cross_system.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\dispatch.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\equal.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\error.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\execution_policy.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\extrema.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\fill.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\find.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\for_each.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\generate.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\get_value.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\internal\copy_cross_system.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\internal\copy_device_to_device.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\iter_swap.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\make_unsigned_special.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\malloc_and_free.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\merge.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\mismatch.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\par.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\parallel_for.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\partition.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\par_to_seq.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\reduce.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\reduce_by_key.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\remove.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\replace.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\reverse.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\scan.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\scan_by_key.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\scatter.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\sequence.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\sort.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\swap_ranges.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\tabulate.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\temporary_buffer.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\transform.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\transform_reduce.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\uninitialized_copy.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\uninitialized_fill.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\detail\util.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\error.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\execution_policy.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\memory_resource.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\cuda\pointer.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\assign_value.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\copy.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\copy_if.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\count.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\equal.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\extrema.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\fill.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\find.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\for_each.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\generate.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\get_value.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\iter_swap.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\malloc_and_free.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\merge.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\mismatch.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\partition.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\reduce.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\reduce_by_key.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\remove.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\replace.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\reverse.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\scan.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\scan_by_key.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\scatter.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\sequence.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\sort.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\swap_ranges.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\tabulate.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\temporary_buffer.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\transform.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\transform_reduce.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\adl\uninitialized_fill.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\bad_alloc.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\errno.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\error_category.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\error_code.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\error_condition.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\advance.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\advance.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\copy.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\copy.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\copy_if.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\copy_if.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\count.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\count.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\distance.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\distance.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\equal.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\equal.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\extrema.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\extrema.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\fill.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\find.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\find.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\for_each.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\generate.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\generate.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\memory.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\memory.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\merge.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\merge.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\mismatch.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\mismatch.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\partition.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\partition.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\reduce.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\reduce.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\reduce_by_key.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\reduce_by_key.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\remove.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\remove.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\replace.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\replace.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\reverse.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\reverse.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\scan.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\scan.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\scan_by_key.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\scan_by_key.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\scatter.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\scatter.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\select_system.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\select_system.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\select_system_exists.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\sequence.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\sequence.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\sort.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\sort.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\swap_ranges.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\swap_ranges.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\tabulate.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\tabulate.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\tag.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\temporary_buffer.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\temporary_buffer.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\transform.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\transform.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\transform_reduce.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\transform_reduce.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\uninitialized_fill.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\generic\uninitialized_fill.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\adjacent_difference.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\assign_value.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\binary_search.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\copy.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\copy.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\copy_backward.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\copy_if.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\count.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\equal.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\execution_policy.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\extrema.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\fill.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\find.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\for_each.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\general_copy.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\generate.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\get_value.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\insertion_sort.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\iter_swap.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\malloc_and_free.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\merge.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\merge.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\mismatch.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\partition.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\reduce.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\reduce_by_key.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\remove.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\replace.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\reverse.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\scan.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\scan_by_key.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\scatter.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\sequence.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\set_operations.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\sort.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\sort.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\stable_merge_sort.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\stable_merge_sort.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\stable_primitive_sort.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\stable_primitive_sort.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\stable_radix_sort.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\stable_radix_sort.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\swap_ranges.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\tabulate.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\temporary_buffer.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\transform.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\transform_reduce.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\trivial_copy.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\uninitialized_fill.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\unique.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\sequential\unique_by_key.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\detail\system_error.inl
+D:\Program Files\CUDA\v12.6\include\thrust\system\error_code.h
+D:\Program Files\CUDA\v12.6\include\thrust\system\system_error.h
+D:\Program Files\CUDA\v12.6\include\thrust\system_error.h
+D:\Program Files\CUDA\v12.6\include\thrust\tabulate.h
+D:\Program Files\CUDA\v12.6\include\thrust\transform.h
+D:\Program Files\CUDA\v12.6\include\thrust\transform_reduce.h
+D:\Program Files\CUDA\v12.6\include\thrust\tuple.h
+D:\Program Files\CUDA\v12.6\include\thrust\type_traits\integer_sequence.h
+D:\Program Files\CUDA\v12.6\include\thrust\type_traits\is_contiguous_iterator.h
+D:\Program Files\CUDA\v12.6\include\thrust\type_traits\is_trivially_relocatable.h
+D:\Program Files\CUDA\v12.6\include\thrust\type_traits\logical_metafunctions.h
+D:\Program Files\CUDA\v12.6\include\thrust\type_traits\remove_cvref.h
+D:\Program Files\CUDA\v12.6\include\thrust\type_traits\void_t.h
+D:\Program Files\CUDA\v12.6\include\thrust\uninitialized_fill.h
+D:\Program Files\CUDA\v12.6\include\thrust\version.h
 D:\Program Files\CUDA\v12.6\include\vector_functions.h
 D:\Program Files\CUDA\v12.6\include\vector_functions.hpp
 D:\Program Files\CUDA\v12.6\include\vector_types.h
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\cfloat
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\climits
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\cmath
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\concurrencysal.h
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\crtdefs.h
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\cstddef
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\cstdint
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\cstdio
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\cstdlib
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\cstring
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\cwchar
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\eh.h
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\exception
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\functional
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\initializer_list
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\intrin0.h
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\intrin0.inl.h
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\limits
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\limits.h
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\new
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\sal.h
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\stdint.h
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\tuple
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\typeinfo
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\type_traits
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\use_ansi.h
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\utility
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\vadefs.h
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\vcruntime.h
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\vcruntime_exception.h
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\vcruntime_new.h
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\vcruntime_new_debug.h
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\vcruntime_string.h
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\vcruntime_typeinfo.h
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xatomic.h
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xkeycheck.h
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xtr1common
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\yvals.h
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\yvals_core.h
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\__msvc_iter_core.hpp
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\ammintrin.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\array
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\atomic
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\cassert
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\cctype
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\cerrno
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\cfloat
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\chrono
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\climits
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\clocale
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\cmath
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\concurrencysal.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\crtdefs.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\cstddef
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\cstdint
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\cstdio
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\cstdlib
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\cstring
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\ctime
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\cwchar
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\eh.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\emmintrin.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\exception
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\excpt.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\functional
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\immintrin.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\initializer_list
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\intrin.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\intrin0.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\intrin0.inl.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\ios
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\iosfwd
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\iostream
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\istream
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\iterator
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\limits
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\limits.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\memory
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\mmintrin.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\new
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\nmmintrin.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\numbers
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\ostream
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\pmmintrin.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\ratio
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\sal.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\setjmp.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\smmintrin.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\stdarg.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\stdexcept
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\stdint.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\streambuf
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\string
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\system_error
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\tmmintrin.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\tuple
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\typeinfo
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\type_traits
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\use_ansi.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\utility
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\vadefs.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\vcruntime.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\vcruntime_exception.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\vcruntime_new.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\vcruntime_new_debug.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\vcruntime_startup.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\vcruntime_string.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\vcruntime_typeinfo.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\vector
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\version
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\wmmintrin.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\xatomic.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\xcall_once.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\xerrc.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\xfacet
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\xiosbase
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\xkeycheck.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\xlocale
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\xlocinfo
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\xlocnum
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\xmemory
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\xmmintrin.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\xstring
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\xthreads.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\xtimec.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\xtr1common
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\xutility
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\ymath.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\yvals.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\yvals_core.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\zmmintrin.h
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\__msvc_bit_utils.hpp
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\__msvc_chrono.hpp
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\__msvc_iter_core.hpp
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\__msvc_ostream.hpp
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\__msvc_sanitizer_annotate_container.hpp
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\__msvc_string_view.hpp
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\__msvc_system_error_abi.hpp
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\__msvc_threads_core.hpp
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\__msvc_xlocinfo_types.hpp
+D:\Windows Kits\10\Include\10.0.22621.0\shared\apiset.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\apisetcconv.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\basetsd.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\bcrypt.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\cderr.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\driverspecs.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\guiddef.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\inaddr.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\kernelspecs.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\ktmtypes.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\poppack.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\pshpack1.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\pshpack2.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\pshpack4.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\pshpack8.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\rpc.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\rpcasync.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\rpcdce.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\rpcdcep.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\rpcndr.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\rpcnterr.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\rpcsal.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\sdkddkver.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\sdv_driverspecs.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\specstrings.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\specstrings_strict.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\specstrings_undef.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\stralign.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\tvout.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\winapifamily.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\windef.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\winerror.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\winpackagefamily.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\winsmcrd.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\wnnc.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\wtypes.h
+D:\Windows Kits\10\Include\10.0.22621.0\shared\wtypesbase.h
+D:\Windows Kits\10\Include\10.0.22621.0\ucrt\assert.h
 D:\Windows Kits\10\Include\10.0.22621.0\ucrt\corecrt.h
 D:\Windows Kits\10\Include\10.0.22621.0\ucrt\corecrt_malloc.h
 D:\Windows Kits\10\Include\10.0.22621.0\ucrt\corecrt_math.h
@@ -90,6 +1129,7 @@ D:\Windows Kits\10\Include\10.0.22621.0\ucrt\corecrt_memcpy_s.h
 D:\Windows Kits\10\Include\10.0.22621.0\ucrt\corecrt_memory.h
 D:\Windows Kits\10\Include\10.0.22621.0\ucrt\corecrt_search.h
 D:\Windows Kits\10\Include\10.0.22621.0\ucrt\corecrt_share.h
+D:\Windows Kits\10\Include\10.0.22621.0\ucrt\corecrt_startup.h
 D:\Windows Kits\10\Include\10.0.22621.0\ucrt\corecrt_stdio_config.h
 D:\Windows Kits\10\Include\10.0.22621.0\ucrt\corecrt_terminate.h
 D:\Windows Kits\10\Include\10.0.22621.0\ucrt\corecrt_wconio.h
@@ -105,8 +1145,11 @@ D:\Windows Kits\10\Include\10.0.22621.0\ucrt\crtdbg.h
 D:\Windows Kits\10\Include\10.0.22621.0\ucrt\ctype.h
 D:\Windows Kits\10\Include\10.0.22621.0\ucrt\errno.h
 D:\Windows Kits\10\Include\10.0.22621.0\ucrt\float.h
+D:\Windows Kits\10\Include\10.0.22621.0\ucrt\locale.h
 D:\Windows Kits\10\Include\10.0.22621.0\ucrt\malloc.h
 D:\Windows Kits\10\Include\10.0.22621.0\ucrt\math.h
+D:\Windows Kits\10\Include\10.0.22621.0\ucrt\process.h
+D:\Windows Kits\10\Include\10.0.22621.0\ucrt\share.h
 D:\Windows Kits\10\Include\10.0.22621.0\ucrt\stddef.h
 D:\Windows Kits\10\Include\10.0.22621.0\ucrt\stdio.h
 D:\Windows Kits\10\Include\10.0.22621.0\ucrt\stdlib.h
@@ -115,3 +1158,103 @@ D:\Windows Kits\10\Include\10.0.22621.0\ucrt\sys\stat.h
 D:\Windows Kits\10\Include\10.0.22621.0\ucrt\sys\types.h
 D:\Windows Kits\10\Include\10.0.22621.0\ucrt\time.h
 D:\Windows Kits\10\Include\10.0.22621.0\ucrt\wchar.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\apiquery2.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\cguid.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\combaseapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\coml2api.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\commdlg.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\consoleapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\consoleapi2.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\consoleapi3.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\datetimeapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\dde.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\ddeml.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\debugapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\dlgs.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\dpapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\enclaveapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\errhandlingapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\fibersapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\fileapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\fileapifromapp.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\handleapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\heapapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\ime_cmodes.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\imm.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\interlockedapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\ioapiset.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\jobapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\jobapi2.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\joystickapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\libloaderapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\lzexpand.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\mciapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\mcx.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\memoryapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\minwinbase.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\mmeapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\mmiscapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\mmiscapi2.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\mmsyscom.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\mmsystem.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\msxml.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\namedpipeapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\namespaceapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\nb30.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\ncrypt.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\oaidl.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\objbase.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\objidl.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\objidlbase.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\ole2.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\oleauto.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\oleidl.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\playsoundapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\processenv.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\processthreadsapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\processtopologyapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\profileapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\propidl.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\propidlbase.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\prsht.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\realtimeapiset.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\reason.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\rpcnsi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\rpcnsip.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\securityappcontainer.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\securitybaseapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\servprov.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\shellapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\stringapiset.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\sysinfoapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\systemtopologyapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\threadpoolapiset.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\threadpoollegacyapiset.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\timeapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\timezoneapi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\unknwn.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\unknwnbase.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\urlmon.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\utilapiset.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\verrsrc.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\winbase.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\wincon.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\wincontypes.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\windows.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\winefs.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\wingdi.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\winioctl.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\winnetwk.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\winnls.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\winnt.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\winperf.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\winreg.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\winscard.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\winsock.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\winspool.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\winsvc.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\winuser.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\winver.h
+D:\Windows Kits\10\Include\10.0.22621.0\um\wow64apiset.h

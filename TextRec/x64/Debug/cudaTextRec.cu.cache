@@ -6,14 +6,14 @@ AdditionalDeps=
 AdditionalLibraryDirectories=
 AdditionalOptions=-std c++20 -Xptxas=-v
 AdditionalOptions=-std c++20 -Xptxas=-v
-CodeGeneration=compute_52,sm_52
-CodeGeneration=compute_52,sm_52
+CodeGeneration=compute_75,sm_75
+CodeGeneration=compute_75,sm_75
 CompileOut=D:\home\Graduation project\TextRec\TextRec\x64\Debug\cudaTextRec.cu.obj
-CudaRuntime=Static
+CudaRuntime=Shared
 CudaToolkitCustomDir=
 DebugInformationFormat=ProgramDatabase
 DebugInformationFormat=ProgramDatabase
-Defines=;WIN32;WIN64;_DEBUG;_CONSOLE;_MBCS;
+Defines=;WIN32;WIN64;_DEBUG;_CONSOLE;
 Emulation=false
 EnableVirtualArchInFatbin=true
 ExtensibleWholeProgramCompilation=false

@@ -42,27 +42,6 @@
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resource\test.jpg">
-      <Filter>resource</Filter>
-    </Image>
-    <Image Include="resource\hengfu.png">
-      <Filter>resource</Filter>
-    </Image>
-    <Image Include="resource\icon.png">
-      <Filter>resource</Filter>
-    </Image>
-    <Image Include="resource\jt1.png">
-      <Filter>resource</Filter>
-    </Image>
-    <Image Include="resource\sd.jpg">
-      <Filter>resource</Filter>
-    </Image>
-    <Image Include="resource\t1.jpg">
-      <Filter>resource</Filter>
-    </Image>
-    <Image Include="resource\t2.jpg">
-      <Filter>resource</Filter>
-    </Image>
     <Image Include="dist\gray.bmp">
       <Filter>dist</Filter>
     </Image>
@@ -99,10 +78,28 @@
     <Image Include="dist\sobel.bmp">
       <Filter>dist</Filter>
     </Image>
+    <Image Include="dist\bin.bmp">
+      <Filter>dist</Filter>
+    </Image>
+    <Image Include="resource\cp3.jpg">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="resource\cp4.jpg">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="resource\cp5.jpg">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="resource\real.jpg">
+      <Filter>resource</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <CudaCompile Include="cudaTextRec.cu">
       <Filter>textRec\cuda</Filter>
     </CudaCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.gitignore" />
   </ItemGroup>
 </Project>

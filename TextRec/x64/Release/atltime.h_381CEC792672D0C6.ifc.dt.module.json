@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "x64\\Release\\atltime.obj",
+            "outputs": [
+                "x64\\Release\\atltime.h_381CEC792672D0C6.ifc.dt.module.json",
+                "x64\\Release\\atltime.h_381CEC792672D0C6.ifc.dt.d.json",
+                "x64\\Release\\atltime.h.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\atlmfc\\include\\atltime.h",
+                    "source-path": "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.43.34808\\atlmfc\\include\\atltime.h",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
+}

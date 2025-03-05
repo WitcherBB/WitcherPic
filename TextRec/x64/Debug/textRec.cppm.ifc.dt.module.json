@@ -1,15 +1,41 @@
 {
-    "Version": "1.1",
-    "Data": {
-        "Source": "d:\\home\\graduation project\\textrec\\textrec\\textrec.cppm",
-        "ProvidedModule": "textRec",
-        "ImportedModules": [
-            "textRec:util",
-            "std.compat"
-        ],
-        "ImportedHeaderUnits": [
-            "D:\\Cpp Include\\FreeImage\\Dist\\x64\\FreeImage.h",
-            "D:\\home\\Graduation project\\TextRec\\TextRec\\textRec_types.h"
-        ]
-    }
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "x64\\Debug\\textRec.obj",
+            "outputs": [
+                "x64\\Debug\\textRec.cppm.ifc.dt.module.json",
+                "x64\\Debug\\textRec.cppm.ifc.dt.d.json",
+                "x64\\Debug\\textRec.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "textRec",
+                    "source-path": "d:\\home\\graduation project\\textrec\\textrec\\textrec.cppm",
+                    "is-interface": true
+                }
+            ],
+            "requires": [
+                {
+                    "logical-name": "textRec:util"
+                },
+                {
+                    "logical-name": "std.compat"
+                },
+                {
+                    "logical-name": "FreeImage.h",
+                    "source-path": "d:\\cpp include\\freeimage\\dist\\x64\\freeimage.h",
+                    "lookup-method": "include-angle",
+                    "unique-on-source-path": true
+                },
+                {
+                    "logical-name": "textRec_types.h",
+                    "source-path": "d:\\home\\graduation project\\textrec\\textrec\\textrec_types.h",
+                    "lookup-method": "include-quote",
+                    "unique-on-source-path": true
+                }
+            ]
+        }
+    ]
 }

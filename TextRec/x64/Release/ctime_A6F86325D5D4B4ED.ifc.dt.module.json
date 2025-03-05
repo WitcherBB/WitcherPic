@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "x64\\Release\\ctime.obj",
+            "outputs": [
+                "x64\\Release\\ctime_A6F86325D5D4B4ED.ifc.dt.module.json",
+                "x64\\Release\\ctime_A6F86325D5D4B4ED.ifc.dt.d.json",
+                "x64\\Release\\ctime.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\include\\ctime",
+                    "source-path": "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.43.34808\\include\\ctime",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
+}

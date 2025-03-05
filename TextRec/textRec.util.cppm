@@ -1,5 +1,6 @@
 export module textRec:util;
 import std.compat;
+#include <ctime>
 import <Eigen/Dense>;
 import "textRec_types.h";
 
@@ -24,12 +25,13 @@ public:
 namespace witcher_pic {
 	export class Image;
 	export struct EdgeInfo;
+	export struct HoughInfo;
 
 	export template <typename T>
 	using GenMatrix = Eigen::Matrix<T, Dynamic, Dynamic, RowMajor>;
 	export using ImgMat = GenMatrix<uint8_t>;
 	export using ModelMat = GenMatrix<float>;
-
+	using HoughZoom = GenMatrix<size_t>;
 	export using rgba = uint32_t;
 
 	export enum SharpenModel:uint8_t {
@@ -134,6 +136,7 @@ namespace witcher_pic {
 		std::pair(std::pair(LOG, 0), new ModelMat(5, 5)),
 		std::pair(std::pair(LOG, 1), new ModelMat(9, 9)),
 	});
+	export auto init() -> void;
 #ifdef _DEBUG
 	export auto imgFilter(const ImgMat& source, const ModelMat& model, int rcx,
 	                      int rcy, FilterType type = CONV) -> ImgMat;
@@ -145,9 +148,11 @@ namespace witcher_pic {
 	                             uint8_t r) -> void;
 	export auto gaussianKernel(ModelMat& model, float sigma) -> void;
 	export auto insertData(const uint8_t* const* data, size_t datasize, int count) -> uint8_t*;
-	export auto getEdgeInfo(Image* img, bool l2_gradient) -> EdgeInfo*;
+	export auto getEdgeInfo(Image& img, bool l2_gradient) -> EdgeInfo*;
 	export auto nonMaxSuppression(const EdgeInfo* e_info) -> void;
 	export auto twoThreshold(const EdgeInfo* e_info, uint8_t l_threshold, uint8_t h_threshold) -> void;
+	export auto LineExtra(const ImgMat& source, unsigned houghsize, size_t linesize) -> HoughInfo*;
+
 	export auto gpuDeviceInfo() -> void;
 #else
 	auto imgFilter(const ImgMat& source, const ModelMat& model, int rcx,
@@ -163,15 +168,17 @@ namespace witcher_pic {
 	auto getEdgeInfo(Image* img, bool l2_gradient) -> EdgeInfo*;
 	auto nonMaxSuppression(const EdgeInfo* e_info) -> void;
 	auto twoThreshold(const EdgeInfo* e_info, uint8_t l_threshold, uint8_t h_threshold) -> void;
-	auto gpuDeviceInfo() -> void;
+	auto lineExtra(const ImgMat& source, unsigned houghsize) -> HoughInfo*;
+	auto drawLine(Image& img, double radius, double theta, uint32_t rgb, int thickness) -> void;
 #endif
 }
 
 namespace witcher_pic {
 	class Image {
-		friend auto getEdgeInfo(Image* img, bool l2_gradient) -> EdgeInfo*;
+		friend auto getEdgeInfo(Image& img, bool l2_gradient) -> EdgeInfo*;
 		friend auto nonMaxSuppression(const EdgeInfo* e_info) -> void;
 		friend auto twoThreshold(const EdgeInfo* e_info, uint8_t l_threshold, uint8_t h_threshold) -> void;
+		friend auto drawLine(Image& img, double radius, double theta, uint32_t rgb, int thickness) -> void;
 
 		enum SharpenMode {
 			NORMAL, MIX
@@ -190,6 +197,8 @@ namespace witcher_pic {
 		auto medianFilter(unsigned size) -> Image&;
 		auto gaussianFilter(unsigned size, float sigma) -> Image&;
 		auto data() const -> uint8_t*;
+		auto toRGBA() -> Image&;
+		auto toRGB() -> Image&;
 		auto toGray() -> Image&;
 		auto toBinary(uint8_t m) -> Image&;
 		auto toOtsuBinary() -> Image&;
@@ -198,6 +207,7 @@ namespace witcher_pic {
 		auto sharpen(SharpenModel model, float strength, int index = 0) -> Image&;
 		auto canny(uint8_t l_threshold, uint8_t h_threshold, unsigned kernelsize = 3,
 		           bool l2_gradient = false) -> EdgeInfo*;
+		auto tiltCorrection(size_t zoomsize = 0) -> Image&;
 
 		auto width() const -> unsigned;
 		auto height() const -> unsigned;
@@ -237,6 +247,17 @@ namespace witcher_pic {
 		}
 	};
 
+	struct HoughInfo {
+		double* max_redius;
+		double* max_thetas;
+		size_t size;
+
+		~HoughInfo() {
+			delete[] max_redius;
+			delete[] max_thetas;
+		}
+	};
+
 	Image::Image(unsigned width, unsigned height, int bpp): bpp_(bpp) {
 		r_matrix_.resize(height, width);
 		r_matrix_.fill(0u);
@@ -248,12 +269,8 @@ namespace witcher_pic {
 		a_matrix_.fill(255u);
 	}
 
-	Image::Image(const Image& mat): bpp_(mat.bpp_) {
-		r_matrix_ = mat.r_matrix_;
-		g_matrix_ = mat.g_matrix_;
-		b_matrix_ = mat.b_matrix_;
-		a_matrix_ = mat.a_matrix_;
-		bpp_ = mat.bpp_;
+	Image::Image(const Image& mat): r_matrix_(mat.r_matrix_), g_matrix_(mat.g_matrix_), b_matrix_(mat.b_matrix_),
+	                                bpp_(mat.bpp_) {
 	}
 
 	auto Image::resize(unsigned width, unsigned height) -> void {
@@ -348,8 +365,30 @@ namespace witcher_pic {
 		throw std::exception("bpp wrong!");
 	}
 
+	auto Image::toRGBA() -> Image& {
+		if (bpp_ != 32) {
+			a_matrix_.fill(255);
+			if (bpp_ == 8) {
+				g_matrix_ = r_matrix_;
+				b_matrix_ = r_matrix_;
+			}
+		}
+		bpp_ = 32;
+		return *this;
+	}
+
+	auto Image::toRGB() -> Image& {
+		if (bpp_ == 8) {
+			g_matrix_ = r_matrix_;
+			b_matrix_ = r_matrix_;
+		}
+		bpp_ = 24;
+		return *this;
+	}
+
 	auto Image::toGray() -> Image& {
 		bpp_ = 8;
+		clock_t m_time1 = std::clock();
 		for (size_t i = 0; i < size(); i++) {
 			uint8_t gray = static_cast<uint8_t>(
 				static_cast<float>(r_matrix_(i)) * 0.299F +
@@ -358,6 +397,8 @@ namespace witcher_pic {
 			);
 			r_matrix_(i) = gray;
 		}
+		clock_t m_time2 = std::clock();
+		std::println("toGrayÊ±¼ä: {} ms", m_time2 - m_time1);
 		return *this;
 	}
 
@@ -516,10 +557,25 @@ namespace witcher_pic {
 
 	auto Image::canny(uint8_t l_threshold, uint8_t h_threshold, unsigned kernelsize,
 	                  bool l2_gradient) -> EdgeInfo* {
-		EdgeInfo* e_info = getEdgeInfo(&gaussianFilter(kernelsize, 1.5), l2_gradient);
+		EdgeInfo* e_info = getEdgeInfo(gaussianFilter(kernelsize, 1.5), l2_gradient);
 		nonMaxSuppression(e_info);
 		twoThreshold(e_info, l_threshold, h_threshold);
 		return e_info;
+	}
+
+	auto Image::tiltCorrection(size_t zoomsize) -> Image& {
+		Image copy = bpp_ == 8 ? *this : toGray();
+		copy.canny(50, 100);
+		zoomsize = zoomsize ? zoomsize : std::ranges::min(this->width(), this->height());
+		auto hough = lineExtra(copy.r_matrix_, zoomsize);
+		for (auto i = 0uz; i < hough->size; i++) {
+			double theta = hough->max_thetas[i];
+			double radius = hough->max_redius[i];
+			std::println("¦È{0}={1}¡ã, r{0}={2}", i, theta / std::numbers::pi * 180, radius);
+			drawLine(*this, radius, theta, 0xFF0099, 5);
+		}
+		delete hough;
+		return *this;
 	}
 
 	auto Image::width() const -> unsigned {

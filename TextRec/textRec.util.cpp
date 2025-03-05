@@ -1,3 +1,4 @@
+module;
 module textRec;
 import <Eigen/Dense>;
 
@@ -12,6 +13,10 @@ namespace witcher_pic {
 		T* result = new T[size];
 		memcpy(result, source.data(), size * sizeof(T));
 		return result;
+	}
+
+	auto init() -> void {
+		deviceInit();
 	}
 
 	auto imgFilter(const ImgMat& source, const ModelMat& model, int rcx,
@@ -56,7 +61,8 @@ namespace witcher_pic {
 		unsigned width = source.cols();
 		unsigned height = source.rows();
 
-		uint8_t* result_arr = hostTwoDimCrossCorre(source.data(), model.data(), width, height, model.cols(), model.rows());
+		uint8_t* result_arr = hostTwoDimCrossCorre(source.data(), model.data(), width, height, model.cols(),
+		                                           model.rows());
 
 		ImgMat result;
 		result.resize(height, width);
@@ -99,16 +105,16 @@ namespace witcher_pic {
 		return hostInsertData(data, datasize, count);
 	}
 
-	auto getEdgeInfo(Image* img, bool l2_gradient) -> EdgeInfo* {
-		const auto width = img->width();
-		const auto height = img->height();
+	auto getEdgeInfo(Image& img, bool l2_gradient) -> EdgeInfo* {
+		const auto width = img.width();
+		const auto height = img.height();
 		const size_t size = width * height;
 
 		EdgeInfo* e_info = new EdgeInfo{
-			img,
+			(&img),
 			new EdgeInfo::EdgeDirMat(width, height),
-			new EdgeInfo::EdgeDirMat(width, height),
-			new EdgeInfo::EdgeDirMat(width, height)
+			img.bpp_ == 8 ? nullptr : new EdgeInfo::EdgeDirMat(width, height),
+			img.bpp_ == 8 ? nullptr : new EdgeInfo::EdgeDirMat(width, height)
 		};
 
 		const ModelMat& x_model = ModelMap::INSTANCE(SOBEL, 1);
@@ -118,18 +124,18 @@ namespace witcher_pic {
 
 		memcpy(e_info->edge->r_matrix_.data(),
 		       std::shared_ptr<uint8_t[]>(hostGetEdgeInfo(
-			       e_info->r_dir->data(), img->r_matrix_.data(), x_model.data(), y_model.data(), width,
+			       e_info->r_dir->data(), img.r_matrix_.data(), x_model.data(), y_model.data(), width,
 			       height, m_width, m_height, l2_gradient
 		       )).get(), size);
-		if (img->bpp_ != 8) {
+		if (img.bpp_ != 8) {
 			memcpy(e_info->edge->g_matrix_.data(),
 			       std::shared_ptr<uint8_t[]>(hostGetEdgeInfo(
-				       e_info->g_dir->data(), img->g_matrix_.data(), x_model.data(), y_model.data(), width,
+				       e_info->g_dir->data(), img.g_matrix_.data(), x_model.data(), y_model.data(), width,
 				       height, m_width, m_height, l2_gradient
 			       )).get(), size);
 			memcpy(e_info->edge->b_matrix_.data(),
 			       std::shared_ptr<uint8_t[]>(hostGetEdgeInfo(
-				       e_info->b_dir->data(), img->b_matrix_.data(), x_model.data(), y_model.data(), width,
+				       e_info->b_dir->data(), img.b_matrix_.data(), x_model.data(), y_model.data(), width,
 				       height, m_width, m_height, l2_gradient
 			       )).get(), size);
 		}
@@ -171,6 +177,29 @@ namespace witcher_pic {
 				       hostTwoThreshold(b_data, img->width(), img->height(), l_threshold, h_threshold)
 			       ).get(), img->size());
 		}
+	}
+
+	auto lineExtra(const ImgMat& source, unsigned houghsize) -> HoughInfo* {
+		const auto width = source.cols();
+		const auto height = source.rows();
+		HoughInfo* hough = new HoughInfo{nullptr, nullptr, 0};
+
+		hostLineExtra(&hough->max_redius, &hough->max_thetas, hough->size, source.data(), width, height,
+		              houghsize);
+		return hough;
+	}
+
+	auto drawLine(Image& img, double radius, double theta, uint32_t rgb, int thickness) -> void {
+		uint8_t red = (uint8_t)(rgb >> 16 & 0xFF),
+		        green = (uint8_t)(rgb >> 8 & 0xFF),
+		        blue = (uint8_t)(rgb & 0xFF);
+		unsigned width = img.width();
+		unsigned height = img.height();
+
+		img.toRGB();
+		hostDrawLine(img.r_matrix_.data(), width, height, radius, theta, red, thickness);
+		hostDrawLine(img.g_matrix_.data(), width, height, radius, theta, green, thickness);
+		hostDrawLine(img.b_matrix_.data(), width, height, radius, theta, blue, thickness);
 	}
 
 	auto gpuDeviceInfo() -> void {

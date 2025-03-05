@@ -3,7 +3,18 @@
     "Data": {
         "Source": "d:\\home\\graduation project\\textrec\\textrec\\textrec.util.cppm",
         "ProvidedModule": "textRec:util",
-        "Includes": [],
+        "Includes": [
+            "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.43.34808\\include\\ctime",
+            "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.43.34808\\include\\yvals_core.h",
+            "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.43.34808\\include\\vcruntime.h",
+            "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.43.34808\\include\\sal.h",
+            "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.43.34808\\include\\concurrencysal.h",
+            "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.43.34808\\include\\vadefs.h",
+            "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.43.34808\\include\\xkeycheck.h",
+            "d:\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\time.h",
+            "d:\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\corecrt.h",
+            "d:\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\corecrt_wtime.h"
+        ],
         "ImportedModules": [
             {
                 "Name": "std.compat",

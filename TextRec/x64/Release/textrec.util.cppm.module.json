@@ -22,13 +22,13 @@
                 },
                 {
                     "logical-name": "Eigen/Dense",
-                    "source-path": "D:\\Cpp Include\\eigen-3.4.0\\Eigen\\Dense",
+                    "source-path": "d:\\cpp include\\eigen-3.4.0\\eigen\\dense",
                     "lookup-method": "include-angle",
                     "unique-on-source-path": true
                 },
                 {
                     "logical-name": "textRec_types.h",
-                    "source-path": "D:\\home\\Graduation project\\TextRec\\TextRec\\textRec_types.h",
+                    "source-path": "d:\\home\\graduation project\\textrec\\textrec\\textrec_types.h",
                     "lookup-method": "include-quote",
                     "unique-on-source-path": true
                 }

@@ -1,9 +1,22 @@
 {
-    "Version": "1.1",
-    "Data": {
-        "Source": "d:\\cpp include\\freeimage\\dist\\x64\\freeimage.h",
-        "ProvidedModule": "",
-        "ImportedModules": [],
-        "ImportedHeaderUnits": []
-    }
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "x64\\Release\\FreeImage.obj",
+            "outputs": [
+                "x64\\Release\\FreeImage.h_2507AEC265C4DEEC.ifc.dt.module.json",
+                "x64\\Release\\FreeImage.h_2507AEC265C4DEEC.ifc.dt.d.json",
+                "x64\\Release\\FreeImage.h.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "D:\\Cpp Include\\FreeImage\\Dist\\x64\\FreeImage.h",
+                    "source-path": "d:\\cpp include\\freeimage\\dist\\x64\\freeimage.h",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
 }

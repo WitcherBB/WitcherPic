@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "x64\\Release\\freeimage.h_MVFCXQLE60VWGXOX.obj",
+            "outputs": [
+                "D:\\home\\Graduation project\\TextRec\\TextRec\\x64\\Release\\vc143.pdb",
+                "x64\\Release\\freeimage.h_MVFCXQLE60VWGXOX.module.json",
+                "x64\\Release\\freeimage.h_MVFCXQLE60VWGXOX.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "d:\\cpp include\\freeimage\\dist\\x64\\freeimage.h",
+                    "source-path": "d:\\cpp include\\freeimage\\dist\\x64\\freeimage.h",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
+}

@@ -1,9 +1,22 @@
 {
-    "Version": "1.1",
-    "Data": {
-        "Source": "d:\\home\\graduation project\\textrec\\textrec\\textrec_types.h",
-        "ProvidedModule": "",
-        "ImportedModules": [],
-        "ImportedHeaderUnits": []
-    }
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "x64\\Release\\textRec_types.obj",
+            "outputs": [
+                "x64\\Release\\textRec_types.h_6701A7E3DE1DACA0.ifc.dt.module.json",
+                "x64\\Release\\textRec_types.h_6701A7E3DE1DACA0.ifc.dt.d.json",
+                "x64\\Release\\textRec_types.h.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "D:\\home\\Graduation project\\TextRec\\TextRec\\textRec_types.h",
+                    "source-path": "d:\\home\\graduation project\\textrec\\textrec\\textrec_types.h",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
 }
