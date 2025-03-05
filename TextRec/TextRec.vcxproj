@@ -40,12 +40,12 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\Cpp Include\MyUtil;D:\Cpp Include\eigen-3.4.0;D:\Cpp Include\FreeImage\Dist\x64;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Cpp Include\FreeImage\Dist\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\lib\eigen-3.4.0;$(ProjectDir)..\lib\FreeImage\Dist\x64;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\lib\FreeImage\Dist\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>D:\Cpp Include\eigen-3.4.0;D:\Cpp Include\FreeImage\Dist\x64;D:\Cpp Include\MyUtil;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Cpp Include\FreeImage\Dist\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\lib\eigen-3.4.0;$(ProjectDir)..\lib\FreeImage\Dist\x64;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\lib\FreeImage\Dist\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

@@ -27,6 +27,8 @@
 *.la
 *.a
 *.lib
+!/lib/FreeImage/Dist/x64/FreeImage.lib
+!/lib/FreeImage/Dist/x32/FreeImage.lib
 
 # Executables
 *.exe
