@@ -738,7 +738,8 @@ namespace witcher_pic {
 		cudaTransform<<<gridsize, blocksize>>>(cu_result, cu_source, x_result.data().get(), y_result.data().get(), size,
 		                                       new_width);
 		cudaDeviceSynchronize();
-		thrust::transform(thrust::device, counting_it, counting_it + newsize, cu_result,
+		thrust::transform(thrust::device, counting_it, counting_it + newsize,
+		                  thrust::device_pointer_cast(cu_result),
 		                  [cu_result, new_width, new_height] __device__ (const size_t& idx) -> uint8_t {
 			                  unsigned x = idx % new_width;
 			                  unsigned y = idx / new_width;
