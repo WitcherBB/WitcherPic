@@ -56,6 +56,6 @@ auto run(const char* pic_name) -> void {
 	std::println("Õº∆¨¥Û–°: {} * {}", img.width(), img.height());
 
 	// saveImage("dist/bin.bmp", img.toGray());
-	saveImage("dist/canny.bmp", img.tiltCorrection());
+	saveImage("dist/canny.bmp", img.tiltCorrection(999));
 	std::println("{}", img.bpp());
 }

@@ -117,26 +117,13 @@
     <ClInclude Include="textRec_types.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="dist\bin.bmp" />
-    <Image Include="dist\binary.bmp" />
-    <Image Include="dist\canny.bmp" />
-    <Image Include="dist\gray.bmp" />
-    <Image Include="dist\grayEnhanced.bmp" />
-    <Image Include="dist\origin.bmp" />
-    <Image Include="dist\rgbGauss.bmp" />
-    <Image Include="dist\rgbSharpen.bmp" />
-    <Image Include="dist\sharpen.bmp" />
-    <Image Include="dist\sobel.bmp" />
-    <Image Include="resource\cp1.jpg" />
-    <Image Include="resource\cp2.jpg" />
-    <Image Include="resource\cp3.jpg" />
-    <Image Include="resource\cp4.jpg" />
-    <Image Include="resource\cp5.jpg" />
-    <Image Include="resource\lena.png" />
-    <Image Include="resource\real.jpg" />
+    <None Include="..\.gitignore" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\.gitignore" />
+    <Image Include="dist\canny.bmp" />
+    <Image Include="resource\cp.jfif" />
+    <Image Include="resource\cp2.jpg" />
+    <Image Include="resource\qx2.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

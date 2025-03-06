@@ -20,5 +20,8 @@ namespace witcher_pic {
 	                      uint8_t h_threshold) -> uint8_t*;
 	auto hostLineExtra(double** max_radius, double** max_thetas, size_t& line_size, const uint8_t* source,
 	                   unsigned width, unsigned height, unsigned houghsize) -> void;
-	auto hostDrawLine(uint8_t* source, unsigned width, unsigned height, double radius, double theta, uint8_t brightness, int thickness) -> void;
+	auto hostDrawLine(uint8_t* source, unsigned width, unsigned height, double radius, double theta, uint8_t brightness,
+	                  int thickness) -> void;
+	auto hostRotate(const uint8_t* source, double theta, unsigned width, unsigned height, unsigned& new_width,
+	                unsigned& new_height) -> uint8_t*;
 }
