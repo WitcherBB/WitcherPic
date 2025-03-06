@@ -2,10 +2,11 @@
 #include <cuda/std/atomic>
 #include <thrust/count.h>
 #include <thrust/device_vector.h>
+#include <thrust/execution_policy.h>
 #include <thrust/host_vector.h>
+#include <thrust/memory.h>
 #include <thrust/partition.h>
 #include <thrust/reduce.h>
-#include <thrust/execution_policy.h>
 #include <thrust/iterator/constant_iterator.h>
 #include "deviceLib.cuh"
 #include "textRec_types.h"
@@ -302,6 +303,14 @@ namespace witcher_pic {
 				thetas[old_index] = (double)point.x * del_theta;
 				radius[old_index] = ((double)point.y - (double)r_offset) * del_radius;
 			}
+		}
+	}
+
+	__global__ auto cudaTransform(uint8_t* result, const uint8_t* source, const int* trans_x, const int* trans_y,
+	                              size_t size, unsigned result_width) -> void {
+		unsigned idx = blockDim.x * blockIdx.x + threadIdx.x;
+		if (idx < size) {
+			result[trans_y[idx] * result_width + trans_x[idx]] = source[idx];
 		}
 	}
 
@@ -645,17 +654,16 @@ namespace witcher_pic {
 	auto hostDrawLine(uint8_t* source, unsigned width, unsigned height, double radius, double theta,
 	                  uint8_t brightness, int thickness) -> void {
 		size_t size = width * height;
-		double costheta = cos(theta);
-		double sintheta = sin(theta);
-		double cottheta = costheta / sintheta;
+		const double costheta = cos(theta);
+		const double sintheta = sin(theta);
+		const double cottheta = costheta / sintheta;
 		int lower = thickness / 2;
 		int higher = thickness - lower - 1;
 
 		thrust::counting_iterator<size_t> idx_it;
 		thrust::device_vector<size_t> dv_idx_it(idx_it, idx_it + size);
 		// thrust::host_vector<uint8_t> hv_source(source, source + size);
-		thrust::device_vector<uint8_t> dv_source(size);
-		thrust::copy(source, source + size, dv_source.begin());
+		thrust::device_vector<uint8_t> dv_source(source, source + size);
 
 		thrust::device_vector<bool> line_model(size);
 		thrust::transform(thrust::device, dv_idx_it.begin(), dv_idx_it.end(), line_model.begin(),
@@ -664,12 +672,13 @@ namespace witcher_pic {
 		                  uint8_t {
 			                  int x = idx % width;
 			                  int y = idx / width;
-			                  if (theta <= PI / 4 || theta >= PI * 3 / 4) {
-				                  int cal_x = (int)round(-tan(theta) * y + radius / costheta);
-				                  return (x >= cal_x - lower) && (x <= cal_x + higher);
-			                  }
-			                  int cal_y = (int)round(-cottheta * x + radius / sintheta);
-			                  return (y >= cal_y - lower) && (y <= cal_y + higher);
+			                  int cal;
+			                  bool is_horizontal = theta <= PI / 4 || theta >= PI * 3 / 4;
+			                  return is_horizontal
+				                         ? (cal = (int)round(-tan(theta) * y + radius / costheta), (x >= cal - lower))
+				                           && (x <= cal + higher)
+				                         : (cal = (int)round(-cottheta * x + radius / sintheta), (y >= cal - lower)) &&
+				                           (y <= cal + higher);
 		                  });
 
 		thrust::transform_if(thrust::device, dv_source.begin(), dv_source.end(), line_model.begin(), dv_source.begin(),
@@ -678,5 +687,74 @@ namespace witcher_pic {
 		                     }, thrust::identity<bool>());
 
 		thrust::copy(dv_source.begin(), dv_source.end(), source);
+	}
+
+	auto hostRotate(const uint8_t* source, double theta, unsigned width, unsigned height, unsigned& new_width,
+	                unsigned& new_height) -> uint8_t* {
+		const size_t size = width * height;
+		thrust::device_vector<int> x_mat(size), y_mat(size);
+		thrust::device_vector<int> x_result(size), y_result(size);
+		thrust::counting_iterator<size_t> counting_it;
+
+		thrust::transform(thrust::device, counting_it, counting_it + size, x_mat.begin(),
+		                  [width] __device__ (const size_t& idx) -> int {
+			                  return idx % width;
+		                  });
+		thrust::transform(thrust::device, counting_it, counting_it + size, y_mat.begin(),
+		                  [width] __device__ (const size_t& idx) -> int {
+			                  return idx / width;
+		                  });
+		thrust::transform(thrust::device, x_mat.begin(), x_mat.end(), y_mat.begin(), x_result.begin(),
+		                  [theta] __device__ (const int& x, const int& y) -> int {
+			                  return (int)round(y * sin(theta) + x * cos(theta));
+		                  });
+		thrust::transform(thrust::device, x_mat.begin(), x_mat.end(), y_mat.begin(), y_result.begin(),
+		                  [theta] __device__ (const int& x, const int& y) -> int {
+			                  return (int)round(y * cos(theta) - x * sin(theta));
+		                  });
+		struct __MaxMin {
+			int max;
+			int min;
+		} x_mm, y_mm;
+		x_mm.min = thrust::reduce(thrust::device, x_result.begin(), x_result.end(), MAXINT, thrust::minimum<int>());
+		y_mm.min = thrust::reduce(thrust::device, y_result.begin(), y_result.end(), MAXINT, thrust::minimum<int>());
+		thrust::transform(thrust::device, x_result.begin(), x_result.end(), thrust::constant_iterator<int>(x_mm.min),
+		                  x_result.begin(), thrust::minus<int>());
+		thrust::transform(thrust::device, y_result.begin(), y_result.end(), thrust::constant_iterator<int>(y_mm.min),
+		                  y_result.begin(), thrust::minus<int>());
+		x_mm.max = thrust::reduce(thrust::device, x_result.begin(), x_result.end(), MININT, thrust::maximum<int>());
+		y_mm.max = thrust::reduce(thrust::device, y_result.begin(), y_result.end(), MININT, thrust::maximum<int>());
+		new_width = x_mm.max + 1;
+		new_height = y_mm.max + 1;
+		const size_t newsize = new_width * new_height;
+		uint8_t* result = new uint8_t[newsize];
+		uint8_t *cu_result, *cu_source;
+		cudaMalloc(&cu_result, newsize);
+		cudaMalloc(&cu_source, size);
+		cudaMemset(cu_result, 0, newsize);
+		cudaMemcpy(cu_source, source, size, cudaMemcpyHostToDevice);
+		unsigned blocksize(1024);
+		unsigned gridsize((newsize + blocksize - 1) / blocksize);
+		cudaTransform<<<gridsize, blocksize>>>(cu_result, cu_source, x_result.data().get(), y_result.data().get(), size,
+		                                       new_width);
+		cudaDeviceSynchronize();
+		thrust::transform(thrust::device, counting_it, counting_it + newsize, cu_result,
+		                  [cu_result, new_width, new_height] __device__ (const size_t& idx) -> uint8_t {
+			                  unsigned x = idx % new_width;
+			                  unsigned y = idx / new_width;
+			                  if (x > 0 && x < new_width - 1 && y > 0 && y < new_height - 1 && !cu_result[idx] &&
+			                      cu_result[idx - new_width] && cu_result[idx + 1] &&
+			                      cu_result[idx - 1] && cu_result[idx + new_width]) {
+				                  cu_result[idx] =
+				                  (cu_result[idx - new_width] + cu_result[idx + 1] +
+				                   cu_result[idx - 1] + cu_result[idx + new_width]) / 4;
+			                  }
+			                  return cu_result[idx];
+		                  });
+		cudaMemcpy(result, cu_result, newsize, cudaMemcpyDeviceToHost);
+		cudaFree(cu_result);
+		cudaFree(cu_source);
+		CHECK_CUDA_LAST_ERR("rotate")
+		return result;
 	}
 }

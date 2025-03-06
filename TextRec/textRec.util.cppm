@@ -14,7 +14,7 @@ class Finally {
 	F func_;
 
 public:
-	Finally(F&& func) : func_(std::move(func)) {
+	Finally(F&& func) : func_(std::forward<F>(func)) {
 	}
 
 	~Finally() {
@@ -151,7 +151,9 @@ namespace witcher_pic {
 	export auto getEdgeInfo(Image& img, bool l2_gradient) -> EdgeInfo*;
 	export auto nonMaxSuppression(const EdgeInfo* e_info) -> void;
 	export auto twoThreshold(const EdgeInfo* e_info, uint8_t l_threshold, uint8_t h_threshold) -> void;
-	export auto LineExtra(const ImgMat& source, unsigned houghsize, size_t linesize) -> HoughInfo*;
+	export auto lineExtra(const ImgMat& source, unsigned houghsize) -> HoughInfo*;
+	export auto drawLine(Image& img, double radius, double theta, uint32_t rgb, int thickness) -> void;
+	export auto rotate(Image& img, double theta, bool clockwise = false) -> void;
 
 	export auto gpuDeviceInfo() -> void;
 #else
@@ -170,6 +172,7 @@ namespace witcher_pic {
 	auto twoThreshold(const EdgeInfo* e_info, uint8_t l_threshold, uint8_t h_threshold) -> void;
 	auto lineExtra(const ImgMat& source, unsigned houghsize) -> HoughInfo*;
 	auto drawLine(Image& img, double radius, double theta, uint32_t rgb, int thickness) -> void;
+	auto rotate(Image& img, double theta, bool clockwise = false) -> void;
 #endif
 }
 
@@ -179,6 +182,7 @@ namespace witcher_pic {
 		friend auto nonMaxSuppression(const EdgeInfo* e_info) -> void;
 		friend auto twoThreshold(const EdgeInfo* e_info, uint8_t l_threshold, uint8_t h_threshold) -> void;
 		friend auto drawLine(Image& img, double radius, double theta, uint32_t rgb, int thickness) -> void;
+		friend auto rotate(Image& img, double theta, bool clockwise) -> void;
 
 		enum SharpenMode {
 			NORMAL, MIX
@@ -564,16 +568,28 @@ namespace witcher_pic {
 	}
 
 	auto Image::tiltCorrection(size_t zoomsize) -> Image& {
-		Image copy = bpp_ == 8 ? *this : toGray();
+		Image copy = *this;
+		if (copy.bpp_ != 8) {
+			copy.toGray();
+		}
 		copy.canny(50, 100);
 		zoomsize = zoomsize ? zoomsize : std::ranges::min(this->width(), this->height());
 		auto hough = lineExtra(copy.r_matrix_, zoomsize);
+#ifdef _DEBUG
 		for (auto i = 0uz; i < hough->size; i++) {
 			double theta = hough->max_thetas[i];
 			double radius = hough->max_redius[i];
 			std::println("ж╚{0}={1}бу, r{0}={2}", i, theta / std::numbers::pi * 180, radius);
-			drawLine(*this, radius, theta, 0xFF0099, 5);
+			drawLine(*this, radius, theta, 0xFF0099, 4);
 		}
+#endif
+		if (hough->size) {
+			const double pidiv2 = std::numbers::pi_v<double> / 2;
+			auto k_theta = hough->max_thetas[0] > pidiv2 ? hough->max_thetas[0] - pidiv2 : hough->max_thetas[0] + pidiv2;
+			auto theta = k_theta <= pidiv2 ? k_theta : std::numbers::pi - k_theta;
+			rotate(*this, theta, k_theta <= pidiv2);
+		}
+
 		delete hough;
 		return *this;
 	}

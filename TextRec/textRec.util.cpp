@@ -202,6 +202,32 @@ namespace witcher_pic {
 		hostDrawLine(img.b_matrix_.data(), width, height, radius, theta, blue, thickness);
 	}
 
+	auto rotate(Image& img, double theta, bool clockwise) -> void {
+		const auto width = img.width();
+		const auto height = img.height();
+		unsigned new_width(0), new_height(0);
+		theta = clockwise ? theta : -theta;
+		auto r_data = hostRotate(img.r_matrix_.data(), theta, width, height, new_width, new_height);
+		unsigned new_size = new_width * new_height;
+		Image new_img(new_width, new_height, img.bpp_);
+		memcpy(new_img.r_matrix_.data(), r_data, new_size);
+		delete[] r_data;
+		if (img.bpp_) {
+			memcpy(new_img.g_matrix_.data(),
+			       std::shared_ptr<uint8_t[]>(hostRotate(img.g_matrix_.data(), theta, width, height, new_width,
+			                                             new_height)).get(), new_size);
+			memcpy(new_img.b_matrix_.data(),
+			       std::shared_ptr<uint8_t[]>(hostRotate(img.b_matrix_.data(), theta, width, height, new_width,
+			                                             new_height)).get(), new_size);
+			if (img.bpp_ == 32) {
+				memcpy(new_img.a_matrix_.data(),
+			       std::shared_ptr<uint8_t[]>(hostRotate(img.a_matrix_.data(), theta, width, height, new_width,
+			                                             new_height)).get(), new_size);
+			}
+		}
+		img = new_img;
+	}
+
 	auto gpuDeviceInfo() -> void {
 		hostDeviceInfo();
 	}
