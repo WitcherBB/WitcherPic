@@ -36,9 +36,9 @@
 *.app
 
 /.vs/
-/TextRec/textRec - 副本.cpp
-/TextRec/textRec.util - 副本.cpp
-/TextRec/resource/
-/TextRec/dist/
-/TextRec/TextRec/
-/TextRec/x64/
+/WitcherPic/witcherPic - 副本.cpp
+/WitcherPic/witcherPic.util - 副本.cpp
+/WitcherPic/resource/
+/WitcherPic/dist/
+/WitcherPic/WitcherPic/
+/WitcherPic/x64/
