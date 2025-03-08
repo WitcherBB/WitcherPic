@@ -55,7 +55,9 @@ auto run(const char* pic_name) -> void {
 	Image& img = *loadImage(pic_name);
 	std::println("Õº∆¨¥Û–°: {} * {}", img.width(), img.height());
 
-	// saveImage("dist/bin.bmp", img.toGray());
-	saveImage("dist/canny.bmp", img.tiltCorrection(999));
+	ImageProcessor<true> processor1(img);
+	ImageProcessor<true> processor2(img);
+	saveImage("dist/canny.bmp", processor1.tiltCorrection(999).get());
+	saveImage("dist/edge.png", processor2.toGray().canny(50, 100, 5, true).toOtsuBinary().get());
 	std::println("{}", img.bpp());
 }

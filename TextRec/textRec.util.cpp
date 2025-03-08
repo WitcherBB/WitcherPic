@@ -105,42 +105,38 @@ namespace witcher_pic {
 		return hostInsertData(data, datasize, count);
 	}
 
-	auto getEdgeInfo(Image& img, bool l2_gradient) -> EdgeInfo* {
+	auto getEdgeInfo(EdgeInfo* edgeinfo, Image& img, bool l2_gradient) -> void {
 		const auto width = img.width();
 		const auto height = img.height();
 		const size_t size = width * height;
 
-		EdgeInfo* e_info = new EdgeInfo{
-			(&img),
-			new EdgeInfo::EdgeDirMat(width, height),
-			img.bpp_ == 8 ? nullptr : new EdgeInfo::EdgeDirMat(width, height),
-			img.bpp_ == 8 ? nullptr : new EdgeInfo::EdgeDirMat(width, height)
-		};
+		edgeinfo->edge = &img;
+		edgeinfo->r_dir = new EdgeInfo::EdgeDirMat(width, height);
+		edgeinfo->g_dir = new EdgeInfo::EdgeDirMat(width, height);
+		edgeinfo->b_dir = new EdgeInfo::EdgeDirMat(width, height);
 
 		const ModelMat& x_model = ModelMap::INSTANCE(SOBEL, 1);
 		const ModelMat& y_model = ModelMap::INSTANCE(SOBEL, 2);
 		unsigned m_width = x_model.cols();
 		unsigned m_height = x_model.rows();
 
-		memcpy(e_info->edge->r_matrix_.data(),
+		memcpy(img.r_matrix_.data(),
 		       std::shared_ptr<uint8_t[]>(hostGetEdgeInfo(
-			       e_info->r_dir->data(), img.r_matrix_.data(), x_model.data(), y_model.data(), width,
+			       edgeinfo->r_dir->data(), img.r_matrix_.data(), x_model.data(), y_model.data(), width,
 			       height, m_width, m_height, l2_gradient
 		       )).get(), size);
 		if (img.bpp_ != 8) {
-			memcpy(e_info->edge->g_matrix_.data(),
+			memcpy(img.g_matrix_.data(),
 			       std::shared_ptr<uint8_t[]>(hostGetEdgeInfo(
-				       e_info->g_dir->data(), img.g_matrix_.data(), x_model.data(), y_model.data(), width,
+				       edgeinfo->g_dir->data(), img.g_matrix_.data(), x_model.data(), y_model.data(), width,
 				       height, m_width, m_height, l2_gradient
 			       )).get(), size);
-			memcpy(e_info->edge->b_matrix_.data(),
+			memcpy(img.b_matrix_.data(),
 			       std::shared_ptr<uint8_t[]>(hostGetEdgeInfo(
-				       e_info->b_dir->data(), img.b_matrix_.data(), x_model.data(), y_model.data(), width,
+				       edgeinfo->b_dir->data(), img.b_matrix_.data(), x_model.data(), y_model.data(), width,
 				       height, m_width, m_height, l2_gradient
 			       )).get(), size);
 		}
-
-		return e_info;
 	}
 
 	auto nonMaxSuppression(const EdgeInfo* e_info) -> void {
@@ -196,7 +192,7 @@ namespace witcher_pic {
 		unsigned width = img.width();
 		unsigned height = img.height();
 
-		img.toRGB();
+		ImageProcessor(img).toRGB();
 		hostDrawLine(img.r_matrix_.data(), width, height, radius, theta, red, thickness);
 		hostDrawLine(img.g_matrix_.data(), width, height, radius, theta, green, thickness);
 		hostDrawLine(img.b_matrix_.data(), width, height, radius, theta, blue, thickness);

@@ -105,9 +105,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="textRec.cppm" />
+    <ClCompile Include="textRec.ixx" />
     <ClCompile Include="textRec.util.cpp" />
-    <ClCompile Include="textRec.util.cppm" />
+    <ClCompile Include="textRec.util.ixx" />
     <ClCompile Include="textRec_types.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -121,9 +121,11 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="dist\canny.bmp" />
+    <Image Include="dist\edge.png" />
     <Image Include="resource\cp.jfif" />
     <Image Include="resource\cp2.jpg" />
     <Image Include="resource\qx2.png" />
+    <Image Include="resource\test.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

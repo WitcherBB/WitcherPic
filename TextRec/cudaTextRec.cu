@@ -527,7 +527,7 @@ namespace witcher_pic {
 		cudaDeviceSynchronize();
 
 		unsigned gridSize = static_cast<unsigned>((s_size + 1023) / 1024);
-		cudaAddWeighted<<<gridSize, 1024>>>(cu_xdata, 0.5, cu_ydata, 0.5, 0, s_size, false);
+		cudaAddWeighted<<<gridSize, 1024>>>(cu_xdata, 0.5, cu_ydata, 0.5, 0, s_size, l2_gradient);
 		cudaDeviceSynchronize();
 
 		cudaFree(cu_ydata);

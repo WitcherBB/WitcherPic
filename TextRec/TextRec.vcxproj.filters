@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="textRec.cppm">
+    <ClCompile Include="textRec.ixx">
       <Filter>textRec</Filter>
     </ClCompile>
-    <ClCompile Include="textRec.util.cppm">
+    <ClCompile Include="textRec.util.ixx">
       <Filter>textRec</Filter>
     </ClCompile>
     <ClCompile Include="textRec.util.cpp">
@@ -50,16 +50,22 @@
     <None Include="..\.gitignore" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resource\cp.jfif">
-      <Filter>dist</Filter>
+    <Image Include="resource\test.jpg">
+      <Filter>resource</Filter>
     </Image>
     <Image Include="dist\canny.bmp">
+      <Filter>dist</Filter>
+    </Image>
+    <Image Include="resource\cp.jfif">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="resource\qx2.png">
       <Filter>resource</Filter>
     </Image>
     <Image Include="resource\cp2.jpg">
-      <Filter>dist</Filter>
+      <Filter>resource</Filter>
     </Image>
-    <Image Include="resource\qx2.png">
+    <Image Include="dist\edge.png">
       <Filter>dist</Filter>
     </Image>
   </ItemGroup>
