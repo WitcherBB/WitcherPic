@@ -36,9 +36,10 @@
 *.app
 
 /.vs/
+/resource/
+/dist/
 /WitcherPic/witcherPic - 副本.cpp
 /WitcherPic/witcherPic.util - 副本.cpp
-/WitcherPic/resource/
-/WitcherPic/dist/
-/WitcherPic/WitcherPic/
-/WitcherPic/x64/
+/WitcherPic/out/
+/WitcherPic/bin/
+/WitcherPic/build/

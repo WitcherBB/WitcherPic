@@ -1,2 +1,2 @@
 @echo off
-"%~dp0/x64/Release/TextRec.exe" %1
+"%~dp0/WitcherPic/bin/Release/x64/witcherPic.exe" %*
