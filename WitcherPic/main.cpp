@@ -1,9 +1,6 @@
-import std.compat;
-import witcherPic;
-import "FreeImage.h";
-
 #include "main.h"
-#include <cstdio>
+#include <FreeImage.h>
+#include <witcherPic.h>
 
 using namespace witcher_pic;
 
@@ -11,13 +8,13 @@ auto run(const char* pic_name) -> void;
 
 auto main(int ARGV, char* ARGC[]) -> int {
 	FreeImage_Initialise();
-	witcher_pic::init();
+	witcherpic_init();
 	std::string cmd(ARGC[1]);
-	// 命令判断
+	// 鍛戒护鍒ゆ柇
 	if (cmd == "recg") {
 		CHECK_CMD(cmd, 1, 1)
 		auto pic_name = FIXED_ARGC(0);
-		// 文字识别
+		// 鏂囧瓧璇嗗埆
 		try {
 			// recognizeText(pic_name);
 			run(pic_name);
@@ -27,11 +24,11 @@ auto main(int ARGV, char* ARGC[]) -> int {
 		// end
 	} else if (cmd == "mix") {
 		CHECK_CMD(cmd, 2, 2)
-		// 图像融合
+		// 鍥惧儚铻嶅悎
 		try {
-			std::println("正在融合...");
-			mixImage(FIXED_ARGC(0), 0.5, FIXED_ARGC(1), 0.5);
-			std::println("融合成功!");
+			printf("mixing...\n");
+			witcherpic_mixImage(FIXED_ARGC(0), 0.5, FIXED_ARGC(1), 0.5);
+			printf("mixed seccessfully!\n");
 		} catch (const std::exception& e) {
 			std::cerr << e.what() << std::endl;
 		}
@@ -48,16 +45,16 @@ auto run(const char* pic_name) -> void {
 	FREE_IMAGE_FORMAT format = FreeImage_GetFileType(pic_name);
 
 	if (!FreeImage_FIFSupportsReading(format)) {
-		throw std::exception("该图像不支持读取");
+		throw std::exception("This image is not supported to read.");
 	}
-	std::println("图像已读取");
+	printf("Image has been read.\n");
 	// gpuDeviceInfo();
-	Image& img = *loadImage(pic_name);
-	std::println("图片大小: {} * {}", img.width(), img.height());
+	Image& img = *witcherpic_loadImage(pic_name);
+	printf("Image Size: %u * %u\n", img.width(), img.height());
 
-	ImageProcessor<true> processor1(img);
-	ImageProcessor<true> processor2(img);
-	saveImage("dist/canny.bmp", processor1.tiltCorrection(999).get());
-	saveImage("dist/edge.png", processor2.toGray().canny(50, 100, 5, true).toOtsuBinary().get());
-	std::println("{}", img.bpp());
+	ImageProcessor processor1(img);
+	ImageProcessor processor2(img);
+	witcherpic_refSaveImage("dist/canny.bmp", processor1.tiltCorrection(999, true).get());
+	witcherpic_refSaveImage("dist/edge.png", processor2.toGray().canny(50, 100, 5, true).toOtsuBinary().get());
+	printf("%d", img.bpp());
 }
