@@ -1,11 +1,12 @@
 #include "cudaWitcherPic.h"
+#include <cuda_runtime.h>
 #include "deviceLib.cuh"
+#include "device_launch_parameters.h"
 #include "witcherPic_types.h"
 
 #include <cmath>
 #include <cstdio>
 #include <exception>
-#include <numbers>
 
 #include <cuda/std/atomic>
 #include <thrust/count.h>
@@ -13,7 +14,6 @@
 #include <thrust/device_vector.h>
 #include <thrust/execution_policy.h>
 #include <thrust/host_vector.h>
-#include <thrust/memory.h>
 #include <thrust/partition.h>
 #include <thrust/reduce.h>
 #include <thrust/iterator/constant_iterator.h>
@@ -321,7 +321,7 @@ namespace witcher_pic {
 		printf("x: %u, y: %u\n", threadIdx.x, threadIdx.y);
 	}
 #endif
-
+	extern "C" {
 	auto deviceInit() -> void {
 		mutex::init();
 	}
@@ -760,4 +760,6 @@ namespace witcher_pic {
 		CHECK_CUDA_LAST_ERR("rotate")
 		return result;
 	}
+	}
 }
+	

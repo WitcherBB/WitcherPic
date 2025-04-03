@@ -1,6 +1,6 @@
 #include "main.h"
 #include <FreeImage.h>
-import witcherPic;
+#include <witcherPic.h>
 
 using namespace witcher_pic;
 
@@ -8,7 +8,7 @@ auto run(const char* pic_name) -> void;
 
 auto main(int ARGV, char* ARGC[]) -> int {
 	FreeImage_Initialise();
-	witcher_pic::init();
+	witcherpic_init();
 	std::string cmd(ARGC[1]);
 	// 命令判断
 	if (cmd == "recg") {
@@ -27,7 +27,7 @@ auto main(int ARGV, char* ARGC[]) -> int {
 		// 图像融合
 		try {
 			printf("mixing...\n");
-			mixImage(FIXED_ARGC(0), 0.5, FIXED_ARGC(1), 0.5);
+			witcherpic_mixImage(FIXED_ARGC(0), 0.5, FIXED_ARGC(1), 0.5);
 			printf("mixed seccessfully!\n");
 		} catch (const std::exception& e) {
 			std::cerr << e.what() << std::endl;
@@ -49,12 +49,12 @@ auto run(const char* pic_name) -> void {
 	}
 	printf("Image has been read.\n");
 	// gpuDeviceInfo();
-	Image& img = *loadImage(pic_name);
+	Image& img = *witcherpic_loadImage(pic_name);
 	printf("Image Size: %u * %u\n", img.width(), img.height());
 
-	ImageProcessor<true> processor1(img);
-	ImageProcessor<true> processor2(img);
-	saveImage("dist/canny.bmp", processor1.tiltCorrection(999).get());
-	saveImage("dist/edge.png", processor2.toGray().canny(50, 100, 5, true).toOtsuBinary().get());
+	ImageProcessor processor1(img);
+	ImageProcessor processor2(img);
+	witcherpic_refSaveImage("dist/canny.bmp", processor1.tiltCorrection(999, true).get());
+	witcherpic_refSaveImage("dist/edge.png", processor2.toGray().canny(50, 100, 5, true).toOtsuBinary().get());
 	printf("%d", img.bpp());
 }
