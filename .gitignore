@@ -15,8 +15,6 @@
 *.so
 *.dylib
 *.dll
-!/x64/Debug/FreeImage.dll
-!/x64/Release/FreeImage.dll
 
 # Fortran module files
 *.mod
@@ -27,7 +25,6 @@
 *.la
 *.a
 *.lib
-!/WitcherPic/lib/*.lib
 
 # Executables
 *.exe
@@ -37,8 +34,5 @@
 /.vs/
 /resource/
 /dist/
-/WitcherPic/witcherPic - 副本.cpp
-/WitcherPic/witcherPic.util - 副本.cpp
-/WitcherPic/out/
 /WitcherPic/bin/
 /WitcherPic/build/

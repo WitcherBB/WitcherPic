@@ -1,0 +1,16 @@
+{
+    "C_Cpp.default.cppStandard": "gnu++20",
+    "files.associations": {
+        "cstdio": "cpp",
+        "stdexcept": "cpp",
+        "chrono": "cpp",
+        "variant": "cpp",
+        "ranges": "cpp",
+        "random": "cpp",
+        "limits": "cpp",
+        "valarray": "cpp",
+        "algorithm": "cpp",
+        "ratio": "cpp",
+        "cstdint": "cpp"
+    }
+}

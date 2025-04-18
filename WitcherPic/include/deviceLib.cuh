@@ -19,7 +19,7 @@ namespace witcher_pic {
 	__device__ __forceinline__ auto saturate(float x, float min_x = 0.0, float max_x = 1.0) -> float;
 
 	namespace mutex {
-		int* deviceMutex;
+		extern int* deviceMutex;
 
 		__host__ __forceinline__ auto init() -> void;
 		__device__ __forceinline__ auto lock(int* pmutex) -> void;

@@ -1,16 +1,18 @@
-#pragma once
-#include <memory>
+#include <stddef.h>
+#include <stdint.h>
 
 namespace witcher_pic {
-	class ImageImpl;
-	class Image;
-	using uint8_t = unsigned char;
-	using uint32_t = unsigned int;
 	using rgba = uint32_t;
-	struct HoughInfo;
-	struct EdgeInfo;
+	
+	class Image;
+	class ImageImpl;
 
-	enum SharpenModel:uint8_t {
+	struct EdgeInfo;
+}
+
+
+namespace witcher_pic {
+	enum CppSharpenModel:uint8_t {
 		LAPLACIAN,
 		SOBEL,
 		ROBERTS,
@@ -44,7 +46,6 @@ namespace witcher_pic {
 		ImageImpl* p_impl_;
 	};
 
-
 	class ImageProcessor {
 		enum SharpenMode {
 			NORMAL, MIX
@@ -63,37 +64,38 @@ namespace witcher_pic {
 		auto toBinary(uint8_t m) -> ImageProcessor&;
 		auto toOtsuBinary() -> ImageProcessor&;
 		auto grayEnhance(float min_rate, float max_rate) -> ImageProcessor&;
-		auto edgeExtra(SharpenModel model, int index) -> ImageProcessor&;
-		auto sharpen(SharpenModel model, float strength, int index) -> ImageProcessor&;
-		auto canny(uint8_t l_threshold, uint8_t h_threshold, unsigned kernelsize = 3,
-		           bool l2_gradient = false) -> ImageProcessor&;
+		auto edgeExtra(CppSharpenModel model, int index) -> ImageProcessor&;
+		auto sharpen(CppSharpenModel model, float strength, int index) -> ImageProcessor&;
+		auto canny(unsigned kernelsize, bool l2_gradient) -> ImageProcessor&;
+		auto canny(uint8_t l_threshold, uint8_t h_threshold, unsigned kernelsize, bool l2_gradient) -> ImageProcessor&;
 		// Private
-		auto edgeCanny(EdgeInfo& edgeinfo, uint8_t l_threshold, uint8_t h_threshold,
-		           unsigned kernelsize = 3, bool l2_gradient = false) -> ImageProcessor&;
+		auto canny(EdgeInfo& edgeinfo, uint8_t l_threshold, uint8_t h_threshold, unsigned kernelsize,
+		           bool l2_gradient) -> ImageProcessor&;
 		// Private
-		auto edgeCanny(EdgeInfo* edgeinfo, uint8_t l_threshold, uint8_t h_threshold,
-		           unsigned kernelsize = 3, bool l2_gradient = false) -> ImageProcessor&;
-		auto tiltCorrection(size_t zoomsize, bool copy = false) -> ImageProcessor&;
+		auto canny(EdgeInfo* edgeinfo, uint8_t l_threshold, uint8_t h_threshold, unsigned kernelsize,
+		           bool l2_gradient) -> ImageProcessor&;
+		auto tiltCorrection(size_t zoomsize, bool copy = false, unsigned kermelsize = 3,
+		                    bool l2_gradient = true) -> ImageProcessor&;
 		auto addWeighted(const Image& other, float w1, float w2,
 		                 uint8_t r = 0) -> ImageProcessor&;
 		auto addWeighted(const Image* other, float w1, float w2,
 		                 uint8_t r = 0) -> ImageProcessor&;
 		auto get() const -> Image&;
+		auto impl() const -> ImageImpl*;
 
 	private:
-		[[nodiscard]] static auto checkModelIndex(SharpenModel model, int index) -> SharpenMode;
+		[[nodiscard]] static auto checkModelIndex(CppSharpenModel model, int index) -> SharpenMode;
+		static auto calcThresholdWithOtsu(const Image* img) -> uint8_t*;
 
 		Image* img_;
-		ImageImpl* impl_;
 	};
 }
 
 extern "C" {
-auto witcherpic_init() -> void;
-auto witcherpic_recognizeText(const char* pic_name) -> void;
-auto witcherpic_mixImage(const char* pic_name1, float w1, const char* pic_name2, float w2,
-                         uint8_t r = 0) -> void;
-auto witcherpic_loadImage(const char* pic_name) -> witcher_pic::Image*;
-auto witcherpic_refSaveImage(const char* filename, const witcher_pic::Image& image) -> void;
-auto witcherpic_ptrSaveImage(const char* filename, const witcher_pic::Image* image) -> void;
+	auto witcherpic_init() -> void;
+	auto witcherpic_recognizeText(const char* pic_name) -> void;
+	auto witcherpic_mixImage(const char* pic_name1, float w1, const char* pic_name2, float w2, uint8_t r = 0) -> void;
+	auto witcherpic_loadImage(const char* pic_name) -> witcher_pic::Image*;
+	auto witcherpic_refSaveImage(const char* filename, const witcher_pic::Image& image) -> void;
+	auto witcherpic_ptrSaveImage(const char* filename, const witcher_pic::Image* image) -> void;
 }

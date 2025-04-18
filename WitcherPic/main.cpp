@@ -12,7 +12,7 @@ auto main(int ARGV, char* ARGC[]) -> int {
 	std::string cmd(ARGC[1]);
 	// 命令判断
 	if (cmd == "recg") {
-		CHECK_CMD(cmd, 1, 1)
+		CHECK_CMD(cmd.c_str(), 1, 1)
 		auto pic_name = FIXED_ARGC(0);
 		// 文字识别
 		try {
@@ -23,7 +23,7 @@ auto main(int ARGV, char* ARGC[]) -> int {
 		}
 		// end
 	} else if (cmd == "mix") {
-		CHECK_CMD(cmd, 2, 2)
+		CHECK_CMD(cmd.c_str(), 2, 2)
 		// 图像融合
 		try {
 			printf("mixing...\n");
@@ -45,7 +45,7 @@ auto run(const char* pic_name) -> void {
 	FREE_IMAGE_FORMAT format = FreeImage_GetFileType(pic_name);
 
 	if (!FreeImage_FIFSupportsReading(format)) {
-		throw std::exception("This image is not supported to read.");
+		throw std::runtime_error("This image is not supported to read.");
 	}
 	printf("Image has been read.\n");
 	// gpuDeviceInfo();
@@ -53,8 +53,8 @@ auto run(const char* pic_name) -> void {
 	printf("Image Size: %u * %u\n", img.width(), img.height());
 
 	ImageProcessor processor1(img);
-	ImageProcessor processor2(img);
+	ImageProcessor processor2(img.copy());
 	witcherpic_refSaveImage("dist/canny.bmp", processor1.tiltCorrection(999, true).get());
-	witcherpic_refSaveImage("dist/edge.png", processor2.toGray().canny(50, 100, 5, true).toOtsuBinary().get());
+	witcherpic_refSaveImage("dist/edge.png", processor2.toOtsuBinary().get());
 	printf("%d", img.bpp());
 }

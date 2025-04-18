@@ -1,7 +1,0 @@
-{
-  "dependencies": [
-    "fmt",
-    "freeimage",
-    "eigen3"
-  ]
-}
