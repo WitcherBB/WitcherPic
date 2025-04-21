@@ -730,14 +730,14 @@ namespace witcher_pic {
 				int min;
 			} x_mm, y_mm;
 			x_mm.min = thrust::reduce(thrust::device, x_result.begin(), x_result.end(), INT32_MAX, thrust::minimum<int>());
-			y_mm.min = thrust::reduce(thrust::device, y_result.begin(), y_result.end(), INT32_MIN, thrust::minimum<int>());
+			y_mm.min = thrust::reduce(thrust::device, y_result.begin(), y_result.end(), INT32_MAX, thrust::minimum<int>());
 			thrust::transform(thrust::device, x_result.begin(), x_result.end(),
 			                  thrust::constant_iterator<int>(x_mm.min),
 			                  x_result.begin(), thrust::minus<int>());
 			thrust::transform(thrust::device, y_result.begin(), y_result.end(),
 			                  thrust::constant_iterator<int>(y_mm.min),
 			                  y_result.begin(), thrust::minus<int>());
-			x_mm.max = thrust::reduce(thrust::device, x_result.begin(), x_result.end(), INT32_MAX, thrust::maximum<int>());
+			x_mm.max = thrust::reduce(thrust::device, x_result.begin(), x_result.end(), INT32_MIN, thrust::maximum<int>());
 			y_mm.max = thrust::reduce(thrust::device, y_result.begin(), y_result.end(), INT32_MIN, thrust::maximum<int>());
 			new_width = x_mm.max + 1;
 			new_height = y_mm.max + 1;

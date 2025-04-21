@@ -134,8 +134,6 @@ namespace witcher_pic {
 	auto drawLine(Image& img, double radius, double theta, uint32_t rgb, int thickness) -> void;
 	auto rotate(Image& img, double theta, bool clockwise = false) -> void;
 
-	auto gpuDeviceInfo() -> void;
-
 #ifdef _DEBUG
 	}
 #endif

@@ -72,7 +72,7 @@ file(GLOB SRC_MODULE
 )
 
 add_compile_definitions(WITCHER_EXPORT)
-add_library(witcherCUDA STATIC ${SRC_CU})
+add_library(witcherCUDA SHARED ${SRC_CU})
 
 message(STATUS ${CMAKE_CUDA_COMPILER})
 message(STATUS ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
@@ -110,7 +110,7 @@ set_target_properties(witcherPic PROPERTIES
 	CUDA_SEPARABLE_COMPILATION ON
 )
 
-target_compile_definitions(witcherPic PRIVATE UNICODE)
+# target_compile_definitions(witcherPic PRIVATE UNICODE)
 if(MSVC)
 	target_compile_definitions(witcherPic PRIVATE _CRT_SECURE_NO_WARNINGS)
 endif()

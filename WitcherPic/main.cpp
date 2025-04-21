@@ -7,7 +7,6 @@ using namespace witcher_pic;
 auto run(const char* pic_name) -> void;
 
 auto main(int ARGV, char* ARGC[]) -> int {
-	FreeImage_Initialise();
 	witcherpic_init();
 	std::string cmd(ARGC[1]);
 	// 命令判断
@@ -37,24 +36,24 @@ auto main(int ARGV, char* ARGC[]) -> int {
 		fprintf(stderr, "command \"%s\" undefined!", cmd.data());
 	}
 
-	FreeImage_DeInitialise();
+	witcherpic_deinit();
 	return 0;
 }
 
 auto run(const char* pic_name) -> void {
+	gpuDeviceInfo();
 	FREE_IMAGE_FORMAT format = FreeImage_GetFileType(pic_name);
 
 	if (!FreeImage_FIFSupportsReading(format)) {
 		throw std::runtime_error("This image is not supported to read.");
 	}
 	printf("Image has been read.\n");
-	// gpuDeviceInfo();
 	Image& img = *witcherpic_loadImage(pic_name);
 	printf("Image Size: %u * %u\n", img.width(), img.height());
 
 	ImageProcessor processor1(img);
 	ImageProcessor processor2(img.copy());
-	witcherpic_refSaveImage("dist/canny.bmp", processor1.tiltCorrection(999, true).get());
+	witcherpic_refSaveImage("dist/canny.bmp", processor1.tiltCorrection(499, true).get());
 	witcherpic_refSaveImage("dist/edge.png", processor2.toOtsuBinary().get());
 	printf("%d", img.bpp());
 }

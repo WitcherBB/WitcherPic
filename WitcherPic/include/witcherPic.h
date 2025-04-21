@@ -89,10 +89,13 @@ namespace witcher_pic {
 
 		Image* img_;
 	};
+
+	auto gpuDeviceInfo() -> void;
 }
 
 extern "C" {
 	auto witcherpic_init() -> void;
+	auto witcherpic_deinit() -> void;
 	auto witcherpic_recognizeText(const char* pic_name) -> void;
 	auto witcherpic_mixImage(const char* pic_name1, float w1, const char* pic_name2, float w2, uint8_t r = 0) -> void;
 	auto witcherpic_loadImage(const char* pic_name) -> witcher_pic::Image*;

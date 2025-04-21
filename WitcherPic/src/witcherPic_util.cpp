@@ -7,6 +7,7 @@
 #include <Eigen/Dense>
 #include <fmt/color.h>
 #include <bits/shared_ptr.h>
+#include <FreeImage.h>
 
 using namespace Eigen;
 
@@ -15,7 +16,12 @@ using namespace Eigen;
 
 extern "C" {
 	auto witcherpic_init() -> void {
+		FreeImage_Initialise();
 		witcher_pic::deviceInit();
+	}
+
+	auto witcherpic_deinit() -> void {
+		FreeImage_DeInitialise();
 	}
 }
 

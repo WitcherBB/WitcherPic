@@ -508,7 +508,7 @@ extern "C" {
         Finally f0([&bitmap]() {
             FreeImage_Unload(bitmap);
         });
-        FreeImage_Initialise();
+        
         unsigned bpp = FreeImage_GetBPP(bitmap);
         FREE_IMAGE_TYPE file_type = FreeImage_GetImageType(bitmap);
         BYTE* bytes = FreeImage_GetBits(bitmap);
