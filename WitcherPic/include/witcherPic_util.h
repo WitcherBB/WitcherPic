@@ -1,3 +1,4 @@
+#pragma once
 #include "witcherPic.h"
 #include "witcherPic_types.h"
 #include <Eigen/Dense>
@@ -95,6 +96,7 @@ namespace witcher_pic {
 		auto putPixel(unsigned x, unsigned y, rgba color) -> void;
 		auto putPixel(unsigned x, unsigned y, uint8_t r, uint8_t g, uint8_t b, uint8_t a) -> void;
 		auto data() const -> uint8_t*;
+		auto normalData() const -> uint8_t*;
 
 		auto width() const -> unsigned;
 		auto height() const -> unsigned;

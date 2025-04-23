@@ -52,28 +52,62 @@ namespace witcher_pic {
 
 	auto ImageImpl::data() const -> uint8_t* {
 		switch (bpp_) {
-		case 32:
+		case 32: {
 			const uint8_t* bgra_data[4];
 			bgra_data[0] = b_matrix_.data();
 			bgra_data[1] = g_matrix_.data();
 			bgra_data[2] = r_matrix_.data();
 			bgra_data[3] = a_matrix_.data();
 			return insertData(bgra_data, size(), 4);
-		case 24:
+		}
+		case 24: {
 			const uint8_t* bgr_data[3];
 			bgr_data[0] = b_matrix_.data();
 			bgr_data[1] = g_matrix_.data();
 			bgr_data[2] = r_matrix_.data();
 			return insertData(bgr_data, size(), 3);
-		case 8:
+		}
+		case 8: {
 			uint8_t* gray_data = new uint8_t[size()];
 			memcpy(gray_data, r_matrix_.data(), size());
 			return gray_data;
 		}
-		throw std::runtime_error("bpp wrong!");
+		default:
+			throw std::runtime_error("bpp wrong!");
+		}
 	}
 
-	auto ImageImpl::width() const -> unsigned {
+    auto ImageImpl::normalData() const -> uint8_t *
+    {
+		switch (bpp_) {
+		case 32: {
+			auto img_size = this->size();
+			uint8_t* img_data = new uint8_t[img_size * 4];
+			memcpy(img_data + 0 * img_size, r_matrix_.data(), img_size);
+			memcpy(img_data + 1 * img_size, g_matrix_.data(), img_size);
+			memcpy(img_data + 2 * img_size, b_matrix_.data(), img_size);
+			memcpy(img_data + 3 * img_size, a_matrix_.data(), img_size);
+			return img_data;
+		}
+		case 24: {
+			auto img_size = this->size();
+			uint8_t* img_data = new uint8_t[img_size * 3];
+			memcpy(img_data + 0 * img_size, r_matrix_.data(), img_size);
+			memcpy(img_data + 1 * img_size, g_matrix_.data(), img_size);
+			memcpy(img_data + 2 * img_size, b_matrix_.data(), img_size);
+			return img_data;
+		}
+		case 8: {
+			uint8_t* gray_data = new uint8_t[size()];
+			memcpy(gray_data, r_matrix_.data(), size());
+			return gray_data;
+		}
+		default:
+			throw std::runtime_error("bpp wrong!");
+		}
+    }
+
+    auto ImageImpl::width() const -> unsigned {
 		return r_matrix_.cols();
 	}
 

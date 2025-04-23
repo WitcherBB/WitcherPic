@@ -161,11 +161,17 @@ namespace witcher_pic {
 		return p_impl_->data();
 	}
 
-	auto Image::copy() const -> Image* {
-		return new Image(*this);
-	}
+    auto Image::normalData() const -> uint8_t*
+    {
+        return p_impl_->normalData();
+    }
 
-	auto Image::width() const -> unsigned {
+    auto Image::copy() const -> Image *
+    {
+        return new Image(*this);
+    }
+
+    auto Image::width() const -> unsigned {
 		return p_impl_->width();
 	}
 

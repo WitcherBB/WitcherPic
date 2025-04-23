@@ -1,3 +1,4 @@
+#pragma once
 #include <stddef.h>
 #include <stdint.h>
 
@@ -31,6 +32,7 @@ namespace witcher_pic {
 		auto putPixel(unsigned x, unsigned y, rgba color) -> void;
 		auto putPixel(unsigned x, unsigned y, uint8_t r, uint8_t g, uint8_t b, uint8_t a) -> void;
 		auto data() const -> uint8_t*;
+		auto normalData() const-> uint8_t*;
 		auto copy() const -> Image*;
 
 		auto width() const -> unsigned;

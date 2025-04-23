@@ -4,7 +4,7 @@
 
 using namespace witcher_pic;
 
-auto run(const char* pic_name) -> void;
+auto test(const char* pic_name) -> void;
 
 auto main(int ARGV, char* ARGC[]) -> int {
 	witcherpic_init();
@@ -15,8 +15,7 @@ auto main(int ARGV, char* ARGC[]) -> int {
 		auto pic_name = FIXED_ARGC(0);
 		// 文字识别
 		try {
-			// recognizeText(pic_name);
-			run(pic_name);
+			witcherpic_recognizeText(pic_name);
 		} catch (const std::exception& e) {
 			std::cerr << e.what() << std::endl;
 		}
@@ -32,6 +31,14 @@ auto main(int ARGV, char* ARGC[]) -> int {
 			std::cerr << e.what() << std::endl;
 		}
 		// end
+	} else if (cmd == "test") {
+		CHECK_CMD(cmd.c_str(), 1, 1)
+		auto pic_name = FIXED_ARGC(0);
+		try {
+			test(pic_name);
+		} catch (const std::exception& e) {
+			std::cerr << e.what() << std::endl;
+		}
 	} else {
 		fprintf(stderr, "command \"%s\" undefined!", cmd.data());
 	}
@@ -40,7 +47,7 @@ auto main(int ARGV, char* ARGC[]) -> int {
 	return 0;
 }
 
-auto run(const char* pic_name) -> void {
+auto test(const char* pic_name) -> void {
 	gpuDeviceInfo();
 	FREE_IMAGE_FORMAT format = FreeImage_GetFileType(pic_name);
 
