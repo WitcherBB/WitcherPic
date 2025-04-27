@@ -24,6 +24,7 @@ namespace witcher_pic {
 	class Image {
 	public:
 		Image(unsigned width, unsigned height, int bpp);
+		Image(rgba* colors, unsigned width, unsigned height, int bpp);
 		Image(const Image& mat);
 		~Image();
 		auto resize(unsigned width, unsigned height) -> void;
@@ -77,7 +78,7 @@ namespace witcher_pic {
 		auto canny(EdgeInfo* edgeinfo, uint8_t l_threshold, uint8_t h_threshold, unsigned kernelsize,
 		           bool l2_gradient) -> ImageProcessor&;
 		auto tiltCorrection(size_t zoomsize, bool copy = false, unsigned kermelsize = 3,
-		                    bool l2_gradient = true) -> ImageProcessor&;
+		                    bool l2_gradient = true, bool pdebug = false) -> ImageProcessor&;
 		auto addWeighted(const Image& other, float w1, float w2,
 		                 uint8_t r = 0) -> ImageProcessor&;
 		auto addWeighted(const Image* other, float w1, float w2,

@@ -34,6 +34,7 @@ namespace witcher_pic {
 		auto hostTwoDimCrossCorre(const uint8_t* source, const float* model, unsigned s_w, unsigned s_h,
 		                          unsigned m_w, unsigned m_h) -> uint8_t*;
 		auto hostAddWeighted(size_t size, uint8_t* t, float w1, const uint8_t* s, float w2, uint8_t r) -> void;
+		auto hostRGBAMatAssign(uint8_t* r, uint8_t* g, uint8_t* b, uint8_t* a, const uint32_t* rgba, size_t size) -> void;
 		auto hostInsertData(const uint8_t* const* data, size_t datasize, int count) -> uint8_t*;
 		auto hostGetEdgeInfo(int* dirmat, const uint8_t* source, const float* model_x, const float* model_y,
 		                     unsigned s_width, unsigned s_height, unsigned m_width, unsigned m_height,

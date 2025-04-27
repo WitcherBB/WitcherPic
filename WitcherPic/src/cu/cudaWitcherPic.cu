@@ -19,13 +19,17 @@
 #include <thrust/host_vector.h>
 #include <thrust/partition.h>
 #include <thrust/reduce.h>
+#include <thrust/fill.h>
+#include <thrust/memory.h>
+#include <thrust/device_malloc.h>
+#include <thrust/device_free.h>
 #include <thrust/iterator/constant_iterator.h>
 
-#define CHECK_CUDA_ERR(errFunc, name) {\
+#define CHECK_CUDA_ERR(errFunc, name) { \
 			cudaError_t err = errFunc; \
 			if (err != cudaSuccess) { \
 				printf("CUDA Error (%s): %s\n", name, cudaGetErrorString(err)); \
-			}\
+			} \
 		}
 #define CHECK_CUDA_LAST_ERR(name) CHECK_CUDA_ERR(cudaGetLastError(), name)
 
@@ -323,6 +327,14 @@ namespace witcher_pic {
 		}
 	}
 
+	__global__ auto cudaRGBAMatAssign(uint8_t* r, uint8_t* g, uint8_t* b, uint8_t* a, const uint32_t* rgba) -> void {
+		unsigned idx = blockDim.x * blockIdx.x + threadIdx.x;
+		g[idx] = (rgba[idx] >> 16) & 0xFF;
+		r[idx] = (rgba[idx] >> 24) & 0xFF;
+		b[idx] = (rgba[idx] >> 8) & 0xFF;
+		a[idx] = (rgba[idx] >> 0) & 0xFF;
+	}
+
 #ifdef _DEBUG
 	__global__ auto cudaTest() -> void {
 		printf("x: %u, y: %u\n", threadIdx.x, threadIdx.y);
@@ -461,7 +473,37 @@ namespace witcher_pic {
 			CHECK_CUDA_LAST_ERR("addWeighted")
 		}
 
-		auto hostInsertData(const uint8_t* const* data, size_t datasize, int count) -> uint8_t* {
+        auto hostRGBAMatAssign(uint8_t *r, uint8_t *g, uint8_t *b, uint8_t *a, const uint32_t *rgba, size_t size) -> void {
+			uint8_t *dr, *dg, *db, *da;
+			thrust::device_ptr drgba_ptr = thrust::device_malloc<uint32_t>(size);
+			cudaMalloc(&dr, size);
+			cudaMalloc(&dg, size);
+			cudaMalloc(&db, size);
+			cudaMalloc(&da, size);
+			
+			if (rgba) {
+				thrust::copy_n(rgba, size, drgba_ptr);
+			} else {
+				thrust::fill_n(drgba_ptr, size, (uint32_t)0xFF);
+			}
+
+			unsigned grid_size = static_cast<unsigned>((size + 1023) / 1024);
+			cudaRGBAMatAssign<<<grid_size, 1024>>>(dr, dg, db, da, drgba_ptr.get());
+			
+			cudaMemcpy(r, dr, size, cudaMemcpyDeviceToHost);
+			cudaMemcpy(g, dg, size, cudaMemcpyDeviceToHost);
+			cudaMemcpy(b, db, size, cudaMemcpyDeviceToHost);
+			cudaMemcpy(a, da, size, cudaMemcpyDeviceToHost);
+
+			cudaFree(dr);
+			cudaFree(dg);
+			cudaFree(db);
+			cudaFree(da);
+			thrust::device_free(drgba_ptr);
+			CHECK_CUDA_LAST_ERR("RGBAMatAssign")
+        }
+
+        auto hostInsertData(const uint8_t* const* data, size_t datasize, int count) -> uint8_t* {
 			const auto result_size = count * datasize;
 			auto result = new uint8_t[result_size]{};
 			// host callable
@@ -618,8 +660,6 @@ namespace witcher_pic {
 			// 霍夫变换，得到霍夫空间矩阵
 			dim3 block(32, 32);
 			dim3 grid((width + block.x - 1) / block.x, (height + block.y - 1) / block.y);
-			unsigned blocksize = 1024;
-			unsigned gridsize = (houghsize * houghsize + blocksize - 1) / blocksize;
 			cudaHoughTransform<<<grid, block>>>(cu_houghzoom, cu_source, width, height, houghsize, r_offset, del_theta,
 			                                    del_radius);
 			cudaDeviceSynchronize();
@@ -677,9 +717,7 @@ namespace witcher_pic {
 
 			thrust::device_vector<bool> line_model(size);
 			thrust::transform(thrust::device, dv_idx_it.begin(), dv_idx_it.end(), line_model.begin(),
-			                  [width, theta, radius, lower, higher, sintheta, costheta, cottheta] __device__ (
-			                  const size_t& idx) ->
-			                  uint8_t {
+			                  [width, theta, radius, lower, higher, sintheta, costheta, cottheta] __device__ (const size_t& idx) -> bool {
 				                  int x = idx % width;
 				                  int y = idx / width;
 				                  int cal;
@@ -693,8 +731,7 @@ namespace witcher_pic {
 					                           (y <= cal + higher);
 			                  });
 
-			thrust::transform_if(thrust::device, dv_source.begin(), dv_source.end(), line_model.begin(),
-			                     dv_source.begin(),
+			thrust::transform_if(thrust::device, dv_source.begin(), dv_source.end(), line_model.begin(),  dv_source.begin(),
 			                     [brightness] __device__ (const uint8_t&) -> uint8_t {
 				                     return brightness;
 			                     }, thrust::identity<bool>());

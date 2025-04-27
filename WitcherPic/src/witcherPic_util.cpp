@@ -8,6 +8,7 @@
 #include <fmt/color.h>
 #include <bits/shared_ptr.h>
 #include <FreeImage.h>
+#include "witcherPic.h"
 
 using namespace Eigen;
 
@@ -126,14 +127,19 @@ namespace witcher_pic {
 		delete b_dir;
 	}
 
-	Image::Image(unsigned width, unsigned height, int bpp): p_impl_(new ImageImpl(width, height, bpp)) {
+	Image::Image(unsigned width, unsigned height, int bpp)
+		: p_impl_(new ImageImpl(width, height, bpp)) {
 	}
 
-	Image::Image(const Image& mat)
-		: p_impl_(new ImageImpl(*mat.p_impl_)) {
-	}
+    Image::Image(rgba *colors, unsigned width, unsigned height, int bpp)
+		: p_impl_(new ImageImpl(colors, width, height, bpp)) {
+    }
 
-	Image::~Image() {
+    Image::Image(const Image &mat)
+        : p_impl_(new ImageImpl(*mat.p_impl_)) {
+    }
+
+    Image::~Image() {
 		delete p_impl_;
 	}
 

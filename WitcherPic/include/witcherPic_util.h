@@ -90,6 +90,7 @@ namespace witcher_pic {
 
 	public:
 		ImageImpl(unsigned width, unsigned height, int bpp);
+		ImageImpl(rgba* colors, unsigned width, unsigned height, int bpp);
 		ImageImpl(const ImageImpl& mat);
 		auto resize(unsigned width, unsigned height) -> void;
 		auto resizeLike(const ImageImpl& other) -> void;

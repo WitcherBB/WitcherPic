@@ -1,4 +1,5 @@
 #include "witcherPic_util.h"
+#include "cudaWitcherPic.h"
 #include "witcher_template.hpp"
 
 #include <FreeImage.h>
@@ -6,20 +7,19 @@
 #include <fmt/color.h>
 
 namespace witcher_pic {
-	ImageImpl::ImageImpl(unsigned width, unsigned height, int bpp): bpp_(bpp) {
-		r_matrix_.resize(height, width);
-		r_matrix_.fill(0u);
-		g_matrix_.resize(height, width);
-		g_matrix_.fill(0u);
-		b_matrix_.resize(height, width);
-		b_matrix_.fill(0u);
-		a_matrix_.resize(height, width);
-		a_matrix_.fill(255u);
+	ImageImpl::ImageImpl(unsigned width, unsigned height, int bpp)
+		: r_matrix_(height, width), g_matrix_(height, width), b_matrix_(height, width), a_matrix_(height, width), bpp_(bpp) {
+		hostRGBAMatAssign(r_matrix_.data(), g_matrix_.data(), b_matrix_.data(), a_matrix_.data(), nullptr, width * height);
 	}
 
-	ImageImpl::ImageImpl(const ImageImpl& mat): r_matrix_(mat.r_matrix_), g_matrix_(mat.g_matrix_),
-	                                            b_matrix_(mat.b_matrix_),
-	                                            a_matrix_(mat.a_matrix_), bpp_(mat.bpp_) {
+    ImageImpl::ImageImpl(rgba* colors, unsigned width, unsigned height, int bpp)
+		: r_matrix_(height, width), g_matrix_(height, width), b_matrix_(height, width), a_matrix_(height, width), bpp_(bpp) {
+		hostRGBAMatAssign(r_matrix_.data(), g_matrix_.data(), b_matrix_.data(), a_matrix_.data(), colors, width * height);
+    }
+
+    ImageImpl::ImageImpl(const ImageImpl& mat): r_matrix_(mat.r_matrix_), g_matrix_(mat.g_matrix_),
+	                                            b_matrix_(mat.b_matrix_), a_matrix_(mat.a_matrix_),
+												bpp_(mat.bpp_) {
 	}
 
 	auto ImageImpl::resize(unsigned width, unsigned height) -> void {
@@ -353,7 +353,7 @@ namespace witcher_pic {
 		return canny(*edgeinfo, l_threshold, h_threshold, kernelsize, l2_gradient);
 	}
 
-	auto ImageProcessor::tiltCorrection(size_t zoomsize, bool copy, unsigned kermelsize, bool l2_gradient) -> ImageProcessor& {
+	auto ImageProcessor::tiltCorrection(size_t zoomsize, bool copy, unsigned kermelsize, bool l2_gradient, bool pdebug) -> ImageProcessor& {
 		auto img_impl = impl();
 		ImageProcessor cpy_pro(copy ? img_->copy() : img_);
 		auto cpy_img_impl = cpy_pro.impl();
@@ -363,14 +363,14 @@ namespace witcher_pic {
 		cpy_pro.canny(kermelsize, l2_gradient);
 		zoomsize = zoomsize ? zoomsize : std::ranges::min(img_impl->width(), img_impl->height());
 		auto hough = lineExtra(cpy_img_impl->r_matrix_, zoomsize);
-#ifdef _DEBUG
+		if (pdebug) {
 			for (size_t i = 0; i < hough->size; i++) {
 				double theta = hough->max_thetas[i];
 				double radius = hough->max_redius[i];
-				printf("theta%lld=%lf rad, r%lld=%lf", i, theta, i, radius);
-				drawLine(*impl, radius, theta, 0xFF0099, 4);
+				fmt::print("theta{0}={1} rad, r{0}={2}", i, theta, radius);
+				drawLine(*img_, radius, theta, 0xFF0099, 4);
 			}
-#endif
+		}
 		if (hough->size) {
 			const double pidiv2 = std::numbers::pi_v<double> / 2;
 			auto k_theta = hough->max_thetas[0] > pidiv2
@@ -518,7 +518,7 @@ extern "C" {
         auto data = image.data();
         for (auto y = 0u; y < height; y++) {
             auto line = FreeImage_GetScanLine(bitmap, y);
-            memcpy(line, data + y * width * bpp / 8, width * bpp / 8);
+            memcpy(line, data + (height - 1 - y) * width * bpp / 8, width * bpp / 8);
         }
         delete[] data;
     
@@ -562,7 +562,7 @@ extern "C" {
         if (bpp == 32) {
             for (auto x = 0; x < width; x++) {
                 for (auto y = 0; y < height; y++) {
-                    auto bPos = y * pitch + x * 4;
+                    auto bPos = (height - 1 - y) * pitch + x * 4;
                     uint8_t r = bytes[bPos + FI_RGBA_RED];
                     uint8_t g = bytes[bPos + FI_RGBA_GREEN];
                     uint8_t b = bytes[bPos + FI_RGBA_BLUE];
@@ -573,7 +573,7 @@ extern "C" {
         } else if (bpp == 24) {
             for (auto x = 0; x < width; x++) {
                 for (auto y = 0; y < height; y++) {
-                    auto bPos = y * pitch + x * 3;
+                    auto bPos = (height - 1 - y) * pitch + x * 3;
                     uint8_t r = bytes[bPos + FI_RGBA_RED];
                     uint8_t g = bytes[bPos + FI_RGBA_GREEN];
                     uint8_t b = bytes[bPos + FI_RGBA_BLUE];
@@ -583,7 +583,7 @@ extern "C" {
         } else if (bpp == 8) {
             for (auto x = 0; x < width; x++) {
                 for (auto y = 0; y < height; y++) {
-                    auto bPos = y * pitch + x;
+                    auto bPos = (height - 1 - y) * pitch + x;
                     uint8_t r = bytes[bPos];
                     img->putPixel(x, y, r, r, r, 255);
                 }
