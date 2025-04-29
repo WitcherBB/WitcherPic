@@ -1,7 +1,10 @@
 #pragma once
 #include "witcherPic_types.h"
 
+#include <type_traits>
 #include <cstdint>
+#include <bits/shared_ptr.h>
+#include <functional>
 
 
 namespace witcher_pic {
@@ -21,8 +24,23 @@ namespace witcher_pic {
 		long double llf;
 	};
 
-	enum class Operator {
+	struct WitcherSize {
+		unsigned width;
+		unsigned height;
+		const size_t size;
+
+		WitcherSize(unsigned pw, unsigned ph);
+	};
+	
+	template<bool _Const = true>
+	using wsize_ptr = std::shared_ptr<std::conditional_t<_Const, const WitcherSize, WitcherSize>>;
+
+	enum class WOperator {
 		PLUS, MINUS, MUL, DEVIDE
+	};
+
+	enum class WCUDAResizeMode:uint8_t {
+		NEAREST, BILINEAR, BICUBIC
 	};
 
 	extern "C" {
@@ -49,8 +67,10 @@ namespace witcher_pic {
 		                  uint8_t brightness, int thickness) -> void;
 		auto hostRotate(const uint8_t* source, double theta, unsigned width, unsigned height,
 		                unsigned& new_width, unsigned& new_height) -> uint8_t*;
+		auto hostInterpo(WCUDAResizeMode mode, uint8_t* target, const uint8_t* source, wsize_ptr<> oldsize, wsize_ptr<> newsize) -> void;
+
 		// haven't implemented yet
-		auto hostCalc(Operator op, Number* data1, Number* data2, ptrdiff_t data_size, size_t type_size,
+		auto hostCalc(WOperator op, Number* data1, Number* data2, ptrdiff_t data_size, size_t type_size,
 		              bool is_floating, bool is_unsigned) -> Number*;
 	}
 }

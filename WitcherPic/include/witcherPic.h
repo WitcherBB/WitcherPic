@@ -21,15 +21,18 @@ namespace witcher_pic {
 		LOG
 	};
 
+	enum class CppResizeMode:uint8_t {
+		NEAREST,
+		BILINEAR,
+		BICUBIC
+	};
+
 	class Image {
 	public:
 		Image(unsigned width, unsigned height, int bpp);
 		Image(rgba* colors, unsigned width, unsigned height, int bpp);
 		Image(const Image& mat);
 		~Image();
-		auto resize(unsigned width, unsigned height) -> void;
-		auto resizeLike(const Image& other) -> void;
-		auto resizeLike(const Image* other) -> void;
 		auto putPixel(unsigned x, unsigned y, rgba color) -> void;
 		auto putPixel(unsigned x, unsigned y, uint8_t r, uint8_t g, uint8_t b, uint8_t a) -> void;
 		auto data() const -> uint8_t*;
@@ -83,6 +86,7 @@ namespace witcher_pic {
 		                 uint8_t r = 0) -> ImageProcessor&;
 		auto addWeighted(const Image* other, float w1, float w2,
 		                 uint8_t r = 0) -> ImageProcessor&;
+		auto resize(long newwidth = -1, long newheight = -1, CppResizeMode mode = CppResizeMode::NEAREST) -> ImageProcessor&;
 		auto get() const -> Image&;
 		auto impl() const -> ImageImpl*;
 

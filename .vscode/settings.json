@@ -12,5 +12,6 @@
         "algorithm": "cpp",
         "ratio": "cpp",
         "cstdint": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "/home/witcherbb/Projects/c_cpp/graduation/cpp/WitcherPic"
 }

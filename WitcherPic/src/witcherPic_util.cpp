@@ -143,18 +143,6 @@ namespace witcher_pic {
 		delete p_impl_;
 	}
 
-	auto Image::resize(unsigned width, unsigned height) -> void {
-		p_impl_->resize(width, height);
-	}
-
-	auto Image::resizeLike(const Image& other) -> void {
-		p_impl_->resizeLike(*other.impl());
-	}
-
-	auto Image::resizeLike(const Image* other) -> void {
-		p_impl_->resizeLike(*other->impl());
-	}
-
 	auto Image::putPixel(unsigned x, unsigned y, rgba color) -> void {
 		p_impl_->putPixel(x, y, color);
 	}
@@ -428,4 +416,6 @@ namespace witcher_pic {
 	auto gpuDeviceInfo() -> void {
 		hostDeviceInfo();
 	}
+
+	
 }

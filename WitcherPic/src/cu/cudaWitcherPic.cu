@@ -3,8 +3,6 @@
 #include "device_launch_parameters.h"
 #include "witcherPic_types.h"
 
-#include <cmath>
-#include <cstdio>
 #include <stdexcept>
 #include <variant>
 #include <stdint.h>
@@ -38,9 +36,12 @@ namespace witcher_pic {
 		int* deviceMutex = nullptr;
 	}
 
+	WitcherSize::WitcherSize(unsigned pw, unsigned ph): width(pw), height(ph), size(pw * ph) {
+    }
+
 	__global__ auto cudaMatFilter(uint8_t* result, uint8_t* source, float* model, FilterInfo info) -> void {
-		int cx = static_cast<int>(blockIdx.x * blockDim.x + threadIdx.x);
-		int cy = static_cast<int>(blockIdx.y * blockDim.y + threadIdx.y);
+		int cx = blockIdx.x * blockDim.x + threadIdx.x;
+		int cy = blockIdx.y * blockDim.y + threadIdx.y;
 
 		if (cx >= info.source_w || cy >= info.source_h) {
 			return;
@@ -54,7 +55,7 @@ namespace witcher_pic {
 				for (auto ry = 0; ry < info.model_h; ry++) {
 					const int xi = max(0, min(cx - info.rcx + rx, info.source_w - 1));
 					const int yi = max(0, min(cy - info.rcy + ry, info.source_h - 1));
-					color += model[ry * info.model_w + rx] * static_cast<float>(source[yi * info.source_w + xi]);
+					color += model[ry * info.model_w + rx] * __uint2float_rd(source[yi * info.source_w + xi]);
 				}
 			}
 			break;
@@ -84,7 +85,7 @@ namespace witcher_pic {
 			delete[] pixels;
 			break;
 		}
-		result[cy * info.source_w + cx] = static_cast<uint8_t>(color);
+		result[cy * info.source_w + cx] = color;
 	}
 
 	__global__ auto cudaGrayCount(size_t* count_arr, uint8_t* source, size_t s_size) -> void {
@@ -100,8 +101,7 @@ namespace witcher_pic {
 		source[idx] = map_table[source[idx]];
 	}
 
-	__global__ auto cudaTwoDimCrossCorre(uint8_t* target, const uint8_t* source, const float* model,
-	                                     unsigned s_w, unsigned s_h, unsigned m_w, unsigned m_h) -> void {
+	__global__ auto cudaTwoDimCrossCorre(uint8_t* target, const uint8_t* source, const float* model, unsigned s_w, unsigned s_h, unsigned m_w, unsigned m_h) -> void {
 		unsigned center_x = blockIdx.x * blockDim.x + threadIdx.x;
 		unsigned center_y = blockIdx.y * blockDim.y + threadIdx.y;
 		unsigned m_center = (m_w - 1) / 2;
@@ -115,24 +115,21 @@ namespace witcher_pic {
 		for (size_t idx = 0; idx < (size_t)(m_w * m_h); idx++) {
 			unsigned rx = idx % m_w;
 			unsigned ry = (unsigned)(idx / m_w);
-			color += model[idx] * static_cast<float>(source[
-				(center_y - m_center + ry) * s_w + (center_x - m_center + rx)]);
+			color += model[idx] * __uint2float_rd(source[(center_y - m_center + ry) * s_w + (center_x - m_center + rx)]);
 		}
 
-		target[center_y * s_w + center_x] = static_cast<uint8_t>(__fmul_rz(
-			__saturatef(__fdividef(fabsf(color), 255.0F)), 255.0F));
+		target[center_y * s_w + center_x] = __fmul_rz(__saturatef(__fdividef(fabsf(color), 255.0F)), 255.0F);
 	}
 
-	__global__ auto cudaAddWeighted(uint8_t* target, float w1, const uint8_t* other, float w2, uint8_t r,
-	                                size_t size, bool l2_gradient) -> void {
+	__global__ auto cudaAddWeighted(uint8_t* target, float w1, const uint8_t* other, float w2, uint8_t r, size_t size, bool l2_gradient) -> void {
 		unsigned idx = blockIdx.x * blockDim.x + threadIdx.x;
 		if (idx >= size) {
 			return;
 		}
 		uint8_t t_val = target[idx];
 		uint8_t o_val = other[idx];
-		target[idx] = static_cast<uint8_t>(saturate(
-			l2_gradient ? sqrtf(w1 * t_val * t_val + w2 * o_val * o_val) : (w1 * t_val + w2 * o_val), 0, 255));
+		target[idx] = __fmul_rz(__saturatef(
+			l2_gradient * sqrtf(w1 * t_val * t_val + w2 * o_val * o_val) + (1 - l2_gradient) * (w1 * t_val + w2 * o_val)), 255.0F);
 	}
 
 	__global__ auto cudaInsertData(uint8_t* result, uint8_t** data, size_t datasize, int count) -> void {
@@ -144,8 +141,7 @@ namespace witcher_pic {
 		}
 	}
 
-	__global__ auto cudaGetAngleInfo(int* dir_data, const uint8_t* xdata, const uint8_t* ydata,
-	                                 unsigned width, unsigned height) -> void {
+	__global__ auto cudaGetAngleInfo(int* dir_data, const uint8_t* xdata, const uint8_t* ydata, unsigned width, unsigned height) -> void {
 		unsigned center_x = blockIdx.x * blockDim.x + threadIdx.x;
 		unsigned center_y = blockIdx.y * blockDim.y + threadIdx.y;
 		unsigned idx = center_y * width + center_x;
@@ -157,12 +153,11 @@ namespace witcher_pic {
 		float x_val = xdata[idx];
 		float y_val = ydata[idx];
 
-		int angle = static_cast<int>(rintf(x_val == 0.0F ? 2 : atanf(y_val / x_val) / (PI_F / 4))) * 45;
+		int angle = __float2int_rd(rintf(x_val == 0.0F ? 2 : atanf(y_val / x_val) / (PI_F / 4))) * 45;
 		dir_data[idx] = angle == -90 ? 90 : (angle == -45 ? 135 : angle);
 	}
 
-	__global__ auto cudaNonMaxSuppression(uint8_t* result, const uint8_t* source, const int* dir, unsigned width,
-	                                      unsigned height) -> void {
+	__global__ auto cudaNonMaxSuppression(uint8_t* result, const uint8_t* source, const int* dir, unsigned width, unsigned height) -> void {
 		unsigned c_x = blockIdx.x * blockDim.x + threadIdx.x;
 		unsigned c_y = blockIdx.y * blockDim.y + threadIdx.y;
 		size_t idx = c_y * width + c_x;
@@ -196,9 +191,7 @@ namespace witcher_pic {
 		result[idx] = source[idx] >= source[idx1] && source[idx] >= source[idx2] ? source[idx] : 0;
 	}
 
-	__global__ auto cudaTwoThreshold(uint8_t* target, uint8_t* source, uint8_t l_threshold, uint8_t h_threshold,
-	                                 unsigned width,
-	                                 unsigned height) -> void {
+	__global__ auto cudaTwoThreshold(uint8_t* target, uint8_t* source, uint8_t l_threshold, uint8_t h_threshold, unsigned width, unsigned height) -> void {
 		int2 center{(int)(blockIdx.x * blockDim.x + threadIdx.x), (int)(blockIdx.y * blockDim.y + threadIdx.y)};
 		size_t c_idx = center.y * width + center.x;
 		if (center.x >= (int)width || center.y >= (int)height) {
@@ -237,9 +230,7 @@ namespace witcher_pic {
 		}
 	}
 
-	__global__ auto cudaHoughTransform(size_t* houghzoom, const uint8_t* source, unsigned width, unsigned height,
-	                                   unsigned houghsize, unsigned r_offset, double del_theta,
-	                                   double del_radius) -> void {
+	__global__ auto cudaHoughTransform(size_t* houghzoom, const uint8_t* source, unsigned width, unsigned height, unsigned houghsize, unsigned r_offset, double del_theta, double del_radius) -> void {
 		uint2 c_point{
 			blockIdx.x * blockDim.x + threadIdx.x,
 			blockIdx.y * blockDim.y + threadIdx.y
@@ -287,8 +278,7 @@ namespace witcher_pic {
 		}
 	}
 
-	__global__ auto cudaHoughLineCount(size_t* count, const size_t* houghzoom, size_t peak,
-	                                   unsigned houghsize) -> void {
+	__global__ auto cudaHoughLineCount(size_t* count, const size_t* houghzoom, size_t peak, unsigned houghsize) -> void {
 		unsigned idx = blockDim.x * blockIdx.x + threadIdx.x;
 
 		if (idx < houghsize * houghsize && houghzoom[idx] == peak) {
@@ -296,9 +286,7 @@ namespace witcher_pic {
 		}
 	}
 
-	__global__ auto cudaHoughPeakLines(double* radius, double* thetas, const size_t* houghzoom,
-	                                   size_t linesize, size_t peak, unsigned houghsize, double del_theta,
-	                                   double del_radius, unsigned r_offset, size_t* index) -> void {
+	__global__ auto cudaHoughPeakLines(double* radius, double* thetas, const size_t* houghzoom, size_t linesize, size_t peak, unsigned houghsize, double del_theta, double del_radius, unsigned r_offset, size_t* index) -> void {
 		uint2 point{
 			blockDim.x * blockIdx.x + threadIdx.x,
 			blockDim.y * blockIdx.y + threadIdx.y,
@@ -335,6 +323,82 @@ namespace witcher_pic {
 		a[idx] = (rgba[idx] >> 0) & 0xFF;
 	}
 
+	__global__ auto cudaNearestInterpo(uint8_t* target, const uint8_t* source, WitcherSize oldsize, WitcherSize newsize) -> void {
+		uint2 idx {
+			blockIdx.x * blockDim.x + threadIdx.x,
+			blockIdx.y * blockDim.y + threadIdx.y
+		};
+		uint2 oldpos {
+			__float2uint_rd(idx.x * (__uint2float_rd(oldsize.width) / newsize.width)),
+			__float2uint_rd(idx.y * (__uint2float_rd(oldsize.height) / newsize.height))
+		};
+		if (idx.x < newsize.width && idx.y < newsize.height) {
+			target[idx.y * newsize.width + idx.x] = source[oldpos.y * oldsize.width + oldpos.x];
+		}
+	}
+
+	__global__ auto cudaBilinearInterpo(uint8_t* target, const uint8_t* source, WitcherSize oldsize, WitcherSize newsize) -> void {
+		uint2 idx {
+			blockIdx.x * blockDim.x + threadIdx.x,
+			blockIdx.y * blockDim.y + threadIdx.y
+		};
+		float2 oldpos {
+			idx.x * (__uint2float_rd(oldsize.width) / newsize.width),
+			idx.y * (__uint2float_rd(oldsize.height) / newsize.height)
+		};
+		uint2 oldidx {__float2uint_rd(oldpos.x), __float2uint_rd(oldpos.y)};
+		uint2 oldidxrd {
+			oldidx.x + (oldidx.x + 1 < oldsize.width),
+			oldidx.y + (oldidx.y + 1 < oldsize.height)
+		};
+
+		float r1 = (oldidx.x + 1 - oldpos.x) * source[oldidx.y * oldsize.width + oldidx.x] + (oldpos.x - oldidx.x) * source[oldidx.y * oldsize.width + oldidxrd.x];
+		float r2 = (oldidx.x + 1 - oldpos.x) * source[oldidxrd.y * oldsize.width + oldidx.x] + (oldpos.x - oldidx.x) * source[oldidxrd.y * oldsize.width + oldidxrd.x];
+		if (idx.x < newsize.width && idx.y < newsize.height) {
+			target[idx.y * newsize.width + idx.x] = (oldidx.y + 1 - oldpos.y) * r1 + (oldpos.y - oldidx.y) * r2;
+		}
+	}
+
+	__device__ auto bicubic(float x, float a) -> float {
+		float abs_x = fabsf(x);
+		float abs_x2 = abs_x * abs_x;
+		float abs_x3 = abs_x2 * abs_x;
+		return (abs_x <= 1) * ((a + 2) * abs_x3 - (a + 3) * abs_x2 + 1) + (abs_x > 1 && abs_x < 2) * (a * abs_x3 - 5 * a * abs_x2 + 8 * a * abs_x - 4 * a);
+	}
+
+	__global__ auto cudaBicubicInterpo(uint8_t* target, const uint8_t* source, WitcherSize oldsize, WitcherSize newsize, uint8_t min_light, uint8_t max_light) -> void {
+		uint2 idx {
+			.x = blockDim.x * blockIdx.x + threadIdx.x,
+			.y = blockDim.y * blockIdx.y + threadIdx.y
+		};
+		float2 oldpos {
+			idx.x * __uint2float_rn(oldsize.width) / __uint2float_rn(newsize.width),
+			idx.y * __uint2float_rn(oldsize.height) / __uint2float_rn(newsize.height)
+		};
+		int2 oldidx {__float2int_rz(oldpos.x), __float2int_rz(oldpos.y)};
+		auto newidx = idx.y * newsize.width + idx.x;
+		int r_edge = static_cast<int>(oldsize.width - 1);
+		int b_edge = static_cast<int>(oldsize.height - 1);
+
+		float sum = 0;
+		#pragma unroll 4
+		for (int i = -1; i <= 2; i++) {
+			#pragma unroll 4
+			for (int j = -1; j <= 2; j++) {
+				int sx = oldidx.x + j;
+				int sy = oldidx.y + i;
+				// 将sx控制在 0 ~ oldsize.width - 1
+				int sgx = max(min(sx, r_edge), 0);
+				// 将sy控制在 0 ~ oldsize.height - 1
+				int sgy = max(min(sy, b_edge), 0);
+				sum += source[sgy * oldsize.width + sgx] * bicubic(oldpos.x - sx, -0.5f) * bicubic(oldpos.y - sy, -0.5f);
+			}
+		}
+		if (idx.x < newsize.width && idx.y < newsize.height) {
+			target[newidx] = __vimin_s32_relu(__float2int_rn(sum), 255);
+		}
+	}
+
 #ifdef _DEBUG
 	__global__ auto cudaTest() -> void {
 		printf("x: %u, y: %u\n", threadIdx.x, threadIdx.y);
@@ -342,7 +406,6 @@ namespace witcher_pic {
 #endif
 	extern "C" {
 		auto deviceInit() -> void {
-			mutex::init();
 		}
 
 		auto hostDeviceInfo() -> void {
@@ -427,8 +490,7 @@ namespace witcher_pic {
 			CHECK_CUDA_LAST_ERR("mapGrayImage")
 		}
 
-		auto hostTwoDimCrossCorre(const uint8_t* source, const float* model, unsigned s_w, unsigned s_h, unsigned m_w,
-		                          unsigned m_h) -> uint8_t* {
+		auto hostTwoDimCrossCorre(const uint8_t* source, const float* model, unsigned s_w, unsigned s_h, unsigned m_w, unsigned m_h) -> uint8_t* {
 			const size_t s_size = s_w * s_h;
 			const size_t m_size = m_w * m_h;
 			uint8_t* result = new uint8_t[s_size]{0};
@@ -539,9 +601,7 @@ namespace witcher_pic {
 			return result;
 		}
 
-		auto hostGetEdgeInfo(int* dirmat, const uint8_t* source, const float* model_x, const float* model_y,
-		                     unsigned s_width, unsigned s_height, unsigned m_width, unsigned m_height,
-		                     bool l2_gradient) -> uint8_t* {
+		auto hostGetEdgeInfo(int* dirmat, const uint8_t* source, const float* model_x, const float* model_y, unsigned s_width, unsigned s_height, unsigned m_width, unsigned m_height, bool l2_gradient) -> uint8_t* {
 			size_t s_size = s_width * s_height;
 			size_t m_size = m_width * m_height;
 
@@ -616,8 +676,7 @@ namespace witcher_pic {
 			return result;
 		}
 
-		auto hostTwoThreshold(const uint8_t* source, unsigned width, unsigned height, uint8_t l_threshold,
-		                      uint8_t h_threshold) -> uint8_t* {
+		auto hostTwoThreshold(const uint8_t* source, unsigned width, unsigned height, uint8_t l_threshold, uint8_t h_threshold) -> uint8_t* {
 			size_t size = width * height;
 			uint8_t* result = new uint8_t[size]{};
 			uint8_t *cu_source, *cu_result;
@@ -637,8 +696,7 @@ namespace witcher_pic {
 			return result;
 		}
 
-		auto hostLineExtra(double** max_radius, double** max_thetas, size_t& line_size, const uint8_t* source,
-		                   unsigned width, unsigned height, unsigned houghsize) -> void {
+		auto hostLineExtra(double** max_radius, double** max_thetas, size_t& line_size, const uint8_t* source, unsigned width, unsigned height, unsigned houghsize) -> void {
 			// 如果houghsize是偶数，异常
 			houghsize = (houghsize % 2) ? houghsize : houghsize + 1;
 
@@ -701,8 +759,7 @@ namespace witcher_pic {
 			CHECK_CUDA_LAST_ERR("lineExtra")
 		}
 
-		auto hostDrawLine(uint8_t* source, unsigned width, unsigned height, double radius, double theta,
-		                  uint8_t brightness, int thickness) -> void {
+		auto hostDrawLine(uint8_t* source, unsigned width, unsigned height, double radius, double theta, uint8_t brightness, int thickness) -> void {
 			size_t size = width * height;
 			const double costheta = cos(theta);
 			const double sintheta = sin(theta);
@@ -712,7 +769,6 @@ namespace witcher_pic {
 
 			thrust::counting_iterator<size_t> idx_it;
 			thrust::device_vector<size_t> dv_idx_it(idx_it, idx_it + size);
-			// thrust::host_vector<uint8_t> hv_source(source, source + size);
 			thrust::device_vector<uint8_t> dv_source(source, source + size);
 
 			thrust::device_vector<bool> line_model(size);
@@ -723,12 +779,8 @@ namespace witcher_pic {
 				                  int cal;
 				                  bool is_horizontal = theta <= PI / 4 || theta >= PI * 3 / 4;
 				                  return is_horizontal
-					                         ? (cal = (int)round(-tan(theta) * y + radius / costheta), (
-						                            x >= cal - lower))
-					                           && (x <= cal + higher)
-					                         : (cal = (int)round(-cottheta * x + radius / sintheta), (y >= cal - lower))
-					                           &&
-					                           (y <= cal + higher);
+								  ? (cal = (int)rint(-tan(theta) * y + radius / costheta), (x >= cal - lower)) && (x <= cal + higher)
+								  : (cal = (int)rint(-cottheta * x + radius / sintheta), (y >= cal - lower)) && (y <= cal + higher);
 			                  });
 
 			thrust::transform_if(thrust::device, dv_source.begin(), dv_source.end(), line_model.begin(),  dv_source.begin(),
@@ -739,8 +791,7 @@ namespace witcher_pic {
 			thrust::copy(dv_source.begin(), dv_source.end(), source);
 		}
 
-		auto hostRotate(const uint8_t* source, double theta, unsigned width, unsigned height, unsigned& new_width,
-		                unsigned& new_height) -> uint8_t* {
+		auto hostRotate(const uint8_t* source, double theta, unsigned width, unsigned height, unsigned& new_width, unsigned& new_height) -> uint8_t* {
 			const size_t size = width * height;
 			thrust::device_vector<int> x_mat(size), y_mat(size);
 			thrust::device_vector<int> x_result(size), y_result(size);
@@ -752,15 +803,15 @@ namespace witcher_pic {
 			                  });
 			thrust::transform(thrust::device, counting_it, counting_it + size, y_mat.begin(),
 			                  [width] __device__ (const size_t& idx) -> int {
-				                  return idx / width;
+				            	  return idx / width;
 			                  });
 			thrust::transform(thrust::device, x_mat.begin(), x_mat.end(), y_mat.begin(), x_result.begin(),
 			                  [theta] __device__ (const int& x, const int& y) -> int {
-				                  return (int)round(y * sin(theta) + x * cos(theta));
+				                  return (int)rint(y * sin(theta) + x * cos(theta));
 			                  });
 			thrust::transform(thrust::device, x_mat.begin(), x_mat.end(), y_mat.begin(), y_result.begin(),
 			                  [theta] __device__ (const int& x, const int& y) -> int {
-				                  return (int)round(y * cos(theta) - x * sin(theta));
+				                  return (int)rint(y * cos(theta) - x * sin(theta));
 			                  });
 			struct _MaxMin {
 				int max;
@@ -811,8 +862,54 @@ namespace witcher_pic {
 			return result;
 		}
 
-		auto hostCalc(Operator op, Number* data1, Number* data2, ptrdiff_t data_size, size_t type_size,
-		              bool is_floating, bool is_unsigned) -> Number* {
+		using interpo_func = std::function<void(thrust::device_ptr<uint8_t>, thrust::device_ptr<const uint8_t>, wsize_ptr<>, wsize_ptr<>)>;
+
+        auto hostNearestInterpo(thrust::device_ptr<uint8_t> dtarget, thrust::device_ptr<const uint8_t> dsource, wsize_ptr<> oldsize, wsize_ptr<> newsize) -> void {
+			dim3 blockSize(32, 32);
+			dim3 gridSize((newsize->width + blockSize.x - 1) / blockSize.x, (newsize->height + blockSize.y - 1) / blockSize.y);
+			cudaNearestInterpo<<<gridSize, blockSize>>>(dtarget.get(), dsource.get(), *oldsize, *newsize);
+        }
+
+        auto hostBilinearInterpo(thrust::device_ptr<uint8_t> dtarget, thrust::device_ptr<const uint8_t> dsource, wsize_ptr<> oldsize, wsize_ptr<> newsize) -> void {
+			dim3 blockSize(32, 32);
+			dim3 gridSize((newsize->width + blockSize.x - 1) / blockSize.x, (newsize->height + blockSize.y - 1) / blockSize.y);
+			cudaBilinearInterpo<<<gridSize, blockSize>>>(dtarget.get(), dsource.get(), *oldsize, *newsize);
+        }
+
+        auto hostBicubicInterpo(thrust::device_ptr<uint8_t> dtarget, thrust::device_ptr<const uint8_t> dsource, wsize_ptr<> oldsize, wsize_ptr<> newsize) -> void {
+			uint8_t min_light = thrust::reduce(dsource, dsource + oldsize->size, (uint8_t)0, thrust::minimum());
+			uint8_t max_light = thrust::reduce(dsource, dsource + oldsize->size, (uint8_t)0, thrust::maximum());
+			dim3 blockSize(32, 32);                                                                      
+			dim3 gridSize((newsize->width + blockSize.x - 1) / blockSize.x, (newsize->height + blockSize.y - 1) / blockSize.y);
+			cudaBicubicInterpo<<<gridSize, blockSize>>>(dtarget.get(), dsource.get(), *oldsize, *newsize, min_light, max_light);
+        }
+
+        auto hostInterpo(WCUDAResizeMode mode, uint8_t *target, const uint8_t *source, wsize_ptr<> oldsize, wsize_ptr<> newsize) -> void {
+			interpo_func interpo;
+			switch (mode) {
+			case WCUDAResizeMode::NEAREST:
+				interpo = hostNearestInterpo;
+				break;
+			case WCUDAResizeMode::BILINEAR:
+				interpo = hostBilinearInterpo;
+				break;
+			case WCUDAResizeMode::BICUBIC:
+				interpo = hostBicubicInterpo;
+				break;
+			}
+			
+			auto dtarget = thrust::device_malloc<uint8_t>(newsize->size);
+			auto dsource = thrust::device_malloc<uint8_t>(oldsize->size);
+			thrust::copy_n(source, oldsize->size, dsource);
+
+			interpo(dtarget, dsource, oldsize, newsize);
+
+			thrust::copy_n(dtarget, newsize->size, target);
+			thrust::device_free(dtarget);
+			thrust::device_free(dsource);
+		}
+
+        auto hostCalc(WOperator op, Number* data1, Number* data2, ptrdiff_t data_size, size_t type_size, bool is_floating, bool is_unsigned) -> Number* {
 			auto result = new Number[data_size]{};
 
 			thrust::device_vector<Number> v1(data1, data1 + data_size);

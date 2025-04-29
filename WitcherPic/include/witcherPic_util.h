@@ -92,8 +92,6 @@ namespace witcher_pic {
 		ImageImpl(unsigned width, unsigned height, int bpp);
 		ImageImpl(rgba* colors, unsigned width, unsigned height, int bpp);
 		ImageImpl(const ImageImpl& mat);
-		auto resize(unsigned width, unsigned height) -> void;
-		auto resizeLike(const ImageImpl& other) -> void;
 		auto putPixel(unsigned x, unsigned y, rgba color) -> void;
 		auto putPixel(unsigned x, unsigned y, uint8_t r, uint8_t g, uint8_t b, uint8_t a) -> void;
 		auto data() const -> uint8_t*;

@@ -1,10 +1,14 @@
 #include "witcherPic_util.h"
 #include "cudaWitcherPic.h"
 #include "witcher_template.hpp"
+#include "witcherPic.h"
 
 #include <FreeImage.h>
 #include <stdexcept>
 #include <fmt/color.h>
+#include <functional>
+#include <bits/shared_ptr.h>
+#include <cmath>
 
 namespace witcher_pic {
 	ImageImpl::ImageImpl(unsigned width, unsigned height, int bpp)
@@ -20,20 +24,6 @@ namespace witcher_pic {
     ImageImpl::ImageImpl(const ImageImpl& mat): r_matrix_(mat.r_matrix_), g_matrix_(mat.g_matrix_),
 	                                            b_matrix_(mat.b_matrix_), a_matrix_(mat.a_matrix_),
 												bpp_(mat.bpp_) {
-	}
-
-	auto ImageImpl::resize(unsigned width, unsigned height) -> void {
-		r_matrix_.conservativeResize(height, width);
-		g_matrix_.conservativeResize(height, width);
-		b_matrix_.conservativeResize(height, width);
-		a_matrix_.conservativeResize(height, width);
-	}
-
-	auto ImageImpl::resizeLike(const ImageImpl& other) -> void {
-		r_matrix_.conservativeResizeLike(other.r_matrix_);
-		g_matrix_.conservativeResizeLike(other.g_matrix_);
-		b_matrix_.conservativeResizeLike(other.b_matrix_);
-		a_matrix_.conservativeResizeLike(other.a_matrix_);
 	}
 
 	auto ImageImpl::putPixel(unsigned x, unsigned y, rgba color) -> void {
@@ -406,11 +396,46 @@ namespace witcher_pic {
 		return addWeighted(*other, w1, w2, r);
 	}
 
-	auto ImageProcessor::get() const -> Image& {
-		return *img_;
-	}
+    auto ImageProcessor::resize(long newwidth, long newheight, CppResizeMode mode) -> ImageProcessor& {
+		if (newwidth > UINT32_MAX || newheight > UINT32_MAX) {
+			bool is_width = newwidth > UINT32_MAX;
+			throw std::range_error(std::string(is_width ? "new width" : "new width") + " must smaller than UINT32_MAX");
+		}
+		if (newwidth == -1 && newheight == -1) {
+			return *this;
+		} else if (newwidth == -1) {
+			newwidth = static_cast<long>(std::round(static_cast<double>(newheight * img_->width()) / img_->height()));
+		} else if (newheight == -1) {
+			newheight = static_cast<long>(std::round(static_cast<double>(newwidth * img_->height()) / img_->width()));
+		}
 
-	auto ImageProcessor::checkModelIndex(CppSharpenModel model, int index) -> SharpenMode {
+		auto a = static_cast<CppResizeMode>(3);
+
+		auto tempimg = std::make_shared<Image>(Image(newwidth, newheight, img_->bpp()));
+		auto tempimpl = tempimg->impl();
+		auto impl = this->impl();
+
+		auto oldsize = std::make_shared<const WitcherSize>(img_->width(), img_->height());
+		auto newsize = std::make_shared<const WitcherSize>(newwidth, newheight);
+
+		auto cu_mode = static_cast<WCUDAResizeMode>(mode);
+		hostInterpo(cu_mode, tempimpl->r_matrix_.data(), impl->r_matrix_.data(), oldsize, newsize);
+		if (img_->bpp() > 8) {
+			hostInterpo(cu_mode, tempimpl->g_matrix_.data(), impl->g_matrix_.data(), oldsize, newsize);
+			hostInterpo(cu_mode, tempimpl->b_matrix_.data(), impl->b_matrix_.data(), oldsize, newsize);
+			if (img_->bpp() == 32) {
+				hostInterpo(static_cast<WCUDAResizeMode>(mode == CppResizeMode::BICUBIC ? CppResizeMode::BILINEAR : mode), tempimpl->a_matrix_.data(), impl->a_matrix_.data(), oldsize, newsize);
+			}
+		}
+		*img_ = *tempimg;
+		return *this;
+    }
+
+    auto ImageProcessor::get() const -> Image & {
+        return *img_;
+    }
+
+    auto ImageProcessor::checkModelIndex(CppSharpenModel model, int index) -> SharpenMode {
 		switch (model) {
 		case LOG:
 		case LAPLACIAN:
