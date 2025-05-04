@@ -21,7 +21,7 @@ namespace witcher_pic {
 		LOG
 	};
 
-	enum class CppResizeMode:uint8_t {
+	enum CppResizeMode:uint8_t {
 		NEAREST,
 		BILINEAR,
 		BICUBIC
