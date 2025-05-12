@@ -1,6 +1,5 @@
 #pragma once
-#include <stddef.h>
-#include <stdint.h>
+#include "witcher_types/export_global_types.h"
 
 namespace witcher_pic {
 	using rgba = uint32_t;
@@ -11,6 +10,15 @@ namespace witcher_pic {
 	struct EdgeInfo;
 }
 
+extern "C" {
+	auto witcherpic_init() -> void;
+	auto witcherpic_deinit() -> void;
+	auto witcherpic_recognizeText(const char* pic_name) -> void;
+	auto witcherpic_mixImage(const char* pic_name1, float w1, const char* pic_name2, float w2, uint8_t r = 0) -> void;
+	auto witcherpic_loadImage(const char* pic_name) -> witcher_pic::Image*;
+	auto witcherpic_refSaveImage(const char* filename, const witcher_pic::Image& image) -> void;
+	auto witcherpic_ptrSaveImage(const char* filename, const witcher_pic::Image* image) -> void;
+}
 
 namespace witcher_pic {
 	enum CppSharpenModel:uint8_t {
@@ -28,13 +36,12 @@ namespace witcher_pic {
 	};
 
 	class Image {
+		friend auto ::witcherpic_loadImage(const char* pic_name) -> witcher_pic::Image*;
 	public:
 		Image(unsigned width, unsigned height, int bpp);
 		Image(rgba* colors, unsigned width, unsigned height, int bpp);
 		Image(const Image& mat);
 		~Image();
-		auto putPixel(unsigned x, unsigned y, rgba color) -> void;
-		auto putPixel(unsigned x, unsigned y, uint8_t r, uint8_t g, uint8_t b, uint8_t a) -> void;
 		auto data() const -> uint8_t*;
 		auto normalData() const-> uint8_t*;
 		auto copy() const -> Image*;
@@ -49,6 +56,9 @@ namespace witcher_pic {
 		auto operator()(unsigned x, unsigned y) const -> rgba;
 
 	protected:
+		auto putPixel(unsigned x, unsigned y, rgba color) -> void;
+		auto putPixel(unsigned x, unsigned y, uint8_t r, uint8_t g, uint8_t b, uint8_t a) -> void;
+
 		ImageImpl* p_impl_;
 	};
 
@@ -75,17 +85,13 @@ namespace witcher_pic {
 		auto canny(unsigned kernelsize, bool l2_gradient) -> ImageProcessor&;
 		auto canny(uint8_t l_threshold, uint8_t h_threshold, unsigned kernelsize, bool l2_gradient) -> ImageProcessor&;
 		// Private
-		auto canny(EdgeInfo& edgeinfo, uint8_t l_threshold, uint8_t h_threshold, unsigned kernelsize,
-		           bool l2_gradient) -> ImageProcessor&;
+		auto canny(EdgeInfo& edgeinfo, uint8_t l_threshold, uint8_t h_threshold, unsigned kernelsize, bool l2_gradient) -> ImageProcessor&;
 		// Private
-		auto canny(EdgeInfo* edgeinfo, uint8_t l_threshold, uint8_t h_threshold, unsigned kernelsize,
-		           bool l2_gradient) -> ImageProcessor&;
-		auto tiltCorrection(size_t zoomsize, bool copy = false, unsigned kermelsize = 3,
-		                    bool l2_gradient = true, bool pdebug = false) -> ImageProcessor&;
-		auto addWeighted(const Image& other, float w1, float w2,
-		                 uint8_t r = 0) -> ImageProcessor&;
-		auto addWeighted(const Image* other, float w1, float w2,
-		                 uint8_t r = 0) -> ImageProcessor&;
+		auto canny(EdgeInfo* edgeinfo, uint8_t l_threshold, uint8_t h_threshold, unsigned kernelsize, bool l2_gradient) -> ImageProcessor&;
+		auto tiltCorrection(double rho, double theta, bool copy = false, unsigned kermelsize = 3, bool l2_gradient = true, bool pdebug = false) -> ImageProcessor&;
+		auto houghLines(double rho, double theta, size_t threshold) -> HoughInfo*;
+		auto addWeighted(const Image& other, float w1, float w2, uint8_t r = 0) -> ImageProcessor&;
+		auto addWeighted(const Image* other, float w1, float w2, uint8_t r = 0) -> ImageProcessor&;
 		auto resize(long newwidth = -1, long newheight = -1, CppResizeMode mode = CppResizeMode::NEAREST) -> ImageProcessor&;
 		auto get() const -> Image&;
 		auto impl() const -> ImageImpl*;
@@ -98,14 +104,6 @@ namespace witcher_pic {
 	};
 
 	auto gpuDeviceInfo() -> void;
-}
-
-extern "C" {
-	auto witcherpic_init() -> void;
-	auto witcherpic_deinit() -> void;
-	auto witcherpic_recognizeText(const char* pic_name) -> void;
-	auto witcherpic_mixImage(const char* pic_name1, float w1, const char* pic_name2, float w2, uint8_t r = 0) -> void;
-	auto witcherpic_loadImage(const char* pic_name) -> witcher_pic::Image*;
-	auto witcherpic_refSaveImage(const char* filename, const witcher_pic::Image& image) -> void;
-	auto witcherpic_ptrSaveImage(const char* filename, const witcher_pic::Image* image) -> void;
+	auto drawLine(Image& img, double radius, double theta, uint32_t rgb, int thickness) -> void;
+	auto drawLines(Image& img, const HoughInfo& houghinfo, uint32_t rgb, int thickness) -> void;
 }

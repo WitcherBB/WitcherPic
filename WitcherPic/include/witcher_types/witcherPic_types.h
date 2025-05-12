@@ -1,4 +1,5 @@
 #pragma once
+#include "export_global_types.h"
 
 namespace witcher_pic {
 	enum FilterType {

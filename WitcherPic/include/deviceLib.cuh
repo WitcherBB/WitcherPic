@@ -1,12 +1,13 @@
 #pragma once
 #include <cuda_runtime.h>
+#include <numbers>
 #include "device_launch_parameters.h"
 
 #ifndef PI
-#define PI 3.141592653589793
+#define PI std::numbers::pi_v<double>
 #endif
 #ifndef PI_F
-#define PI_F 3.141592653589793F
+#define PI_F std::numbers::pi_v<float>
 #endif
 
 #define LOCK 1

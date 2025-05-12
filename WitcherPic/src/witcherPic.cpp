@@ -317,8 +317,14 @@ namespace witcher_pic {
 		EdgeInfo e_info;
 		getEdgeInfo(&e_info, gaussianFilter(kernelsize, 1.5).get(), l2_gradient);
 		nonMaxSuppression(&e_info);
-		auto h_thresholds = NumVector<uint8_t>(calcThresholdWithOtsu(e_info.edge), img_->bpp() == 8 ? 1 : 3);
+		uint8_t* thresholds = calcThresholdWithOtsu(e_info.edge);
+		auto h_thresholds = NumVector<uint8_t>(thresholds, img_->bpp() == 8 ? 1 : 3);
 		auto l_thresholds = h_thresholds / 2;
+		for (int i = 0; i < h_thresholds.size(); i++) {
+			printf("%d\n", thresholds[i]);
+		}
+		delete[] thresholds;
+		
 		twoThreshold(&e_info, l_thresholds.data(), h_thresholds.data());
 		return *this;
 	}
@@ -343,20 +349,18 @@ namespace witcher_pic {
 		return canny(*edgeinfo, l_threshold, h_threshold, kernelsize, l2_gradient);
 	}
 
-	auto ImageProcessor::tiltCorrection(size_t zoomsize, bool copy, unsigned kermelsize, bool l2_gradient, bool pdebug) -> ImageProcessor& {
-		auto img_impl = impl();
+	auto ImageProcessor::tiltCorrection(double rho, double theta, bool copy, unsigned kermelsize, bool l2_gradient, bool pdebug) -> ImageProcessor& {
 		ImageProcessor cpy_pro(copy ? img_->copy() : img_);
 		auto cpy_img_impl = cpy_pro.impl();
 		if (cpy_img_impl->bpp_ != 8) {
 			cpy_pro.toGray();
 		}
-		cpy_pro.canny(kermelsize, l2_gradient);
-		zoomsize = zoomsize ? zoomsize : std::ranges::min(img_impl->width(), img_impl->height());
-		auto hough = lineExtra(cpy_img_impl->r_matrix_, zoomsize);
+		cpy_pro.canny(kermelsize, l2_gradient).toOtsuBinary();
+		auto hough = lineExtra(cpy_img_impl->r_matrix_, rho, theta, 0);
 		if (pdebug) {
 			for (size_t i = 0; i < hough->size; i++) {
 				double theta = hough->max_thetas[i];
-				double radius = hough->max_redius[i];
+				double radius = hough->max_radius[i];
 				fmt::print("theta{0}={1} rad, r{0}={2}", i, theta, radius);
 				drawLine(*img_, radius, theta, 0xFF0099, 4);
 			}
@@ -374,7 +378,13 @@ namespace witcher_pic {
 		return *this;
 	}
 
-	auto ImageProcessor::addWeighted(const Image& other, float w1, float w2, uint8_t r) -> ImageProcessor& {
+    auto ImageProcessor::houghLines(double rho, double theta, size_t threshold) -> HoughInfo* {
+		ImageProcessor cpy(img_->copy());
+		cpy.toGray().canny(3, true).toOtsuBinary();
+		return lineExtra(cpy.impl()->r_matrix_, rho, theta, threshold);
+    }
+
+    auto ImageProcessor::addWeighted(const Image& other, float w1, float w2, uint8_t r) -> ImageProcessor& {
 		auto img_impl = impl();
 		if (img_impl->bpp_ != other.impl()->bpp_) {
 			throw std::runtime_error("AddWeighted: Non-uniform bpp!");

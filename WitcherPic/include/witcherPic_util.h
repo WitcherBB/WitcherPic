@@ -1,6 +1,6 @@
 #pragma once
 #include "witcherPic.h"
-#include "witcherPic_types.h"
+#include <witcher_types/witcherPic_types.h>
 #include <Eigen/Dense>
 
 #define SHARPEN_X 1
@@ -25,20 +25,13 @@ namespace witcher_pic {
 	class Image;
 	class ImageProcessor;
 	class ImageImpl;
+	struct HoughInfo;
 
 	template <typename T>
 	using GenMatrix = Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>;
 	using ImgMat = GenMatrix<uint8_t>;
 	using ModelMat = GenMatrix<float>;
 	using HoughZoom = GenMatrix<size_t>;
-
-	struct HoughInfo {
-		double* max_redius;
-		double* max_thetas;
-		size_t size;
-
-		~HoughInfo();
-	};
 
 	struct EdgeInfo {
 		using EdgeDirMat = GenMatrix<int>;
@@ -81,6 +74,7 @@ namespace witcher_pic {
 		friend auto twoThreshold(const EdgeInfo* e_info, const uint8_t* l_threshold,
 								const uint8_t* h_threshold) -> void;
 		friend auto drawLine(Image& img, double radius, double theta, uint32_t rgb, int thickness) -> void;
+		friend auto drawLines(Image& img, const HoughInfo& houghinfo, uint32_t rgb, int thickness) -> void;
 		friend auto rotate(Image& img, double theta, bool clockwise) -> void;
 		friend auto filter(ImageProcessor& processor, const ModelMat& model, int rcx, int rcy, FilterType type) -> ImageProcessor&;
 
@@ -115,9 +109,6 @@ namespace witcher_pic {
 
 	auto filter(ImageProcessor& processor, const ModelMat& model, int rcx, int rcy, FilterType type) -> ImageProcessor&;
 
-#ifdef _DEBUG
-	{
-#endif
 	auto imgFilter(const ImgMat& source, const ModelMat& model, int rcx,
 	               int rcy, FilterType type = CONV) -> ImgMat;
 	auto grayCountTable(const ImgMat& source) -> size_t*;
@@ -131,11 +122,7 @@ namespace witcher_pic {
 	auto getEdgeInfo(EdgeInfo* edgeinfo, Image& img, bool l2_gradient) -> void;
 	auto nonMaxSuppression(const EdgeInfo* e_info) -> void;
 	auto twoThreshold(const EdgeInfo* e_info, const uint8_t* l_threshold, const uint8_t* h_threshold) -> void;
-	auto lineExtra(const ImgMat& source, unsigned houghsize) -> HoughInfo*;
-	auto drawLine(Image& img, double radius, double theta, uint32_t rgb, int thickness) -> void;
+	// 如果阈值设为0，则以最大值作为阈值
+	auto lineExtra(const ImgMat& source, double rho, double theta, size_t threshold) -> HoughInfo*;
 	auto rotate(Image& img, double theta, bool clockwise = false) -> void;
-
-#ifdef _DEBUG
-	}
-#endif
 }

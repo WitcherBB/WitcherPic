@@ -1,4 +1,4 @@
-#include "witcherPic_types.h"
+#include <witcher_types/witcherPic_types.h>
 
 namespace witcher_pic {
 	FilterInfo::FilterInfo(int _sw, int _sh, int _rcx, int _rcy, int _mw, int _mh, FilterType ty)

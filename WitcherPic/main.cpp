@@ -83,28 +83,29 @@ auto main(int ARGV, char* ARGC[]) -> int {
 }
 
 auto test(const char* arg) -> void {
-	// gpuDeviceInfo();
-	// FREE_IMAGE_FORMAT format = FreeImage_GetFileType(arg);
+	gpuDeviceInfo();
+	FREE_IMAGE_FORMAT format = FreeImage_GetFileType(arg);
 
-	// if (!FreeImage_FIFSupportsReading(format)) {
-	// 	throw std::runtime_error("This image is not supported to read.");
-	// }
-	// printf("Image has been read.\n");
-	// Image& img = *witcherpic_loadImage(arg);
-	// printf("Image Size: %u * %u\n", img.width(), img.height());
+	if (!FreeImage_FIFSupportsReading(format)) {
+		throw std::runtime_error("This image is not supported to read.");
+	}
+	printf("Image has been read.\n");
+	Image& img = *witcherpic_loadImage(arg);
+	printf("Image Size: %u * %u\n", img.width(), img.height());
 
-	// ImageProcessor processor1(img);
-	// ImageProcessor processor2(img.copy());
-	// // witcherpic_refSaveImage("dist/canny.png", processor1.tiltCorrection(499, true).get());
-	// fmt::print("process 耗时: {}ms\n", costTimeMs([&]() -> void {
-	// 	processor2.resize(-1, 512, CppResizeMode::BICUBIC);
-	// }));
-	// witcherpic_refSaveImage("dist/edge.png", processor2.get());
+	ImageProcessor processor1(img);
+	ImageProcessor processor2(img.copy());
+	// witcherpic_refSaveImage("dist/canny.png", processor1.tiltCorrection(499, true).get());
+	fmt::print("process 耗时: {}ms\n", costTimeMs([&]() -> void {
+		processor2.resize(-1, 512, CppResizeMode::BICUBIC);
+	}));
+	processor2.toGray();
+	witcherpic_refSaveImage("dist/edge.png", processor2.canny(3, true).get());
 	// printf("%d\n", img.bpp());
-	auto func = [](int x) -> int {
-		return x;
-	};
-	int result = func(std::stoi(arg));
-	short a = 0xFFFE;
-	printf("%d %d 0x%X\n", sizeof(short), a, a);
+	// auto func = [](int x) -> int {
+	// 	return x;
+	// };
+	// int result = func(std::stoi(arg));
+	// short a = 0xFFFE;
+	// printf("%d %d 0x%X\n", sizeof(short), a, a);
 }

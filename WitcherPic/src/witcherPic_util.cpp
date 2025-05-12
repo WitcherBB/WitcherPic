@@ -116,11 +116,6 @@ namespace witcher_pic {
 		return processor;
 	}
 
-	HoughInfo::~HoughInfo() {
-		delete[] max_redius;
-		delete[] max_thetas;
-	}
-
 	EdgeInfo::~EdgeInfo() {
 		delete r_dir;
 		delete g_dir;
@@ -361,13 +356,10 @@ namespace witcher_pic {
 		}
 	}
 
-	auto lineExtra(const ImgMat& source, unsigned houghsize) -> HoughInfo* {
+	auto lineExtra(const ImgMat& source, double rho, double theta, size_t threshold) -> HoughInfo* {
 		const auto width = source.cols();
 		const auto height = source.rows();
-		HoughInfo* hough = new HoughInfo{nullptr, nullptr, 0};
-
-		hostLineExtra(&hough->max_redius, &hough->max_thetas, hough->size, source.data(), width, height,
-		              houghsize);
+		HoughInfo* hough = hostLineExtra(source.data(), width, height, rho, theta, threshold);
 		return hough;
 	}
 
@@ -385,7 +377,26 @@ namespace witcher_pic {
 		hostDrawLine(impl->b_matrix_.data(), width, height, radius, theta, blue, thickness);
 	}
 
-	auto rotate(Image& img, double theta, bool clockwise) -> void {
+    auto drawLines(Image& img, const HoughInfo& houghinfo, uint32_t rgb, int thickness) -> void {
+		uint8_t red = (uint8_t)(rgb >> 16 & 0xFF),
+		        green = (uint8_t)(rgb >> 8 & 0xFF),
+		        blue = (uint8_t)(rgb & 0xFF);
+		unsigned width = img.width();
+		unsigned height = img.height();
+		auto impl = img.impl();
+
+		ImageProcessor(img).toRGB();
+		//DOWN HoughInfo
+		for (size_t i = 0; i < houghinfo.size; i++) {
+			double radius = houghinfo.max_radius[i];
+			double theta = houghinfo.max_thetas[i];
+			hostDrawLine(impl->r_matrix_.data(), width, height, radius, theta, red, thickness);
+			hostDrawLine(impl->g_matrix_.data(), width, height, radius, theta, green, thickness);
+			hostDrawLine(impl->b_matrix_.data(), width, height, radius, theta, blue, thickness);
+		}
+    }
+
+    auto rotate(Image& img, double theta, bool clockwise) -> void {
 		auto impl = img.impl();
 		const auto width = img.width();
 		const auto height = img.height();
