@@ -1,0 +1,102 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "mkdir",
+            "type": "shell",
+            "command": "mkdir",
+            "args": [
+                "-p", "${workspaceFolder}/WitcherPic/build"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "cmake debug",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                ".",
+                "-B", "build",
+                "-G", "Ninja",
+                "--toolchain", "${VCPKG_HOME}/scripts/buildsystems/vcpkg.cmake",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-DCMAKE_C_COMPILER=clang",
+                "-DCMAKE_CXX_COMPILER=clang++",
+                "-DCMAKE_CUDA_COMPILER=nvcc"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/WitcherPic"
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "dependsOn": ["mkdir"],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "cmake release",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                ".",
+                "-B", "build",
+                "-G", "Ninja",
+                "--toolchain", "${VCPKG_HOME}/scripts/buildsystems/vcpkg.cmake",
+                "-DCMAKE_BUILD_TYPE=Release",
+                "-DCMAKE_C_COMPILER=clang",
+                "-DCMAKE_CXX_COMPILER=clang++",
+                "-DCMAKE_CUDA_COMPILER=nvcc"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/WitcherPic"
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "dependsOn": ["mkdir"],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "ninja build",
+            "type": "shell",
+            "command": "ninja",
+            "args": [
+
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/WitcherPic/build"
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}
